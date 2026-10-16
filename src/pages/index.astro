@@ -4,7 +4,7 @@ import Fact from '../components/Fact.astro';
 import CallButton from '../components/CallButton.astro';
 import RequestForm from '../components/RequestForm.astro';
 import HeroArt from '../components/HeroArt.astro';
-import { services, faq, LAUNCH } from '../lib/site';
+import { services, faq, facts, LAUNCH } from '../lib/site';
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const gallerySlots = [
@@ -15,6 +15,11 @@ const gallerySlots = [
   'Mobile service truck',
   'The team',
 ];
+const addr = facts.address;
+const directions =
+  addr.status === 'confirmed' && addr.value
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr.value)}`
+    : null;
 const trust = [
   { title: 'Licenses & certifications', fact: 'licensing' },
   { title: 'Insurance', fact: 'insurance' },
@@ -47,7 +52,7 @@ const trust = [
   <section class="glance" aria-label="At a glance">
     <div class="wrap">
       <dl class="glance__list">
-        <div><dt>Where the work happens</dt><dd><Fact id="serviceModel" /></dd></div>
+        <div><dt>Address</dt><dd><Fact id="address" /></dd></div>
         <div><dt>Service area</dt><dd><Fact id="serviceArea" /></dd></div>
         <div><dt>Hours</dt><dd><Fact id="hours" /></dd></div>
         <div><dt>Emergency calls</dt><dd><Fact id="emergency" /></dd></div>
@@ -65,7 +70,7 @@ const trust = [
         </p>
         {!LAUNCH && (
           <p class="note">
-            <strong>Placeholder list.</strong> These are typical services for the trade, not a statement of what this shop does. The real list replaces this once confirmed.
+            <strong>Mostly placeholders.</strong> Roadside assistance comes from the business's logo. The other cards are typical services for the trade, not a statement of what this shop does. The real list replaces them once confirmed.
           </p>
         )}
       </div>
@@ -207,7 +212,15 @@ const trust = [
       <div class="contact">
         <div class="contact__item"><h3>Phone</h3><p><Fact id="phone" /></p></div>
         <div class="contact__item"><h3>Email</h3><p><Fact id="email" /></p></div>
-        <div class="contact__item"><h3>Address</h3><p><Fact id="address" /></p></div>
+        <div class="contact__item">
+          <h3>Address</h3>
+          <address><Fact id="address" /></address>
+          {directions && (
+            <p class="contact__link">
+              <a href={directions} target="_blank" rel="noopener">Get directions<span class="sr-only"> (opens Google Maps in a new tab)</span></a>
+            </p>
+          )}
+        </div>
       </div>
       <div class="contact__cta">
         <CallButton />

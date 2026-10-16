@@ -7,7 +7,7 @@ import condensed700 from '@fontsource/barlow-condensed/files/barlow-condensed-la
 import barlow400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
 import barlow600 from '@fontsource/barlow/files/barlow-latin-600-normal.woff2?url';
 import Fact from '../components/Fact.astro';
-import SunMark from '../components/SunMark.astro';
+import Logo from '../components/Logo.astro';
 import CallButton from '../components/CallButton.astro';
 import { LAUNCH, factText, facts } from '../lib/site';
 
@@ -56,7 +56,8 @@ const nav = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#14181d" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {[condensed700, barlow400, barlow600].map((href) => (
       <link rel="preload" as="font" type="font/woff2" href={href} crossorigin="anonymous" />
     ))}
@@ -81,11 +82,7 @@ const nav = [
     <header class="site-header">
       <div class="wrap site-header__row">
         <a class="brand" href="/">
-          <SunMark size={38} />
-          <span class="brand__text">
-            <span class="brand__name"><Fact id="businessName" /></span>
-            <span class="brand__sub"><Fact id="tradeLine" /></span>
-          </span>
+          <Logo class="brand__logo" eager />
         </a>
 
         <nav class="nav" aria-label="Primary">
@@ -111,10 +108,10 @@ const nav = [
 
     <footer class="site-footer">
       <div class="wrap site-footer__row">
-        <p class="brand brand--footer">
-          <SunMark size={30} />
-          <span><Fact id="businessName" /></span>
-        </p>
+        <div class="footer-id">
+          <a class="brand brand--footer" href="/"><Logo class="brand__logo brand__logo--footer" width={200} /></a>
+          <address class="footer-address"><Fact id="address" /></address>
+        </div>
         <p class="site-footer__note">
           {LAUNCH
             ? <Fragment>Website by Midvora.</Fragment>

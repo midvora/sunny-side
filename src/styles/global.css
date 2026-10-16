@@ -148,7 +148,6 @@ a {
   background: rgba(255, 194, 26, 0.22);
   border-bottom-color: var(--sun);
 }
-.brand .tbc,
 .hero h1 .tbc {
   background: none;
   padding: 0;
@@ -235,44 +234,30 @@ a {
 
 /* ---- header ---- */
 .site-header {
-  background: var(--ink);
-  color: var(--paper);
+  background: #fff;
+  color: var(--ink);
   position: relative;
   z-index: 20;
+  border-bottom: 1px solid var(--line);
 }
 .site-header__row {
   display: flex;
   align-items: center;
   gap: 16px;
-  min-height: 72px;
+  min-height: 84px;
   padding-block: 10px;
 }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   color: inherit;
   text-decoration: none;
   margin: 0;
+  flex: none;
 }
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-.brand__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.brand__sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #c8c1ae;
-  margin-top: 3px;
+.brand__logo {
+  height: 64px;
+  width: auto;
 }
 .nav {
   display: none;
@@ -293,13 +278,13 @@ a {
   align-items: center;
   min-height: 44px;
   padding: 0 12px;
-  color: var(--paper);
+  color: var(--ink);
   text-decoration: none;
   font-weight: 600;
   border-radius: 8px;
 }
 .nav__list a:hover {
-  background: var(--ink-3);
+  background: var(--paper-2);
 }
 .menu {
   margin-left: auto;
@@ -314,7 +299,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 0 16px;
-  border: 2px solid #5a6672;
+  border: 2px solid var(--ink);
   border-radius: 999px;
   font-weight: 600;
 }
@@ -326,29 +311,32 @@ a {
   right: 0;
   top: calc(100% + 8px);
   min-width: 220px;
-  background: var(--ink-2);
-  border: 1px solid #3a444e;
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(20, 24, 29, 0.18);
 }
 .menu__list a {
   display: block;
   padding: 12px 14px;
   min-height: 44px;
-  color: var(--paper);
+  color: var(--ink);
   text-decoration: none;
   font-weight: 600;
   border-radius: 8px;
 }
 .menu__list a:hover {
-  background: var(--ink-3);
+  background: var(--paper-2);
 }
 .site-header__cta {
   display: none;
 }
 
 @media (min-width: 960px) {
+  .brand__logo {
+    height: 80px;
+  }
   .nav {
     display: block;
   }
@@ -850,8 +838,19 @@ a {
   font-size: 1.4rem;
   margin-bottom: 8px;
 }
-.contact__item p {
+.contact__item p,
+.contact__item address {
   margin: 0;
+  font-style: normal;
+}
+.contact__link {
+  margin-top: 10px !important;
+}
+.contact__link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
 }
 .contact__cta {
   display: flex;
@@ -879,12 +878,23 @@ a {
   align-items: center;
   justify-content: space-between;
 }
+.footer-id {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
 .brand--footer {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  letter-spacing: 0.03em;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 12px;
+}
+.brand__logo--footer {
+  height: 56px;
+}
+.footer-address {
+  font-style: normal;
+  color: #e6e0cf;
 }
 .site-footer__note {
   margin: 0;

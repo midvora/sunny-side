@@ -83,6 +83,46 @@ test.describe('concept guardrails', () => {
   });
 });
 
+test.describe('client logo and address', () => {
+  const ADDRESS = '2605 Oakland Ave., Garland, TX 75041';
+
+  test('header logo is the client logo: loads, has alt text and reserved size', async ({ page }) => {
+    await page.goto('/');
+    const logo = page.locator('header .brand__logo');
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute('alt', /Sunny Side.*Truck and trailer repair.*Roadside assistance/);
+    expect(await logo.getAttribute('width')).toBeTruthy(); // width/height attributes prevent layout shift
+    expect(await logo.getAttribute('height')).toBeTruthy();
+    expect(await page.locator('img').count()).toBeGreaterThanOrEqual(2); // header + footer
+    await page.locator('.site-footer').scrollIntoViewIfNeeded(); // the footer logo is lazy-loaded
+    await expect
+      .poll(() => page.$$eval('img', (imgs) => imgs.filter((i) => !(i.complete && i.naturalWidth > 0)).length))
+      .toBe(0);
+  });
+
+  test('address appears as confirmed text (not a placeholder) in the contact card and footer', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#contact address')).toHaveText(ADDRESS);
+    await expect(page.locator('.site-footer address')).toHaveText(ADDRESS);
+    await expect(page.locator('#contact address mark, .site-footer address mark')).toHaveCount(0);
+    await expect(page).toHaveTitle(/Garland, Texas/);
+  });
+
+  test('directions link points at the exact address and is explained to screen readers', async ({ page }) => {
+    await page.goto('/');
+    const link = page.getByRole('link', { name: /get directions/i });
+    await expect(link).toHaveAttribute('href', `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ADDRESS)}`);
+    await expect(link).toHaveAttribute('rel', /noopener/);
+    await expect(link).toContainText('opens Google Maps in a new tab');
+  });
+
+  test('does not say Dallas anywhere: the supplied address is in Garland', async ({ page }) => {
+    await page.goto('/');
+    const text = (await page.evaluate(() => document.body.innerText)).toLowerCase();
+    expect(text).not.toContain('dallas');
+  });
+});
+
 test.describe('request form is a non-submitting preview', () => {
   test('invalid submit shows nothing; valid submit shows the preview notice and sends nothing', async ({ page }) => {
     const sent: string[] = [];

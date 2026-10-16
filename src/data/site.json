@@ -4,44 +4,44 @@
     "businessName": {
       "label": "Business name",
       "value": "Sunny Side",
-      "status": "unconfirmed",
-      "source": "Samson (verbal). Public identity search 2026-10-16 found no matching truck/trailer shop.",
+      "status": "confirmed",
+      "source": "Client logo supplied by Samson on 2026-10-16 (it reads \"Sunny Side, Truck and Trailer Repair, Roadside Assistance\").",
       "ask": "Exact legal and trading name, and how it is written on the shop sign and paperwork."
     },
     "tradeLine": {
       "label": "Trade",
-      "value": "Truck & trailer repair",
-      "status": "unconfirmed",
-      "source": "Samson proposed this category on 2026-10-16.",
+      "value": "Truck and trailer repair",
+      "status": "confirmed",
+      "source": "Client logo supplied by Samson on 2026-10-16 (it reads \"Sunny Side, Truck and Trailer Repair, Roadside Assistance\").",
       "ask": "Confirm the trade, and whether to say heavy-duty, diesel, fleet or owner-operator."
     },
     "location": {
       "label": "City",
-      "value": "Dallas, Texas",
-      "status": "unconfirmed",
-      "source": "Samson (verbal).",
+      "value": "Garland, Texas",
+      "status": "confirmed",
+      "source": "City from the street address Samson supplied on 2026-10-16. Samson earlier said Dallas; Garland is a Dallas-area city.",
       "ask": "Shop city, or whether the business is mobile only."
     },
     "serviceScope": {
       "label": "Service scope",
-      "value": "Diagnostics, repair and inspections for tractors, straight trucks and trailers.",
-      "status": "unconfirmed",
-      "source": "Generic description of the proposed trade. Not provided by the business.",
-      "ask": "Which equipment the shop works on, and anything it does not work on."
+      "value": "Repair and roadside assistance for trucks and trailers.",
+      "status": "confirmed",
+      "source": "Client logo supplied by Samson on 2026-10-16 (it reads \"Sunny Side, Truck and Trailer Repair, Roadside Assistance\").",
+      "ask": "Which equipment the shop works on (tractors, straight trucks, reefers, flatbeds), and anything it does not."
     },
     "serviceModel": {
       "label": "Where the work happens",
       "value": null,
       "status": "unconfirmed",
       "source": "Unknown.",
-      "ask": "Shop only, mobile, roadside calls, or a mix? Any drop-off or towing arrangements?"
+      "ask": "The logo advertises roadside assistance. Confirm what it covers (towing, tires, jump starts, fuel, repairs on site) and whether repairs also happen at the Oakland Ave address."
     },
     "serviceArea": {
       "label": "Service area",
       "value": null,
       "status": "unconfirmed",
       "source": "Unknown.",
-      "ask": "Cities, highways or radius covered. Is Fort Worth in?"
+      "ask": "Cities, highways or radius covered for shop visits and for roadside calls."
     },
     "hours": {
       "label": "Hours",
@@ -55,7 +55,7 @@
       "value": null,
       "status": "unconfirmed",
       "source": "Unknown.",
-      "ask": "Is there 24/7 or after-hours service? If so, what exactly, and is there a separate number?"
+      "ask": "Is roadside assistance available after hours or 24/7? If so, what exactly, and is there a separate number?"
     },
     "appointments": {
       "label": "Appointment policy",
@@ -87,10 +87,10 @@
     },
     "address": {
       "label": "Street address",
-      "value": null,
-      "status": "unconfirmed",
-      "source": "Unknown.",
-      "ask": "Street address, and parking or yard access for trucks with trailers."
+      "value": "2605 Oakland Ave., Garland, TX 75041",
+      "status": "confirmed",
+      "source": "Street address supplied by Samson on 2026-10-16. No public listing for it was found in searches that day (see IDENTITY_NOTES.md).",
+      "ask": "Confirm it is a shop, yard or office, plus truck access and parking."
     },
     "licensing": {
       "label": "Licenses and certifications",
@@ -136,6 +136,13 @@
     }
   },
   "services": [
+    {
+      "id": "roadside",
+      "name": "Roadside assistance",
+      "summary": "Help for a truck or trailer stopped on the road. What it covers is shown once confirmed.",
+      "status": "confirmed",
+      "source": "Named in the client's logo (supplied by Samson 2026-10-16). Coverage not confirmed, so the card makes no promise."
+    },
     {
       "id": "brakes",
       "name": "Brakes & air systems",

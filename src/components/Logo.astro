@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { factText } from '../lib/site';
+
+interface Props {
+  class?: string;
+  width?: number;
+  eager?: boolean;
+}
+
+// The client's own logo (supplied by Samson), cropped and with its white background made transparent.
+// Original kept outside the repo: ../assets-source/sunny-side-logo-original.png
+const { class: className, width = 250, eager = false } = Astro.props;
+const alt = `${factText('businessName')}. ${factText('tradeLine')}. Roadside assistance.`;
+---
+<Image
+  src={logo}
+  alt={alt}
+  width={width}
+  densities={[1, 2]}
+  format="webp"
+  quality={92}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+  class={className}
+/>

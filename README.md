@@ -1,6 +1,6 @@
 # Sunny Side: concept website
 
-A **private concept** for a Dallas truck-and-trailer repair business. The business identity is **unconfirmed**, so nothing on the site is a claim: every business fact is a highlighted placeholder until the owner confirms it. This is not a live business site.
+A **private concept** for Sunny Side, a truck-and-trailer repair business at 2605 Oakland Ave., Garland, TX 75041 (address and logo supplied by Samson). The name, trade, address and roadside-assistance service are on the site as facts; everything else about the business (phone, hours, service area, services, reviews, warranty) is a highlighted placeholder until the owner confirms it. This is not a live business site.
 
 Built with Astro 7 (static output), self-hosted fonts, no third-party requests, no analytics, no backend.
 
@@ -51,7 +51,8 @@ The browser tests write screenshots to `../reports/screenshots/` and Lighthouse 
 
 ```
 src/data/site.json      every business fact, service and FAQ answer, with status and source
-src/components/         Fact, CallButton, RequestForm, HeroArt, SunMark
+src/assets/logo.png       the client logo (cropped, transparent background; original is outside the repo)
+src/components/         Fact, CallButton, Logo, RequestForm, HeroArt
 src/layouts/Base.astro  head, banner, header, footer, mobile action bar
 src/pages/              index, 404, robots.txt
 scripts/                launch gate, punchlist generator, Lighthouse runner, tests

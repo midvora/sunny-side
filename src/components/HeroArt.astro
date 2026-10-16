@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+import logo from '../assets/logo.png';
 // Original vector illustration (drawn for this concept): tractor-trailer under a rising sun.
 const rays = Array.from({ length: 14 }, (_, i) => ({
   deg: -95 + i * (190 / 13),
@@ -8,6 +10,8 @@ const ribs = Array.from({ length: 17 }, (_, i) => 52 + i * 19);
 const trailerWheels = [96, 140];
 const driveWheels = [432, 476];
 const steerWheels = [542];
+// The client's logo as the trailer-side decal.
+const decal = await getImage({ src: logo, width: 400, format: 'webp', quality: 90 });
 ---
 <svg class="heroart" viewBox="0 0 640 360" role="presentation" aria-hidden="true" focusable="false">
   <g transform="translate(420 150)">
@@ -31,12 +35,7 @@ const steerWheels = [542];
   <rect x="30" y="140" width="352" height="122" rx="6" fill="#f1ebdd" />
   {ribs.map((x) => <line x1={x} y1="146" x2={x} y2="256" stroke="#d4cbb6" stroke-width="2" />)}
   <rect x="30" y="228" width="352" height="12" fill="#ffc21a" />
-  <g transform="translate(172 160) scale(1.5)">
-    <circle cx="24" cy="24" r="10" fill="#ffc21a" stroke="#14181d" stroke-width="2.2" />
-    {Array.from({ length: 8 }, (_, i) => i * 45).map((deg) => (
-      <line x1="24" y1="5" x2="24" y2="10.5" stroke="#14181d" stroke-width="3" stroke-linecap="round" transform={`rotate(${deg} 24 24)`} />
-    ))}
-  </g>
+  <image href={decal.src} x="108" y="150" width="196" height="75" />
   <rect x="30" y="256" width="352" height="6" fill="#bdb49c" />
 
   <!-- fifth wheel and chassis -->

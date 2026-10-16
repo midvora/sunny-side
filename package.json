@@ -1,7 +1,7 @@
 {
   "name": "sunny-side-concept",
   "version": "0.1.0",
-  "description": "Private concept website for a Dallas truck and trailer repair business (placeholders until confirmed)",
+  "description": "Private concept website for Sunny Side, a truck and trailer repair business in Garland, Texas. Placeholders until the business confirms its details.",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:unit && npm run test:e2e",
