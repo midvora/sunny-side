@@ -1,0 +1,72 @@
+name: Deploy to GitHub Pages
+
+# Publishes the CONCEPT build (noindex, preview banner, placeholders shown). It never runs build:launch,
+# which refuses to build while any business fact is unconfirmed.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      # Same checks as every other run, at the local base path.
+      - name: Full verification
+        run: npm run verify
+
+      # A project site is served under /sunny-side/, so build and test that exact variant before shipping it.
+      - name: Build for GitHub Pages
+        run: npx astro build
+        env:
+          SITE_BASE: /sunny-side
+      - name: Browser tests against the Pages build
+        run: npx playwright test
+        env:
+          SITE_BASE: /sunny-side
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Smoke test the live site
+        run: node scripts/smoke.mjs "${{ needs.deploy.outputs.page_url }}"

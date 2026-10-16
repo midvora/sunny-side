@@ -45,3 +45,9 @@ export function factText(id: string): string {
   const f = fact(id);
   return f.value ?? `${f.label} (to be confirmed)`;
 }
+
+/** Prefix a site path with the configured base (`/` locally, `/sunny-side/` on GitHub Pages). */
+export function withBase(path = ''): string {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}/${path.replace(/^\//, '')}`;
+}

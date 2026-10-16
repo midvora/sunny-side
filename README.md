@@ -41,11 +41,24 @@ The browser tests write screenshots to `../reports/screenshots/` and Lighthouse 
 - `npm run build:launch` runs the **launch gate** first and refuses to build while anything is unconfirmed. Both the gate and the launch build are tested.
 - `npm run punchlist` regenerates the client confirmation checklist from the same data file.
 
+## Deployment (GitHub Pages)
+
+Every push to `main` runs `.github/workflows/deploy.yml`:
+
+1. `npm run verify` (type check, build, unit tests, browser tests, HTML validation, Lighthouse).
+2. Builds again with `SITE_BASE=/sunny-side` (the project site is served under that path) and runs the browser tests against *that* build.
+3. Publishes `dist/` to GitHub Pages: https://midvora.github.io/sunny-side/
+4. Smoke-tests the live URL (`scripts/smoke.mjs`): content present, `noindex` held, every same-origin asset returns 200, unknown paths return the 404 page.
+
+What gets published is the **concept build**: `noindex`, preview banner, placeholders shown. It is public but not meant to be found by search. The workflow never runs `build:launch`. `verify.yml` runs the same checks on pull requests.
+
+To test the Pages variant locally: `SITE_BASE=/sunny-side npm run build && SITE_BASE=/sunny-side npm run test:e2e`.
+
 ## Going live (not yet approved)
 
 1. Replace placeholders in `src/data/site.json` with confirmed facts (and delete services that are not offered).
 2. Approve a real request-form destination and privacy handling, then replace the preview form. Until then the form sends nothing.
-3. `npm run build:launch`, then deploy. Domain, hosting and publication need sign-off from Samson.
+3. `npm run build:launch` (the launch gate must pass), then point the deploy workflow at it and connect the real domain. Going live needs sign-off from Samson.
 
 ## Layout
 

@@ -1,10 +1,10 @@
 name: Verify
 
 # Clean-machine run of the same checks as `npm run verify`, so the result does not depend on one developer's box.
+# Pushes to main run the same checks inside deploy.yml, so this one covers pull requests and manual runs.
 on:
-  push:
-    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
