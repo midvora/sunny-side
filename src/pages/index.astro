@@ -1,0 +1,221 @@
+---
+import Base from '../layouts/Base.astro';
+import Fact from '../components/Fact.astro';
+import CallButton from '../components/CallButton.astro';
+import RequestForm from '../components/RequestForm.astro';
+import HeroArt from '../components/HeroArt.astro';
+import { services, faq, LAUNCH } from '../lib/site';
+
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const gallerySlots = [
+  'Shop bay or yard',
+  'Brake and air work',
+  'Trailer door repair',
+  'Diagnostics in progress',
+  'Mobile service truck',
+  'The team',
+];
+const trust = [
+  { title: 'Licenses & certifications', fact: 'licensing' },
+  { title: 'Insurance', fact: 'insurance' },
+  { title: 'Warranty', fact: 'warranty' },
+  { title: 'Customer reviews', fact: 'reviews' },
+];
+---
+<Base>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow"><Fact id="location" /></p>
+        <h1 id="hero-title"><Fact id="tradeLine" /></h1>
+        <p class="lede"><Fact id="serviceScope" /></p>
+        <div class="hero__cta">
+          <CallButton />
+          <a class="btn btn--secondary" href="#request">
+            <span class="btn__main">Request a repair</span>
+            <span class="btn__sub">or ask for an estimate</span>
+          </a>
+        </div>
+        <p class="hero__note">
+          Unit down? Have the unit number, where it is, and what it is doing ready. <a href="#faq">What to have ready</a>
+        </p>
+      </div>
+      <HeroArt />
+    </div>
+  </section>
+
+  <section class="glance" aria-label="At a glance">
+    <div class="wrap">
+      <dl class="glance__list">
+        <div><dt>Where the work happens</dt><dd><Fact id="serviceModel" /></dd></div>
+        <div><dt>Service area</dt><dd><Fact id="serviceArea" /></dd></div>
+        <div><dt>Hours</dt><dd><Fact id="hours" /></dd></div>
+        <div><dt>Emergency calls</dt><dd><Fact id="emergency" /></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="services" class="section" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Services</p>
+        <h2 id="services-title">What a truck &amp; trailer shop covers</h2>
+        <p>
+          Plain-language descriptions of common heavy-duty work, so a driver or dispatcher can tell at a glance whether this is the right shop.
+        </p>
+        {!LAUNCH && (
+          <p class="note">
+            <strong>Placeholder list.</strong> These are typical services for the trade, not a statement of what this shop does. The real list replaces this once confirmed.
+          </p>
+        )}
+      </div>
+      <ul class="cards">
+        {services.map((s) => (
+          <li class="card">
+            <h3>{s.name}</h3>
+            <p>{s.summary}</p>
+            {s.status === 'unconfirmed' && <span class="card__tag">Unconfirmed</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="request" class="section section--dark" aria-labelledby="request-title">
+    <div class="wrap request">
+      <div class="section__head section__head--flush">
+        <p class="kicker">Request a repair</p>
+        <h2 id="request-title">Tell us what is wrong</h2>
+        <p>The more detail up front, the less back-and-forth on the phone. For a unit that is down on the road, calling is faster.</p>
+        <ul class="checklist">
+          <li>Unit type and number</li>
+          <li>Where it is right now</li>
+          <li>What it is doing: lights, noises, leaks, no start</li>
+          <li>Any deadline, such as an inspection due date</li>
+        </ul>
+        <div class="hero__cta hero__cta--solo"><CallButton /></div>
+      </div>
+      <RequestForm />
+    </div>
+  </section>
+
+  <section id="area" class="section" aria-labelledby="area-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Find us</p>
+        <h2 id="area-title">Service area &amp; hours</h2>
+      </div>
+      <div class="two">
+        <div class="panel">
+          <h3>Hours</h3>
+          <table class="hours">
+            <caption class="sr-only">Opening hours by day (not yet confirmed)</caption>
+            <tbody>
+              {days.map((d) => <tr><th scope="row">{d}</th><td aria-label="hours not confirmed">&mdash;</td></tr>)}
+            </tbody>
+          </table>
+          <p><Fact id="hours" /></p>
+        </div>
+        <div class="panel">
+          <h3>Where we work</h3>
+          <p><Fact id="serviceArea" /></p>
+          <p><Fact id="serviceModel" /></p>
+          <div class="mapslot" role="img" aria-label="Service area map placeholder">
+            <p>Service area map goes here once the area is confirmed.<br />Self-hosted, no tracking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="section section--alt" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Our work</p>
+        <h2 id="work-title">Photos from the shop</h2>
+        <p>Real photos of real jobs go here. Stock images of other shops are never used, and before-and-after shots only appear with permission.</p>
+      </div>
+      <ul class="gallery">
+        {gallerySlots.map((label) => (
+          <li class="slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+              <circle cx="12" cy="13" r="3.4" />
+            </svg>
+            <strong>{label}</strong>
+            <span>Photo slot</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="trust-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Trust</p>
+        <h2 id="trust-title">What we can show you</h2>
+        <p>These appear only once the business supplies documents or approved wording.</p>
+      </div>
+      <ul class="trust">
+        {trust.map((t) => (
+          <li>
+            <h3>{t.title}</h3>
+            <p><Fact id={t.fact} /></p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="section" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-title">Questions drivers ask</h2>
+      </div>
+      <div class="faq">
+        {faq.map((item, i) => (
+          <details open={i === 0}>
+            <summary>{item.q}</summary>
+            <div class="faq__a">
+              {item.kind === 'guidance'
+                ? (
+                  <Fragment>
+                    <p>{item.a}</p>
+                    {item.source?.startsWith('eCFR') && (
+                      <p class="faq__src">
+                        Source: <a href="https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-396/subpart-B/section-396.17" rel="noopener">49 CFR 396.17 on eCFR</a>
+                      </p>
+                    )}
+                  </Fragment>
+                )
+                : <p><Fact id={item.fact!} /></p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section--alt" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Contact</p>
+        <h2 id="contact-title">Get in touch</h2>
+      </div>
+      <div class="contact">
+        <div class="contact__item"><h3>Phone</h3><p><Fact id="phone" /></p></div>
+        <div class="contact__item"><h3>Email</h3><p><Fact id="email" /></p></div>
+        <div class="contact__item"><h3>Address</h3><p><Fact id="address" /></p></div>
+      </div>
+      <div class="contact__cta">
+        <CallButton />
+        <a class="btn btn--secondary" href="#request">
+          <span class="btn__main">Request a repair</span>
+          <span class="btn__sub">or ask for an estimate</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

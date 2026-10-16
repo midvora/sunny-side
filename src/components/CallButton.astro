@@ -1,0 +1,28 @@
+---
+import { fact } from '../lib/site';
+
+interface Props {
+  variant?: 'primary' | 'bar';
+}
+
+const { variant = 'primary' } = Astro.props;
+const phone = fact('phone');
+const live = phone.status === 'confirmed' && !!phone.value;
+const digits = (phone.value ?? '').replace(/[^\d+]/g, '');
+---
+{live
+  ? (
+    <a class:list={['btn', 'btn--call', `btn--${variant}`]} href={`tel:${digits}`}>
+      <span class="btn__main">Call now</span>
+      <span class="btn__sub">{phone.value}</span>
+    </a>
+  )
+  : (
+    <a
+      class:list={['btn', 'btn--call', 'btn--pending', `btn--${variant}`]}
+      href="#contact"
+    >
+      <span class="btn__main">Call now</span>
+      <span class="btn__sub">number pending</span>
+    </a>
+  )}

@@ -1,0 +1,136 @@
+---
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/barlow/latin-400.css';
+import '@fontsource/barlow/latin-600.css';
+import '../styles/global.css';
+import condensed700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
+import barlow400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
+import barlow600 from '@fontsource/barlow/files/barlow-latin-600-normal.woff2?url';
+import Fact from '../components/Fact.astro';
+import SunMark from '../components/SunMark.astro';
+import CallButton from '../components/CallButton.astro';
+import { LAUNCH, factText, facts } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  actions?: boolean;
+}
+
+const {
+  title = `${factText('businessName')} | ${factText('tradeLine')}, ${factText('location')}`,
+  description = `${factText('tradeLine')} in ${factText('location')}. Request a repair or an estimate.`,
+  actions = true,
+} = Astro.props;
+
+// Structured data is emitted only in a launch build, and only from confirmed facts.
+const confirmed = (id: string) => (facts[id]?.status === 'confirmed' && facts[id].value ? facts[id].value : undefined);
+const jsonLd = LAUNCH
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'AutoRepair',
+      name: confirmed('businessName'),
+      description: confirmed('serviceScope'),
+      telephone: confirmed('phone'),
+      email: confirmed('email'),
+      address: confirmed('address'),
+      areaServed: confirmed('serviceArea'),
+      openingHours: confirmed('hours'),
+    }
+  : null;
+
+const nav = [
+  { href: '#services', label: 'Services' },
+  { href: '#request', label: 'Request a repair' },
+  { href: '#area', label: 'Area & hours' },
+  { href: '#work', label: 'Our work' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#14181d" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {[condensed700, barlow400, barlow600].map((href) => (
+      <link rel="preload" as="font" type="font/woff2" href={href} crossorigin="anonymous" />
+    ))}
+    {!LAUNCH && <meta name="robots" content="noindex, nofollow, noarchive" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body class:list={{ 'has-bar': actions }}>
+    <a class="skip" href="#main">Skip to main content</a>
+
+    {!LAUNCH && (
+      <aside class="banner" aria-label="Preview notice">
+        <p>
+          <strong>Private concept preview.</strong>{' '}
+          Highlighted text is a placeholder until the business confirms it. Nothing here is a real offer, price or promise of availability.
+        </p>
+      </aside>
+    )}
+
+    <header class="site-header">
+      <div class="wrap site-header__row">
+        <a class="brand" href="/">
+          <SunMark size={38} />
+          <span class="brand__text">
+            <span class="brand__name"><Fact id="businessName" /></span>
+            <span class="brand__sub"><Fact id="tradeLine" /></span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <ul class="nav__list">
+            {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          </ul>
+        </nav>
+
+        <details class="menu">
+          <summary>Menu</summary>
+          <ul class="menu__list">
+            {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          </ul>
+        </details>
+
+        <div class="site-header__cta"><CallButton /></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__row">
+        <p class="brand brand--footer">
+          <SunMark size={30} />
+          <span><Fact id="businessName" /></span>
+        </p>
+        <p class="site-footer__note">
+          {LAUNCH
+            ? <Fragment>Website by Midvora.</Fragment>
+            : <Fragment>Concept preview prepared by Midvora. This is not a live business website.</Fragment>}
+        </p>
+      </div>
+    </footer>
+
+    {actions && (
+      <section class="bar" aria-label="Quick actions">
+        <CallButton variant="bar" />
+        <a class="btn btn--secondary btn--bar" href="#request">
+          <span class="btn__main">Request repair</span>
+          <span class="btn__sub">or estimate</span>
+        </a>
+      </section>
+    )}
+  </body>
+</html>

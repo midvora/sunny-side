@@ -1,0 +1,20 @@
+---
+import { fact, LAUNCH } from '../lib/site';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const f = fact(id);
+
+if (LAUNCH && f.status === 'unconfirmed') {
+  throw new Error(`Launch build blocked: fact "${id}" is still unconfirmed in src/data/site.json`);
+}
+
+const text = f.value ?? `${f.label}: to be confirmed`;
+const unconfirmed = f.status === 'unconfirmed';
+---
+{unconfirmed
+  ? <mark class="tbc" data-fact={id}>{text}<span class="sr-only"> (unconfirmed placeholder)</span></mark>
+  : <Fragment>{text}</Fragment>}

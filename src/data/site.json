@@ -1,0 +1,249 @@
+{
+  "_readme": "Single source of truth for every business fact on the site. status: confirmed | unconfirmed | not-offered. Anything unconfirmed renders as a marked placeholder and blocks `npm run build:launch`. TEDDY_CONFIRMATIONS.md is generated from this file by `npm run punchlist`.",
+  "facts": {
+    "businessName": {
+      "label": "Business name",
+      "value": "Sunny Side",
+      "status": "unconfirmed",
+      "source": "Samson (verbal). Public identity search 2026-10-16 found no matching truck/trailer shop.",
+      "ask": "Exact legal and trading name, and how it is written on the shop sign and paperwork."
+    },
+    "tradeLine": {
+      "label": "Trade",
+      "value": "Truck & trailer repair",
+      "status": "unconfirmed",
+      "source": "Samson proposed this category on 2026-10-16.",
+      "ask": "Confirm the trade, and whether to say heavy-duty, diesel, fleet or owner-operator."
+    },
+    "location": {
+      "label": "City",
+      "value": "Dallas, Texas",
+      "status": "unconfirmed",
+      "source": "Samson (verbal).",
+      "ask": "Shop city, or whether the business is mobile only."
+    },
+    "serviceScope": {
+      "label": "Service scope",
+      "value": "Diagnostics, repair and inspections for tractors, straight trucks and trailers.",
+      "status": "unconfirmed",
+      "source": "Generic description of the proposed trade. Not provided by the business.",
+      "ask": "Which equipment the shop works on, and anything it does not work on."
+    },
+    "serviceModel": {
+      "label": "Where the work happens",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Shop only, mobile, roadside calls, or a mix? Any drop-off or towing arrangements?"
+    },
+    "serviceArea": {
+      "label": "Service area",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Cities, highways or radius covered. Is Fort Worth in?"
+    },
+    "hours": {
+      "label": "Hours",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Opening hours by day, and holiday closures."
+    },
+    "emergency": {
+      "label": "Emergency and after-hours calls",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Is there 24/7 or after-hours service? If so, what exactly, and is there a separate number?"
+    },
+    "appointments": {
+      "label": "Appointment policy",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Walk-ins, appointments, or both?"
+    },
+    "estimates": {
+      "label": "Estimate and approval process",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "How are estimates given and approved? Any diagnostic fee? (Do not publish prices unless Teddy asks to.)"
+    },
+    "phone": {
+      "label": "Phone number",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Main phone, and whether it takes texts."
+    },
+    "email": {
+      "label": "Email address",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Public contact email, if any."
+    },
+    "address": {
+      "label": "Street address",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Street address, and parking or yard access for trucks with trailers."
+    },
+    "licensing": {
+      "label": "Licenses and certifications",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Any certifications, dealer authorizations or inspector credentials, with documents."
+    },
+    "insurance": {
+      "label": "Insurance",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Whether to mention insurance at all, and exact wording approved by Teddy."
+    },
+    "warranty": {
+      "label": "Warranty on repairs",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Any written warranty on parts or labor, and its exact terms."
+    },
+    "reviews": {
+      "label": "Customer reviews",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Real reviews with permission to quote, or a link to the Google Business Profile."
+    },
+    "formDestination": {
+      "label": "Where repair requests go",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "No intake process approved. The request form is a non-submitting preview.",
+      "ask": "Who receives requests (email, text, CRM), how fast they reply, and privacy handling for customer details."
+    },
+    "domain": {
+      "label": "Domain and hosting",
+      "value": null,
+      "status": "unconfirmed",
+      "source": "Unknown.",
+      "ask": "Existing domain, who controls DNS, and who approves going live."
+    }
+  },
+  "services": [
+    {
+      "id": "brakes",
+      "name": "Brakes & air systems",
+      "summary": "Brake inspection, adjustment and component replacement, plus air-system leak and compressor diagnosis.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    },
+    {
+      "id": "dot",
+      "name": "DOT annual inspections",
+      "summary": "Periodic inspections of commercial vehicles against the minimum standards in 49 CFR Part 396, Appendix A.",
+      "status": "unconfirmed",
+      "source": "Generic category. Rule: 49 CFR 396.17 and Appendix A to Part 396 (eCFR)."
+    },
+    {
+      "id": "engine",
+      "name": "Engine & aftertreatment diagnostics",
+      "summary": "Fault-code diagnosis and repair for diesel engines, including DPF, DEF and EGR-related issues.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    },
+    {
+      "id": "electrical",
+      "name": "Electrical & lighting",
+      "summary": "Tractor and trailer lighting, wiring, connectors and ABS sensor faults.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    },
+    {
+      "id": "suspension",
+      "name": "Suspension, axles & landing gear",
+      "summary": "Springs, air bags, bushings, axle components and trailer landing gear.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    },
+    {
+      "id": "tires",
+      "name": "Tires & wheel ends",
+      "summary": "Tire repair and replacement, wheel-end inspection and bearing service.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    },
+    {
+      "id": "trailer",
+      "name": "Trailer body & doors",
+      "summary": "Roll-up and swing doors, hinges, floors and structural repairs on dry vans and flatbeds.",
+      "status": "unconfirmed",
+      "source": "Generic trailer service category."
+    },
+    {
+      "id": "reefer",
+      "name": "Reefer unit service",
+      "summary": "Troubleshooting for refrigerated trailer units. Brand authorization would need to be confirmed.",
+      "status": "unconfirmed",
+      "source": "Generic category. Often a specialist or dealer job, so it may not apply."
+    },
+    {
+      "id": "pm",
+      "name": "Preventive maintenance",
+      "summary": "Scheduled service intervals: fluids, filters and inspections.",
+      "status": "unconfirmed",
+      "source": "Generic heavy-duty service category."
+    }
+  ],
+  "faq": [
+    {
+      "id": "ready",
+      "q": "What should I have ready when I call?",
+      "kind": "guidance",
+      "a": "Your unit number and type (tractor, straight truck, dry van, reefer, flatbed), where the unit is right now, what it is doing (warning lights, noises, leaks, won't start), whether it is loaded, and any deadline such as an inspection due date.",
+      "source": "General guidance written for this concept. Makes no claim about the business."
+    },
+    {
+      "id": "dot-scope",
+      "q": "What does a DOT periodic inspection cover?",
+      "kind": "guidance",
+      "a": "Federal rules require commercial motor vehicles to be inspected at least once every 12 months. The inspection must cover, at a minimum, the components listed in Appendix A to 49 CFR Part 396, such as brakes, steering, lighting, tires and coupling devices.",
+      "source": "eCFR, 49 CFR 396.17 (retrieved 2026-10-16): https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-396/subpart-B/section-396.17"
+    },
+    {
+      "id": "equipment",
+      "q": "Do you work on trailers as well as tractors?",
+      "kind": "business",
+      "fact": "serviceScope"
+    },
+    {
+      "id": "where",
+      "q": "Do you come to me, or do I bring the unit in?",
+      "kind": "business",
+      "fact": "serviceModel"
+    },
+    {
+      "id": "appointment",
+      "q": "Do I need an appointment?",
+      "kind": "business",
+      "fact": "appointments"
+    },
+    {
+      "id": "estimates",
+      "q": "How do estimates and approvals work?",
+      "kind": "business",
+      "fact": "estimates"
+    },
+    {
+      "id": "after-hours",
+      "q": "Do you take emergency or after-hours calls?",
+      "kind": "business",
+      "fact": "emergency"
+    }
+  ]
+}

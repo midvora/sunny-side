@@ -1,0 +1,70 @@
+---
+// Visual, non-submitting preview. No action, no fetch, nothing stored.
+// A real destination, consent text and privacy handling need approval first (fact: formDestination).
+const unitTypes = [
+  'Tractor (semi)',
+  'Straight truck',
+  'Dry van trailer',
+  'Refrigerated trailer',
+  'Flatbed or step-deck trailer',
+  'Other',
+];
+---
+<form id="request-form" class="form" autocomplete="on">
+  <div class="field">
+    <label for="rf-name">Your name</label>
+    <input id="rf-name" name="name" type="text" autocomplete="name" required />
+  </div>
+
+  <div class="field">
+    <label for="rf-phone">Mobile phone</label>
+    <input id="rf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+  </div>
+
+  <div class="field">
+    <label for="rf-unit">What needs work?</label>
+    <select id="rf-unit" name="unit" required>
+      <option value="">Choose one</option>
+      {unitTypes.map((u) => <option value={u}>{u}</option>)}
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="rf-issue">What is it doing?</label>
+    <textarea id="rf-issue" name="issue" rows="4" required aria-describedby="rf-issue-hint"></textarea>
+    <p id="rf-issue-hint" class="hint">Warning lights, noises, leaks, or a failed inspection item.</p>
+  </div>
+
+  <div class="field">
+    <label for="rf-where">Where is the unit now?</label>
+    <input id="rf-where" name="where" type="text" autocomplete="off" required />
+  </div>
+
+  <fieldset class="field field--radios">
+    <legend>How urgent is it?</legend>
+    <label class="radio"><input type="radio" name="urgency" value="down" required /> <span>Down now</span></label>
+    <label class="radio"><input type="radio" name="urgency" value="days" /> <span>Within a few days</span></label>
+    <label class="radio"><input type="radio" name="urgency" value="planned" /> <span>Planning ahead</span></label>
+  </fieldset>
+
+  <button class="btn btn--primary btn--block" type="submit">
+    <span class="btn__main">Send request</span>
+    <span class="btn__sub">preview only</span>
+  </button>
+
+  <p id="request-status" class="status" role="status" tabindex="-1" hidden>
+    Preview only. Nothing was sent, saved or shared. A real request form needs an approved destination and privacy handling first.
+  </p>
+</form>
+
+<script>
+  const form = document.getElementById('request-form');
+  const status = document.getElementById('request-status');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (status) {
+      status.hidden = false;
+      status.focus();
+    }
+  });
+</script>

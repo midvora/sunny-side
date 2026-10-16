@@ -1,0 +1,63 @@
+---
+// Original vector illustration (drawn for this concept): tractor-trailer under a rising sun.
+const rays = Array.from({ length: 14 }, (_, i) => ({
+  deg: -95 + i * (190 / 13),
+  long: i % 2 === 0,
+}));
+const ribs = Array.from({ length: 17 }, (_, i) => 52 + i * 19);
+const trailerWheels = [96, 140];
+const driveWheels = [432, 476];
+const steerWheels = [542];
+---
+<svg class="heroart" viewBox="0 0 640 360" role="presentation" aria-hidden="true" focusable="false">
+  <g transform="translate(420 150)">
+    <circle r="108" fill="#ffc21a" />
+    {rays.map((r) => (
+      <line
+        x1="0" y1={-(r.long ? 126 : 126)} x2="0" y2={-(r.long ? 152 : 142)}
+        stroke="#ffc21a" stroke-width="7" stroke-linecap="round"
+        transform={`rotate(${r.deg})`}
+      />
+    ))}
+  </g>
+
+  <path d="M0 272 Q110 232 230 262 T470 248 T640 264 V316 H0 Z" fill="#222b33" />
+
+  <rect x="0" y="312" width="640" height="48" fill="#0f1317" />
+  <line x1="0" y1="338" x2="640" y2="338" stroke="#ffc21a" stroke-width="4" stroke-dasharray="30 24" opacity=".75" />
+  <ellipse cx="305" cy="314" rx="292" ry="5" fill="#000" opacity=".4" />
+
+  <!-- trailer -->
+  <rect x="30" y="140" width="352" height="122" rx="6" fill="#f1ebdd" />
+  {ribs.map((x) => <line x1={x} y1="146" x2={x} y2="256" stroke="#d4cbb6" stroke-width="2" />)}
+  <rect x="30" y="228" width="352" height="12" fill="#ffc21a" />
+  <g transform="translate(172 160) scale(1.5)">
+    <circle cx="24" cy="24" r="10" fill="#ffc21a" stroke="#14181d" stroke-width="2.2" />
+    {Array.from({ length: 8 }, (_, i) => i * 45).map((deg) => (
+      <line x1="24" y1="5" x2="24" y2="10.5" stroke="#14181d" stroke-width="3" stroke-linecap="round" transform={`rotate(${deg} 24 24)`} />
+    ))}
+  </g>
+  <rect x="30" y="256" width="352" height="6" fill="#bdb49c" />
+
+  <!-- fifth wheel and chassis -->
+  <rect x="30" y="262" width="548" height="10" fill="#2a3138" />
+  <rect x="380" y="248" width="14" height="14" fill="#3a444e" />
+
+  <!-- tractor -->
+  <rect x="470" y="78" width="9" height="104" rx="3" fill="#aab4bd" />
+  <rect x="466" y="72" width="17" height="9" rx="3" fill="#c9d1d8" />
+  <path d="M394 262 V164 Q394 150 407 150 H452 Q463 150 468 160 L479 184 H556 Q567 184 569 195 L574 262 Z" fill="#2a7aa0" />
+  <path d="M404 162 H446 Q452 162 455 168 L465 184 H404 Z" fill="#bfe3f2" />
+  <rect x="410" y="238" width="52" height="20" rx="10" fill="#aab4bd" />
+  <rect x="564" y="198" width="10" height="54" rx="2" fill="#aab4bd" />
+  <circle cx="567" cy="208" r="5.5" fill="#ffe27a" />
+  <rect x="394" y="226" width="180" height="6" fill="#ffc21a" />
+
+  <!-- wheels -->
+  {[...trailerWheels, ...driveWheels, ...steerWheels].map((cx) => (
+    <g>
+      <circle cx={cx} cy="288" r="25" fill="#0b0d0f" stroke="#3a444e" stroke-width="3" />
+      <circle cx={cx} cy="288" r="9" fill="#aab4bd" />
+    </g>
+  ))}
+</svg>
