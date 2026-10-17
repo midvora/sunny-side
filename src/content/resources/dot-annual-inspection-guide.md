@@ -1,5 +1,5 @@
 ---
-title: "DOT annual inspection: what's checked and how to prepare"
+title: "DOT annual inspection: what gets checked"
 description: "What a DOT annual (periodic) inspection covers under 49 CFR Part 396, how often it's required, and a simple checklist to prepare your truck or trailer."
 category: "Inspections"
 readTime: "5 min read"

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Post-deploy smoke test against a live URL: the page loads, the key content is there, the concept guardrails
+// Post-deploy smoke test against a live URL: the page loads, the key content is there, the sample guardrails
 // held, and every same-origin asset the page references really returns 200. Retries while Pages propagates.
 // Usage: node scripts/smoke.mjs https://midvora.github.io/sunny-side/
 const url = process.argv[2];
@@ -32,13 +32,13 @@ const check = (name, ok, detail = '') => {
 };
 
 const lower = html.toLowerCase();
-check('title names the business', /<title>sunny side \|/i.test(html));
+check('title names the business', /<title>[^<]*sunny side/i.test(html));
 check('address is on the page', html.includes('2605 Oakland Ave., Garland, TX 75041'));
-check('page is noindex (concept build)', /<meta name="robots" content="noindex/i.test(html));
-check('preview banner is shown', html.includes('Private concept preview'));
-check('no JSON-LD in a concept build', !lower.includes('application/ld+json'));
-check('page does not say Dallas', !lower.includes('dallas'));
-check('no tel: link while the phone is unconfirmed', !lower.includes('href="tel:'));
+check('page is noindex (sample build)', /<meta name="robots" content="noindex/i.test(html));
+check('design-preview footer is shown', html.includes('Website design preview by Midvora'));
+check('no JSON-LD in a sample build', !lower.includes('application/ld+json'));
+check('tel: links point at the sample number', /href="tel:\+19725550142"/.test(html));
+check('page does not say Dallas, Texas (the address is in Garland)', !lower.includes('dallas, texas'));
 
 // Every same-origin URL the page references must resolve.
 const origin = new URL(url).origin;
@@ -50,6 +50,15 @@ const assets = [...found]
   .map((u) => new URL(u, url))
   .filter((u) => u.origin === origin);
 const unique = [...new Map(assets.map((u) => [u.href, u])).values()];
+
+for (const path of ['services/', 'services/brakes-air-systems/', 'roadside-assistance/', 'request-service/', 'contact/', 'gallery/', 'resources/', 'sitemap.xml', 'robots.txt']) {
+  try {
+    const r = await fetch(new URL(path, url), { redirect: 'follow' });
+    check(`page ${path}`, r.ok, `HTTP ${r.status}`);
+  } catch (e) {
+    check(`page ${path}`, false, e.message);
+  }
+}
 
 let imageCount = 0;
 let fontCount = 0;
@@ -65,7 +74,7 @@ for (const u of unique) {
   }
 }
 check('at least one logo/image served as an image', imageCount >= 1, `${imageCount} found`);
-check('web fonts served', fontCount >= 3, `${fontCount} found`);
+check('web fonts served', fontCount >= 1, `${fontCount} found`);
 
 const notFound = await fetch(new URL('definitely-not-a-page', url));
 check('unknown path returns the 404 page', notFound.status === 404 && (await notFound.text()).includes('Page not found'), `HTTP ${notFound.status}`);

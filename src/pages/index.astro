@@ -18,7 +18,7 @@ const topFaq = [{ id: 'top', name: '', items: faqGroups.flatMap((g) => g.items).
 const city = value('location').split(',')[0];
 const [roadsideCard, ...otherServices] = [services.find((s) => s.slug === 'roadside-assistance')!, ...services.filter((s) => s.slug !== 'roadside-assistance')];
 ---
-<Base title={`Truck & Trailer Repair and Roadside Assistance in ${city}, TX`}>
+<Base>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__media">
       <Photo name="hero-golden-hour" decorative priority sizes="(min-width: 960px) 58vw, 100vw" widths={[640, 960, 1280, 1600]} />

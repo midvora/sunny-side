@@ -1,5 +1,5 @@
 ---
-title: "Beating the Texas heat: a summer checklist for trucks and trailers"
+title: "Beating the Texas heat: a summer truck checklist"
 description: "Tire pressure, cooling system, batteries and fluids: what to check before and during a Texas summer to avoid heat-related breakdowns."
 category: "Maintenance"
 readTime: "4 min read"

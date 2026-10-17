@@ -26,7 +26,7 @@
       "icon": "siren",
       "image": "roadside-flatbed",
       "short": "When your truck or trailer stops, we come to you. Call, share your location, and we'll get a technician rolling.",
-      "title": "Roadside Assistance for Trucks & Trailers in Garland, TX",
+      "title": "Truck & Trailer Roadside Assistance, Garland TX",
       "description": "Broken down? Sunny Side sends help for flat tires, dead batteries, air and electrical problems and more across the Dallas–Fort Worth area.",
       "status": "sample"
     },
@@ -37,7 +37,7 @@
       "icon": "gauge",
       "image": "brake-wheel-end",
       "short": "Inspection, adjustment and repair for air brakes, from slack adjusters and drums to compressors and air dryers.",
-      "title": "Truck & Trailer Brake and Air System Repair in Garland, TX",
+      "title": "Truck Brake & Air System Repair in Garland, TX",
       "description": "Air brake inspection, adjustment and repair for tractors, straight trucks and trailers: slack adjusters, drums, chambers, compressors, air dryers and ABS faults.",
       "lead": "Brakes are the one system you never want to guess about. We inspect, adjust and repair air brake systems on tractors, straight trucks and trailers.",
       "intro": [
@@ -104,7 +104,7 @@
       "icon": "cog",
       "image": "engine-bay",
       "short": "Fault-code diagnosis and repair for diesel engines, including DPF, DEF, SCR and EGR systems.",
-      "title": "Diesel Engine Diagnostics and DPF, DEF & EGR Repair in Garland, TX",
+      "title": "Diesel Engine & DPF/DEF/EGR Repair, Garland TX",
       "description": "Diesel engine diagnostics and repair for trucks: check-engine lights, derates, DPF, DEF, SCR, EGR, turbo and cooling problems traced to the cause.",
       "lead": "A warning light or a derate doesn't have to mean a guessing game. We trace diesel engine and aftertreatment problems to the cause, not just the code.",
       "intro": [
@@ -171,7 +171,7 @@
       "icon": "zap",
       "image": "headlights-shop",
       "short": "Wiring, batteries, alternators, starters, lights and trailer connections, traced to the cause.",
-      "title": "Truck & Trailer Electrical and Lighting Repair in Garland, TX",
+      "title": "Truck & Trailer Electrical Repair in Garland, TX",
       "description": "Truck and trailer electrical repair: lights, 7-way plugs, wiring harnesses, batteries, alternators, starters and ABS sensor faults diagnosed and fixed.",
       "lead": "Dead lights, dying batteries and gremlins in the wiring cost drivers time and tickets. We trace electrical faults to the root cause and fix them properly.",
       "intro": [
@@ -238,7 +238,7 @@
       "icon": "arrow-up-down",
       "image": "chassis-air-spring",
       "short": "Springs, air bags, shocks, bushings, axle parts and landing gear repaired and tested.",
-      "title": "Truck Suspension, Axle & Landing Gear Repair in Garland, TX",
+      "title": "Truck Suspension & Axle Repair in Garland, TX",
       "description": "Suspension, axle and landing gear repair for tractors and trailers: air springs, leaf springs, bushings, shocks, alignment checks and fifth wheels.",
       "lead": "Springs, air bags, bushings, axle parts and landing gear take a beating. We repair them so your truck and trailer ride, track and carry the way they should.",
       "intro": [
@@ -305,7 +305,7 @@
       "icon": "circle-dot",
       "image": "wheels-fuel-tank",
       "short": "Tire repair and replacement, mounting, balancing, wheel seals and bearings for tractors and trailers.",
-      "title": "Truck & Trailer Tire and Wheel-End Service in Garland, TX",
+      "title": "Truck Tire & Wheel-End Service in Garland, TX",
       "description": "Truck tire repair and replacement, mounting and balancing, plus wheel seals, bearings and hub service for tractors and trailers.",
       "lead": "Tires and wheel ends decide whether you arrive on time. We repair, replace and inspect them for tractors and trailers.",
       "intro": [
@@ -372,7 +372,7 @@
       "icon": "container",
       "image": "trailer-desert",
       "short": "Doors, floors, hinges, rear impact guards and landing gear, keeping dry vans and flatbeds road-ready.",
-      "title": "Semi Trailer Repair in Garland, TX: Doors, Floors & More",
+      "title": "Semi Trailer Repair in Garland, TX",
       "description": "Trailer repair for dry vans and flatbeds: roll-up and swing doors, floors, panels, rear impact guards, landing gear, lights and flatbed hardware.",
       "lead": "Doors, floors, lights, landing gear and more. We keep dry vans and flatbeds road-ready and out of the way of delays at the dock.",
       "intro": [
