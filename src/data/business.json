@@ -47,10 +47,10 @@
     },
     "phone": {
       "label": "Phone number",
-      "value": "972-555-0142",
-      "tel": "+19725550142",
-      "status": "sample",
-      "source": "Fictional number. 555-0100 to 555-0199 is reserved for samples, so no real person is called.",
+      "value": "214-685-2412",
+      "tel": "+12146852412",
+      "status": "confirmed",
+      "source": "Supplied by Samson on 2026-10-17. Still to ask Teddy: whether it takes texts and whether roadside calls use a separate line.",
       "ask": "Main phone, whether it takes texts, and whether roadside calls use a separate line."
     },
     "email": {

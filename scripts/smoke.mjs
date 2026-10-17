@@ -37,7 +37,7 @@ check('address is on the page', html.includes('2605 Oakland Ave., Garland, TX 75
 check('page is noindex (sample build)', /<meta name="robots" content="noindex/i.test(html));
 check('design-preview footer is shown', html.includes('Website design preview by Midvora'));
 check('no JSON-LD in a sample build', !lower.includes('application/ld+json'));
-check('tel: links point at the sample number', /href="tel:\+19725550142"/.test(html));
+check('tel: links point at the business number', /href="tel:\+12146852412"/.test(html));
 check('page does not say Dallas, Texas (the address is in Garland)', !lower.includes('dallas, texas'));
 
 // Every same-origin URL the page references must resolve.

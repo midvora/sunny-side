@@ -71,7 +71,8 @@ test('every {{token}} used in the content is a known token', () => {
 test('contact facts are internally consistent', () => {
   const f = business.facts;
   assert.equal(f.phone.tel.replace(/\D/g, '').slice(-10), f.phone.value.replace(/\D/g, ''), 'tel: link matches the displayed number');
-  assert.match(f.phone.value, /^\d{3}-555-01\d\d$/, 'phone is a fictional 555-01xx number while it is a sample');
+  assert.match(f.phone.value, /^\d{3}-\d{3}-\d{4}$/, 'phone is written ddd-ddd-dddd');
+  if (f.phone.status === 'sample') assert.match(f.phone.value, /^\d{3}-555-01\d\d$/, 'a sample phone must be a fictional 555-01xx number');
   assert.match(f.email.value, /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/);
   assert.ok(f.address.value.includes(f.address.parts.street) && f.address.value.includes(f.address.parts.postalCode));
   assert.ok(f.address.parts.lat > 32 && f.address.parts.lat < 33.5 && f.address.parts.lon < -96 && f.address.parts.lon > -97.5, 'coordinates are in the Garland area');
@@ -82,8 +83,8 @@ test('contact facts are internally consistent', () => {
 
 test('the supplied facts stay marked confirmed and the invented ones stay marked sample', () => {
   const f = business.facts;
-  for (const k of ['businessName', 'tagline', 'tradeLine', 'location', 'address']) assert.equal(f[k].status, 'confirmed', k);
-  for (const k of ['phone', 'email', 'emergency', 'serviceArea', 'estimates', 'payment', 'insurance']) assert.equal(f[k].status, 'sample', k);
+  for (const k of ['businessName', 'tagline', 'tradeLine', 'location', 'address', 'phone']) assert.equal(f[k].status, 'confirmed', k);
+  for (const k of ['email', 'emergency', 'serviceArea', 'estimates', 'payment', 'insurance']) assert.equal(f[k].status, 'sample', k);
   assert.equal(business.hours.status, 'sample');
 });
 

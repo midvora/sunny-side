@@ -235,7 +235,7 @@ test.describe('roadside page', () => {
 
   test('shows the roadside number and a tappable call button', async ({ page }) => {
     await page.goto('./roadside-assistance/');
-    await expect(page.locator('.callcard__number')).toHaveText('972\u2011555\u20110142');
+    await expect(page.locator('.callcard__number')).toHaveText('214\u2011685\u20112412');
     await expect(page.locator('.callcard__number')).toHaveAttribute('href', PHONE_TEL);
     await expect(page.locator('#breakdown-checklist li')).toHaveCount(6);
   });
@@ -246,7 +246,7 @@ test.describe('roadside page', () => {
     await expect(tool.locator('[data-locate-result]')).toBeHidden();
     await tool.getByRole('button', { name: 'Find my location' }).click();
     await expect(tool.locator('[data-locate-coords]')).toContainText('32.87610, -96.67000');
-    await expect(tool.locator('[data-locate-sms]')).toHaveAttribute('href', /^sms:\+19725550142\?&body=/);
+    await expect(tool.locator('[data-locate-sms]')).toHaveAttribute('href', /^sms:\+12146852412\?&body=/);
     await expect(tool.locator('[data-locate-sms]')).toHaveAttribute('href', /google\.com%2Fmaps%3Fq%3D32\.876100%2C-96\.670000/);
     await expect(tool.locator('[data-locate-open]')).toHaveAttribute('href', /google\.com\/maps\?q=32\.876100,-96\.670000/);
     await expect(tool.locator('[data-locate-status]')).toContainText('Got it');

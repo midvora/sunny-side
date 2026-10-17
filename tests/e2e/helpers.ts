@@ -16,7 +16,7 @@ export const PAGES = [
 ];
 export const ALL_PAGES = [...PAGES, './404.html'];
 
-export const PHONE_TEL = 'tel:+19725550142';
+export const PHONE_TEL = 'tel:+12146852412';
 export const ADDRESS = '2605 Oakland Ave., Garland, TX 75041';
 
 /** Scroll the whole page so lazy images load and scroll-reveal content shows. */
