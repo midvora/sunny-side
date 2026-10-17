@@ -1,0 +1,158 @@
+---
+import Icon from './Icon.astro';
+import { tel, phoneText } from '../lib/site';
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const needs = [
+  { id: 'roadside', label: 'Roadside help', hint: 'Stopped or stranded', icon: 'siren' },
+  { id: 'repair', label: 'Repair', hint: 'Something needs fixing', icon: 'wrench' },
+  { id: 'inspection', label: 'DOT inspection', hint: 'Annual or periodic', icon: 'clipboard-check' },
+  { id: 'maintenance', label: 'Maintenance', hint: 'Scheduled service', icon: 'calendar-check' },
+];
+const equipment = ['Tractor (semi)', 'Straight or box truck', 'Dry van trailer', 'Flatbed trailer', 'Other trailer', 'Not sure'];
+const symptoms = ['Flat or blown tire', 'Won’t start', 'Warning light on', 'Air leak or low air', 'Overheating', 'Lights out', 'Brakes feel off', 'Inspection due', 'Trailer door or floor'];
+---
+<form
+  class="rform"
+  id="request-form"
+  data-endpoint={endpoint}
+  action={endpoint || undefined}
+  method={endpoint ? 'post' : undefined}
+  novalidate
+  autocomplete="on"
+>
+  <ol class="rform__progress" data-progress aria-label="Request progress">
+    <li data-progress-step="1"><span class="rform__dot">1</span><span>Need</span></li>
+    <li data-progress-step="2"><span class="rform__dot">2</span><span>Details</span></li>
+    <li data-progress-step="3"><span class="rform__dot">3</span><span>Contact</span></li>
+  </ol>
+  <p class="sr-only" role="status" aria-live="polite" data-live></p>
+
+  <fieldset class="rstep" data-step="1">
+    <legend>What do you need?</legend>
+    <div class="choice-grid" role="presentation">
+      {needs.map((n) => (
+        <label class="choice">
+          <input type="radio" name="need" value={n.id} required aria-describedby="rf-need-err" />
+          <span class="choice__body">
+            <Icon name={n.icon} size={26} />
+            <strong>{n.label}</strong>
+            <small>{n.hint}</small>
+          </span>
+        </label>
+      ))}
+    </div>
+    <p class="field__error" id="rf-need-err" hidden></p>
+    <p class="rstep__note"><Icon name="siren" size={18} /> Stranded right now? <a href={tel()}>Call {phoneText()}</a>. It&rsquo;s faster than a form.</p>
+  </fieldset>
+
+  <fieldset class="rstep" data-step="2">
+    <legend>Tell us about the equipment</legend>
+    <div class="field" data-field>
+      <label for="rf-equipment">Equipment <span class="req" aria-hidden="true">*</span></label>
+      <select id="rf-equipment" name="equipment" required aria-describedby="rf-equipment-err">
+        <option value="">Choose one</option>
+        {equipment.map((e) => <option value={e}>{e}</option>)}
+      </select>
+      <p class="field__error" id="rf-equipment-err" hidden></p>
+    </div>
+    <div class="field" data-field>
+      <label for="rf-model">Year, make and model <span class="opt">(optional)</span></label>
+      <input id="rf-model" name="model" type="text" autocomplete="off" placeholder="e.g. 2019 Freightliner Cascadia" />
+    </div>
+    <fieldset class="field field--group">
+      <legend>Can it be driven?</legend>
+      <div class="pill-row">
+        <label class="pill"><input type="radio" name="drivable" value="yes" /><span>Yes</span></label>
+        <label class="pill"><input type="radio" name="drivable" value="no" /><span>No, it&rsquo;s stopped</span></label>
+        <label class="pill"><input type="radio" name="drivable" value="unsure" /><span>Not sure</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="field field--group">
+      <legend>What&rsquo;s going on? <span class="opt">Pick any that apply</span></legend>
+      <div class="pill-row pill-row--wrap">
+        {symptoms.map((s) => <label class="pill"><input type="checkbox" name="symptoms" value={s} /><span>{s}</span></label>)}
+      </div>
+    </fieldset>
+    <div class="field" data-field>
+      <label for="rf-details">Anything else we should know?</label>
+      <textarea id="rf-details" name="details" rows="4" aria-describedby="rf-details-err" placeholder="Noises, smells, warning messages, what it was doing when it happened&hellip;"></textarea>
+      <p class="field__error" id="rf-details-err" hidden></p>
+    </div>
+  </fieldset>
+
+  <fieldset class="rstep" data-step="3">
+    <legend>Where are you, and how do we reach you?</legend>
+    <div class="field" data-field>
+      <label for="rf-location">Where is the truck? <span class="req" aria-hidden="true">*</span></label>
+      <div class="field__row">
+        <input id="rf-location" name="location" type="text" autocomplete="off" required aria-describedby="rf-location-err rf-location-note" placeholder="Mile marker, exit, cross street or address" />
+        <button class="btn btn--dark btn--sm" type="button" data-share-location><Icon name="locate-fixed" size={18} /> Use my location</button>
+      </div>
+      <p class="field__hint" id="rf-location-note" data-location-note>Your location stays on your device until you send the request.</p>
+      <p class="field__error" id="rf-location-err" hidden></p>
+      <input type="hidden" name="lat" />
+      <input type="hidden" name="lon" />
+      <input type="hidden" name="mapsLink" />
+    </div>
+    <div class="field-grid">
+      <div class="field" data-field>
+        <label for="rf-name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input id="rf-name" name="name" type="text" autocomplete="name" required aria-describedby="rf-name-err" />
+        <p class="field__error" id="rf-name-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="rf-phone">Mobile phone <span class="req" aria-hidden="true">*</span></label>
+        <input id="rf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="rf-phone-err" />
+        <p class="field__error" id="rf-phone-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="rf-email">Email <span class="opt">(optional)</span></label>
+        <input id="rf-email" name="email" type="email" autocomplete="email" aria-describedby="rf-email-err" />
+        <p class="field__error" id="rf-email-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="rf-company">Company or fleet <span class="opt">(optional)</span></label>
+        <input id="rf-company" name="company" type="text" autocomplete="organization" />
+      </div>
+    </div>
+    <fieldset class="field field--group">
+      <legend>Best way to reach you</legend>
+      <div class="pill-row">
+        <label class="pill"><input type="radio" name="contact" value="call" checked /><span>Call me</span></label>
+        <label class="pill"><input type="radio" name="contact" value="text" /><span>Text me</span></label>
+        <label class="pill"><input type="radio" name="contact" value="email" /><span>Email me</span></label>
+      </div>
+    </fieldset>
+    <div class="field field--check" data-field>
+      <label class="check">
+        <input type="checkbox" name="consent" value="yes" required aria-describedby="rf-consent-err" />
+        <span>It&rsquo;s OK to contact me about this request by phone or text.</span>
+      </label>
+      <p class="field__error" id="rf-consent-err" hidden></p>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  </fieldset>
+
+  <div class="rform__nav" data-nav>
+    <button class="btn btn--ghost-dark" type="button" data-back hidden>Back</button>
+    <button class="btn btn--primary btn--lg" type="button" data-next hidden>Next <Icon name="arrow-right" size={20} /></button>
+    <button class="btn btn--primary btn--lg" type="submit" data-submit>Send request</button>
+  </div>
+
+  <p class="rform__error" data-form-error role="alert" tabindex="-1" hidden>
+    Something went wrong and your request didn&rsquo;t go through. Please call us at <a href={tel()}>{phoneText()}</a> and we&rsquo;ll take it from there.
+  </p>
+
+  <div class="rform__success" data-success tabindex="-1" role="status" hidden>
+    <span class="rform__check"><Icon name="circle-check" size={44} /></span>
+    <h2>Request received<span data-name></span></h2>
+    <p>We have your request and will be in touch using the contact method you chose. If it can&rsquo;t wait, call us now at <a href={tel()}>{phoneText()}</a>.</p>
+    <p class="rform__demo" data-demo-note hidden>Design preview: no request was actually sent.</p>
+    <p><a class="btn btn--dark" href="">Start another request</a></p>
+  </div>
+</form>
+
+<script>
+  import '../scripts/request-form';
+</script>

@@ -1,0 +1,9 @@
+{
+  "_readme": "Service area cities. status 'sample': invented for the design sample. Replace with the cities Teddy actually covers (shop visits vs roadside).",
+  "home": "Garland",
+  "cities": [
+    "Garland", "Dallas", "Mesquite", "Richardson", "Rowlett", "Sachse", "Wylie", "Plano", "Rockwall",
+    "Irving", "Grand Prairie", "Arlington", "Fort Worth", "Lancaster"
+  ],
+  "status": "sample"
+}

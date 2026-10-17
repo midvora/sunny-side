@@ -1,0 +1,41 @@
+{
+  "_readme": "SAMPLE quotes written for the design sample. They are not from real customers. Replace with real, permissioned customer quotes or delete before launch (the launch gate blocks 'sample').",
+  "testimonials": [
+    {
+      "quote": "Blew a steer tire on I-635 after dark. One call, and someone was on the way. Honest about the price, too.",
+      "name": "Marcus T.",
+      "role": "Owner-operator",
+      "status": "sample"
+    },
+    {
+      "quote": "They found an air leak two other shops missed. Explained it, fixed it, and I was back out the same day.",
+      "name": "Danielle R.",
+      "role": "Fleet dispatcher",
+      "status": "sample"
+    },
+    {
+      "quote": "The annual inspection took the guesswork out. A clear list of what passed and what needed work.",
+      "name": "Luis M.",
+      "role": "Owner-operator",
+      "status": "sample"
+    },
+    {
+      "quote": "Our trailers come back road-ready every time. Doors, lights, landing gear, all handled.",
+      "name": "Pat K.",
+      "role": "Small-fleet owner",
+      "status": "sample"
+    },
+    {
+      "quote": "Pulled in with a check-engine light and a derate. They traced it to a sensor instead of just swapping parts.",
+      "name": "Andre W.",
+      "role": "Regional driver",
+      "status": "sample"
+    },
+    {
+      "quote": "Friendly, straightforward, and they call when they say they will.",
+      "name": "Tonya B.",
+      "role": "Dispatcher",
+      "status": "sample"
+    }
+  ]
+}

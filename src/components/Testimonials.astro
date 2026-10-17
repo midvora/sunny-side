@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import type { Testimonial } from '../lib/site';
+
+interface Props {
+  items: Testimonial[];
+  limit?: number;
+}
+const { items, limit } = Astro.props;
+const shown = limit ? items.slice(0, limit) : items;
+---
+<ul class="quotes">
+  {shown.map((t) => (
+    <li data-reveal>
+      <figure class="quote">
+        <Icon class="quote__mark" name="quote" size={34} />
+        <blockquote><p>{t.quote}</p></blockquote>
+        <figcaption><strong>{t.name}</strong><span>{t.role}</span></figcaption>
+      </figure>
+    </li>
+  ))}
+</ul>

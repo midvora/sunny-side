@@ -2,132 +2,73 @@
 import '@fontsource/barlow-condensed/latin-700.css';
 import '@fontsource/barlow/latin-400.css';
 import '@fontsource/barlow/latin-600.css';
-import '../styles/global.css';
+import '../styles/base.css';
+import '../styles/chrome.css';
+import '../styles/sections.css';
+import '../styles/forms.css';
+import '../styles/pages.css';
 import condensed700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
-import barlow400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
-import barlow600 from '@fontsource/barlow/files/barlow-latin-600-normal.woff2?url';
-import Fact from '../components/Fact.astro';
-import Logo from '../components/Logo.astro';
-import CallButton from '../components/CallButton.astro';
-import { LAUNCH, factText, facts, withBase } from '../lib/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import { LAUNCH, absoluteUrl, hours, phoneText, siteName, value, withBase } from '../lib/site';
+import { localBusiness } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
-  actions?: boolean;
+  bar?: boolean;
+  schema?: object[];
+  ogType?: string;
 }
 
-const {
-  title = `${factText('businessName')} | ${factText('tradeLine')}, ${factText('location')}`,
-  description = `${factText('tradeLine')} in ${factText('location')}. Request a repair or an estimate.`,
-  actions = true,
-} = Astro.props;
-
-// Structured data is emitted only in a launch build, and only from confirmed facts.
-const confirmed = (id: string) => (facts[id]?.status === 'confirmed' && facts[id].value ? facts[id].value : undefined);
-const jsonLd = LAUNCH
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'AutoRepair',
-      name: confirmed('businessName'),
-      description: confirmed('serviceScope'),
-      telephone: confirmed('phone'),
-      email: confirmed('email'),
-      address: confirmed('address'),
-      areaServed: confirmed('serviceArea'),
-      openingHours: confirmed('hours'),
-    }
-  : null;
-
-const nav = [
-  { href: '#services', label: 'Services' },
-  { href: '#request', label: 'Request a repair' },
-  { href: '#area', label: 'Area & hours' },
-  { href: '#work', label: 'Our work' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
-];
+const { title, description, bar = true, schema = [], ogType = 'website' } = Astro.props;
+const name = siteName();
+const city = value('location').split(',')[0];
+const fullTitle = title ? `${title} | ${name}` : `${name} | ${value('tradeLine')} and Roadside Assistance in ${city}, TX`;
+const desc =
+  description ??
+  `${value('tradeLine')} and roadside assistance in ${value('location')}. DOT inspections, brakes, engine, electrical, tires and trailers. Call ${phoneText()} or request service online.`;
+const ogImage = absoluteUrl('og.jpg');
+const canonical = LAUNCH ? absoluteUrl(Astro.url.pathname.slice(withBase().length)) : undefined;
+const jsonLd = LAUNCH ? [localBusiness(), ...schema] : [];
 ---
 <!doctype html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#14181d" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#0f1318" />
     <link rel="icon" href={withBase('favicon-32.png')} type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
-    {[condensed700, barlow400, barlow600].map((href) => (
-      <link rel="preload" as="font" type="font/woff2" href={href} crossorigin="anonymous" />
-    ))}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="preload" as="font" type="font/woff2" href={condensed700} crossorigin="anonymous" />
     {!LAUNCH && <meta name="robots" content="noindex, nofollow, noarchive" />}
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:locale" content="en_US" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    {ogImage && <meta property="og:image:alt" content={`${name}: ${value('tradeLine')} and roadside assistance in ${city}, Texas`} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    {jsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>
-  <body class:list={{ 'has-bar': actions }}>
+  <body class:list={{ 'has-bar': bar }}>
     <a class="skip" href="#main">Skip to main content</a>
-
-    {!LAUNCH && (
-      <aside class="banner" aria-label="Preview notice">
-        <p>
-          <strong>Private concept preview.</strong>{' '}
-          Highlighted text is a placeholder until the business confirms it. Nothing here is a real offer, price or promise of availability.
-        </p>
-      </aside>
-    )}
-
-    <header class="site-header">
-      <div class="wrap site-header__row">
-        <a class="brand" href={withBase()}>
-          <Logo class="brand__logo" eager />
-        </a>
-
-        <nav class="nav" aria-label="Primary">
-          <ul class="nav__list">
-            {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-          </ul>
-        </nav>
-
-        <details class="menu">
-          <summary>Menu</summary>
-          <ul class="menu__list">
-            {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-          </ul>
-        </details>
-
-        <div class="site-header__cta"><CallButton /></div>
-      </div>
-    </header>
-
+    <Header />
     <main id="main">
       <slot />
     </main>
-
-    <footer class="site-footer">
-      <div class="wrap site-footer__row">
-        <div class="footer-id">
-          <a class="brand brand--footer" href={withBase()}><Logo class="brand__logo brand__logo--footer" width={200} /></a>
-          <address class="footer-address"><Fact id="address" /></address>
-        </div>
-        <p class="site-footer__note">
-          {LAUNCH
-            ? <Fragment>Website by Midvora.</Fragment>
-            : <Fragment>Concept preview prepared by Midvora. This is not a live business website.</Fragment>}
-        </p>
-      </div>
-    </footer>
-
-    {actions && (
-      <section class="bar" aria-label="Quick actions">
-        <CallButton variant="bar" />
-        <a class="btn btn--secondary btn--bar" href="#request">
-          <span class="btn__main">Request repair</span>
-          <span class="btn__sub">or estimate</span>
-        </a>
-      </section>
-    )}
+    <Footer />
+    {bar && <MobileBar />}
+    <script type="application/json" id="hours-data" set:html={JSON.stringify(hours)} />
+    <script>
+      import '../scripts/ui';
+    </script>
   </body>
 </html>

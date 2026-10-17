@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { content, value, withBase } from '../lib/site';
+
+const { hero, story, values, equipment, serve } = content.about;
+---
+<Base title="About Us" description={`About Sunny Side, a truck and trailer repair shop with roadside assistance in ${value('location')}. ${value('tagline')}`}>
+  <PageHero eyebrow="About us" title={hero.title} lead={hero.lead} image="trucks-sunset-lot" crumbs={[{ name: 'About' }]} />
+
+  <section class="section" aria-labelledby="story-title">
+    <div class="wrap split">
+      <div class="split__media" data-reveal>
+        <Photo name="mechanic-smile" sizes="(min-width: 900px) 540px, 92vw" widths={[480, 800, 1100]} />
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">Our story</p>
+        <h2 id="story-title">{story.title}</h2>
+        {story.paragraphs.map((p) => <p class="lead">{p}</p>)}
+        <a class="btn btn--primary btn--lg" href={withBase('contact/')}>Come see us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="values-title">
+    <div class="wrap">
+      <SectionHead eyebrow="Our approach" title={values.title} id="values-title" />
+      <ul class="why">
+        {values.items.map((it) => (
+          <li data-reveal>
+            <span class="why__icon"><Icon name={it.icon} size={28} /></span>
+            <h3>{it.title}</h3>
+            <p>{it.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-lists">
+      <div data-reveal>
+        <h2>{equipment.title}</h2>
+        <ul class="ticks">
+          {equipment.items.map((i) => <li><Icon name="circle-check" size={22} /> {i}</li>)}
+        </ul>
+      </div>
+      <div data-reveal>
+        <h2>{serve.title}</h2>
+        <ul class="ticks">
+          {serve.items.map((i) => <li><Icon name="circle-check" size={22} /> {i}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Let's get you rolling." text="Call, stop by, or send a request. We're here to make a difference." />
+</Base>

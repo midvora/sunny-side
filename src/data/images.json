@@ -1,0 +1,157 @@
+{
+  "_readme": "Photo registry. All photos are free-to-use stock from Pexels (Pexels License: free for commercial use, attribution not required, credit kept here anyway). status 'stock' blocks the launch build until each photo is replaced with the business's own or set to 'licensed' after the license is checked. Credits: PHOTO_CREDITS.md.",
+  "images": {
+    "hero-golden-hour": {
+      "file": "hero-golden-hour.jpg",
+      "alt": "A white Volvo semi-truck leading two more trucks along a curving road in golden evening light",
+      "focal": "28% 55%",
+      "status": "stock",
+      "replaceWith": "A wide photo of one of Teddy's own trucks or customer trucks outside the shop, ideally at sunrise or sunset.",
+      "credit": { "photographer": "Quintin Gellar", "title": "White Volvo Semi-truck on Side of Road", "pexelsId": 2199293 }
+    },
+    "roadside-flatbed": {
+      "file": "roadside-flatbed.jpg",
+      "alt": "A roadside technician in a high-visibility jacket securing a pickup on a flatbed tow truck",
+      "focal": "55% 60%",
+      "status": "stock",
+      "replaceWith": "Teddy's service truck or tow partner at work on a real call.",
+      "credit": { "photographer": "Jonathan Reynaga", "title": "A Car on a Tow Truck", "pexelsId": 17429097 }
+    },
+    "roadside-tire-change": {
+      "file": "roadside-tire-change.jpg",
+      "alt": "A technician kneeling beside a pickup truck to change a tire on the roadside in Houston",
+      "focal": "35% 60%",
+      "status": "stock",
+      "replaceWith": "A roadside tire change by a Sunny Side technician.",
+      "credit": { "photographer": "Eddie O.", "title": "Man Repairing Tire of Blue Truck in Houston", "pexelsId": 34261459 }
+    },
+    "warning-triangle": {
+      "file": "warning-triangle.jpg",
+      "alt": "A hand setting a red reflective warning triangle on the road behind a stopped vehicle",
+      "focal": "50% 72%",
+      "status": "stock",
+      "replaceWith": "Any clear shot of reflective triangles set out behind a stopped truck.",
+      "credit": { "photographer": "El Jundi", "title": "Person Placing Warning Triangle On Road", "pexelsId": 5403208 }
+    },
+    "brake-wheel-end": {
+      "file": "brake-wheel-end.jpg",
+      "alt": "A mechanic in a blue cap working on the wheel end of a blue truck in a shop",
+      "focal": "55% 62%",
+      "status": "stock",
+      "replaceWith": "A technician working on a brake or wheel end in the Garland shop.",
+      "credit": { "photographer": "Gustavo Fring", "title": "Man in Blue Cap Repairing Blue Truck's Wheel", "pexelsId": 6720551 }
+    },
+    "inspection-wheel": {
+      "file": "inspection-wheel.jpg",
+      "alt": "A technician crouched beside a blue truck, studying the wheel and brake components",
+      "focal": "62% 55%",
+      "status": "stock",
+      "replaceWith": "A technician doing a walk-around or inspection in the shop.",
+      "credit": { "photographer": "Gustavo Fring", "title": "Worker in Blue Cap Sitting Beside Blue Truck Thinking", "pexelsId": 6720548 }
+    },
+    "engine-bay": {
+      "file": "engine-bay.jpg",
+      "alt": "A mechanic leaning into the open front of a blue truck to work on the engine and cooling system",
+      "focal": "55% 40%",
+      "status": "stock",
+      "replaceWith": "A technician diagnosing an engine in the shop.",
+      "credit": { "photographer": "Gustavo Fring", "title": "Man in Black Uniform and Blue Cap Fixing Blue Truck", "pexelsId": 6720532 }
+    },
+    "headlights-shop": {
+      "file": "headlights-shop.jpg",
+      "alt": "A red semi-truck with its headlights on in a busy repair shop with trucks on lifts",
+      "focal": "30% 55%",
+      "status": "stock",
+      "replaceWith": "A truck in the Garland shop with its lights on.",
+      "credit": { "photographer": "cottonbro studio", "title": "Mechanic Workshop with Trucks Being Repaired", "pexelsId": 7019372 }
+    },
+    "chassis-air-spring": {
+      "file": "chassis-air-spring.jpg",
+      "alt": "Close-up of a truck chassis, air spring and dual tires on a lift",
+      "focal": "55% 55%",
+      "status": "stock",
+      "replaceWith": "A close-up of suspension or axle work on a real job.",
+      "credit": { "photographer": "cottonbro studio", "title": "Close Up Shot of a Truck Chassis and Tires", "pexelsId": 7019607 }
+    },
+    "wheels-fuel-tank": {
+      "file": "wheels-fuel-tank.jpg",
+      "alt": "Polished wheels and a chrome fuel tank on a tractor parked in a clean workshop",
+      "focal": "55% 50%",
+      "status": "stock",
+      "replaceWith": "A tractor in the shop showing wheels and tires.",
+      "credit": { "photographer": "Stefan de Vries", "title": "Close-Up of Truck Wheels and Detailing in Workshop", "pexelsId": 29206467 }
+    },
+    "trailer-desert": {
+      "file": "trailer-desert.jpg",
+      "alt": "A red semi-truck pulling a long white trailer along a desert highway under a blue sky",
+      "focal": "50% 62%",
+      "status": "stock",
+      "replaceWith": "A trailer in the yard, ideally a dry van or flatbed that was just repaired.",
+      "credit": { "photographer": "Quintin Gellar", "title": "Red Semi Truck on the Road", "pexelsId": 6563903 }
+    },
+    "maintenance-yellow-cab": {
+      "file": "maintenance-yellow-cab.jpg",
+      "alt": "A technician checking components under the raised hood of a yellow truck",
+      "focal": "60% 45%",
+      "status": "stock",
+      "replaceWith": "A technician doing routine service on a truck in the shop.",
+      "credit": { "photographer": "cottonbro studio", "title": "Person Fixing a Truck", "pexelsId": 7541360 }
+    },
+    "mechanic-smile": {
+      "file": "mechanic-smile.jpg",
+      "alt": "A smiling mechanic in overalls leaning against the cab of a blue truck",
+      "focal": "78% 40%",
+      "status": "stock",
+      "replaceWith": "A real photo of Teddy or the Sunny Side team (with their permission).",
+      "credit": { "photographer": "Gustavo Fring", "title": "A Man Smiling at the Camera", "pexelsId": 6720513 }
+    },
+    "fleet-lot": {
+      "file": "fleet-lot.jpg",
+      "alt": "A row of colorful semi-trucks parked side by side in an open lot",
+      "focal": "62% 50%",
+      "status": "stock",
+      "replaceWith": "A line-up of customer or fleet trucks at the Garland yard.",
+      "credit": { "photographer": "YL Lew", "title": "Colorful Semi Trucks Parked in Open Lot", "pexelsId": 35996049 }
+    },
+    "road-sunrays": {
+      "file": "road-sunrays.jpg",
+      "alt": "A straight country road stretching to the horizon under rays of evening sun",
+      "focal": "50% 45%",
+      "status": "stock",
+      "replaceWith": "A local road or highway photo the owner likes.",
+      "credit": { "photographer": "Marcos Miranda", "title": "Roadway during Golden Hour", "pexelsId": 672597 }
+    },
+    "white-truck-motion": {
+      "file": "white-truck-motion.jpg",
+      "alt": "A white semi-truck racing along a highway with sunlight flaring over green hills, motion-blurred",
+      "focal": "40% 66%",
+      "status": "stock",
+      "replaceWith": "A customer truck leaving the shop.",
+      "credit": { "photographer": "Artem Balashevsky", "title": "white truck in motion blur at sunset", "pexelsId": 18446790 }
+    },
+    "red-freightliner": {
+      "file": "red-freightliner.jpg",
+      "alt": "A red Freightliner tractor and silver trailer parked on a sunlit road",
+      "focal": "58% 55%",
+      "status": "stock",
+      "replaceWith": "A customer truck after service.",
+      "credit": { "photographer": "R9 Media Photo Collective", "title": "Red Freightliner Truck on Asheville Highway", "pexelsId": 40115475 }
+    },
+    "tires-shop": {
+      "file": "tires-shop.jpg",
+      "alt": "Worn dual truck tires beside an air spring on a lift in a garage",
+      "focal": "55% 55%",
+      "status": "stock",
+      "replaceWith": "Tires and wheel-end work in the shop.",
+      "credit": { "photographer": "cottonbro studio", "title": "Photograph of a Dirty Tire", "pexelsId": 7019610 }
+    },
+    "trucks-sunset-lot": {
+      "file": "trucks-sunset-lot.jpg",
+      "alt": "Trucks parked in a lot with the sun setting behind them",
+      "focal": "60% 40%",
+      "status": "stock",
+      "replaceWith": "The Garland yard at sunset.",
+      "credit": { "photographer": "Malte Luk", "title": "Motor Vehicles Parked on the Road", "pexelsId": 1606957 }
+    }
+  }
+}

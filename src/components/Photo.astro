@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/images';
+
+interface Props {
+  name: string;
+  alt?: string;
+  sizes?: string;
+  widths?: number[];
+  class?: string;
+  priority?: boolean;
+  decorative?: boolean;
+}
+
+const {
+  name,
+  alt,
+  sizes = '100vw',
+  widths = [480, 800, 1200, 1600],
+  class: cls,
+  priority = false,
+  decorative = false,
+} = Astro.props;
+const p = photo(name);
+---
+<Image
+  src={p.meta}
+  alt={decorative ? '' : (alt ?? p.alt)}
+  widths={widths}
+  sizes={sizes}
+  format="webp"
+  quality={72}
+  class={cls}
+  style={`object-position:${p.focal}`}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  decoding={priority ? 'sync' : 'async'}
+/>

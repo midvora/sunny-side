@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { addressText, directionsUrl, mapEmbedUrl, mapLinkUrl, siteName } from '../lib/site';
+---
+<div class="map" data-map data-src={mapEmbedUrl()} data-title={`Map showing ${siteName()} at ${addressText()}`}>
+  <div class="map__placeholder">
+    <svg class="map__grid" viewBox="0 0 400 240" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="currentColor" stroke-width="2" opacity=".35">
+        <path d="M-10 170 L120 120 L260 150 L420 70" />
+        <path d="M60 -10 L90 120 L70 250" />
+        <path d="M200 -10 L230 90 L260 150 L290 250" />
+        <path d="M330 -10 L300 70 L330 250" opacity=".6" />
+        <path d="M-10 60 L150 90 L250 40 L420 120" opacity=".6" />
+      </g>
+    </svg>
+    <div class="map__pin" aria-hidden="true"><Icon name="map-pin" size={44} strokeWidth={1.8} /></div>
+    <p class="map__addr">{addressText()}</p>
+    <button class="btn btn--dark" type="button" data-map-load><Icon name="map" size={20} /> Show map</button>
+    <p class="map__note">The map loads from OpenStreetMap only when you ask for it, so this page stays fast and private.</p>
+  </div>
+</div>
+<p class="map__links">
+  <a href={directionsUrl()} target="_blank" rel="noopener">Get directions in Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
+  <a href={mapLinkUrl()} target="_blank" rel="noopener">Open in OpenStreetMap<span class="sr-only"> (opens in a new tab)</span></a>
+</p>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('[data-map-load]');
+    btn?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = box.dataset.src!;
+      frame.title = box.dataset.title ?? 'Map';
+      frame.loading = 'lazy';
+      frame.referrerPolicy = 'no-referrer';
+      frame.className = 'map__frame';
+      box.replaceChildren(frame);
+    });
+  });
+</script>

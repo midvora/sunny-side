@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { areas, phoneText, tel, value } from '../lib/site';
+
+const city = value('location').split(',')[0];
+---
+<Base title="Service Area" description={`Sunny Side serves ${value('serviceArea')}. See the cities we cover for shop visits and roadside assistance.`}>
+  <PageHero eyebrow="Service area" title={`Based in ${city}, working across the metroplex`} lead={`We cover ${value('serviceArea')}.`} image="road-sunrays" crumbs={[{ name: 'Service area' }]} />
+
+  <section class="section">
+    <div class="wrap two-lists">
+      <div data-reveal>
+        <SectionHead eyebrow="Cities we serve" title="Where we work" lead={`${value('serviceModel')}.`} />
+        <ul class="chips" aria-label="Cities we serve">
+          {areas.cities.map((c) => (
+            <li class:list={{ 'is-home': c === areas.home }}>{c === areas.home && <Icon name="map-pin" size={16} />}{c}</li>
+          ))}
+        </ul>
+        <p class="mt-m">Don&rsquo;t see your city? Call us at <a href={tel()}>{phoneText()}</a> and we&rsquo;ll tell you honestly whether we can get to you.</p>
+      </div>
+      <div data-reveal>
+        <MapEmbed />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Stuck somewhere on the map?" text="Call and tell us where you are. We'll tell you what we can do." />
+</Base>

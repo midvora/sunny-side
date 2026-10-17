@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Steps from '../components/Steps.astro';
+import FaqList from '../components/FaqList.astro';
+import LocationTool from '../components/LocationTool.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { LAUNCH, content, faqGroups, getService, fillDeep, phoneText, tel, value, withBase } from '../lib/site';
+import { breadcrumbs, serviceLd } from '../lib/seo';
+
+const road = content.roadside;
+const service = fillDeep(getService('roadside-assistance'));
+const faqs = faqGroups.filter((g) => g.id === 'roadside');
+const crumbs = [{ name: 'Roadside assistance' }];
+const schema = LAUNCH ? [breadcrumbs(crumbs), serviceLd(service)] : [];
+---
+<Base title={service.title} description={service.description} schema={schema}>
+  <section class="page-hero">
+    <div class="page-hero__media" aria-hidden="true">
+      <Photo name="roadside-flatbed" decorative priority sizes="100vw" widths={[640, 1024, 1600]} />
+    </div>
+    <div class="wrap page-hero__inner">
+      <Breadcrumbs items={crumbs} />
+      <div class="roadside-top">
+        <div>
+          <p class="eyebrow">{road.hero.eyebrow}</p>
+          <h1>{road.hero.title}</h1>
+          <p class="lead">{road.hero.lead}</p>
+          <ul class="hero__checks">
+            <li><Icon name="circle-check" size={20} /> Flats and blowouts</li>
+            <li><Icon name="circle-check" size={20} /> Batteries and starting</li>
+            <li><Icon name="circle-check" size={20} /> Air and electrical fixes</li>
+          </ul>
+        </div>
+        <div class="callcard">
+          <p class="callcard__label"><span class="pulse" aria-hidden="true"></span> Roadside line</p>
+          <a class="callcard__number" href={tel()}>{phoneText()}</a>
+          <p>{value('emergency')}</p>
+          <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="now-title">
+    <div class="wrap split split--top">
+      <div>
+        <SectionHead eyebrow="Safety first" title={road.now.title} lead={road.now.intro} id="now-title" />
+        <ol class="checklist" id="breakdown-checklist">
+          {road.now.steps.map((s) => (
+            <li data-reveal><div><h3>{s.title}</h3><p>{s.text}</p></div></li>
+          ))}
+        </ol>
+        <p class="print-btn"><button class="btn btn--ghost-dark" type="button" data-print><Icon name="printer" size={20} /> Print this checklist</button></p>
+      </div>
+      <div class="split__media" data-reveal>
+        <Photo name="warning-triangle" sizes="(min-width: 900px) 520px, 92vw" widths={[480, 800, 1100]} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="share-title">
+    <div class="wrap two-lists">
+      <div data-reveal>
+        <p class="eyebrow">Find it fast</p>
+        <h2 id="share-title">Tell us exactly where you are</h2>
+        <p class="lead">The sooner we know where you are, the sooner help arrives.</p>
+        <LocationTool />
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">Before you call</p>
+        <h2>{road.ready.title}</h2>
+        <ul class="ticks">
+          {road.ready.items.map((i) => <li><Icon name="circle-check" size={22} /> {i}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="helps-title">
+    <div class="wrap">
+      <SectionHead eyebrow="What we handle" title={road.helps.title} id="helps-title" />
+      <ul class="why">
+        {road.helps.items.map((it) => (
+          <li data-reveal>
+            <span class="why__icon"><Icon name={it.icon} size={28} /></span>
+            <h3>{it.title}</h3>
+            <p>{it.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="how-title">
+    <div class="wrap">
+      <SectionHead eyebrow="How it works" title="From your call to back on the road" id="how-title" />
+      <Steps steps={service.steps ?? [
+        { t: 'Call us', d: 'Tell us where you are, what the truck is doing and whether you’re loaded.' },
+        { t: 'Share your location', d: 'Use the location button on this page, or give us a mile marker and exit.' },
+        { t: 'We dispatch', d: 'A technician heads your way with the likeliest tools and parts, and we keep you updated.' },
+        { t: 'Back on the road', d: 'We fix what we can on site, or arrange a tow and pick the repair up at the shop.' },
+      ]} horizontal />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="rfaq-title">
+    <div class="wrap">
+      <SectionHead eyebrow="FAQ" title="Roadside questions" id="rfaq-title" />
+      <FaqList groups={faqs.map((g) => ({ ...g, name: '' }))} openFirst />
+    </div>
+  </section>
+
+  <CtaBand title="Stuck? Call now." text="Tell us where you are and we'll get help rolling." />
+</Base>
+
+<script>
+  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+</script>

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { factText } from '../lib/site';
+import { siteName, value } from '../lib/site';
 
 interface Props {
   class?: string;
@@ -12,7 +12,7 @@ interface Props {
 // The client's own logo (supplied by Samson), cropped and with its white background made transparent.
 // Original kept outside the repo: ../assets-source/sunny-side-logo-original.png
 const { class: className, width = 250, eager = false } = Astro.props;
-const alt = `${factText('businessName')}. ${factText('tradeLine')}. Roadside assistance.`;
+const alt = `${siteName()}. ${value('tradeLine')}. Roadside assistance.`;
 ---
 <Image
   src={logo}

@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { emailText, legal, siteName, value } from '../lib/site';
+const name = siteName();
+---
+<Base title="Terms of Use" description={`Terms for using the ${name} website: information accuracy, emergencies, safety guides, links and governing law.`}>
+  <PageHero compact eyebrow="Legal" title="Terms of use" image="road-sunrays" crumbs={[{ name: 'Terms of use' }]} actions={false} />
+  <section class="section">
+    <div class="wrap">
+      <article class="prose">
+        <p><em>Last updated {legal.terms.lastUpdated}.</em></p>
+        <p>By using this website you agree to these terms. If you don't agree, please don't use the site.</p>
+        <h2>Information on this site</h2>
+        <p>We work to keep the information here accurate, including services, hours and contact details, but it can change. Nothing on this site is a quote, a guarantee of availability or a promise of a particular result. Estimates are given for specific work, in person or by phone, and approved by you before work begins.</p>
+        <h2>Roadside and emergencies</h2>
+        <p>If anyone is hurt or in danger, call 911 first. The request form is not an emergency line. For roadside help, call us.</p>
+        <h2>Safety information</h2>
+        <p>The guides on this site are general information. They are not a substitute for your training, your company's procedures, the law or the advice of a qualified technician.</p>
+        <h2>Links and maps</h2>
+        <p>This site links to services we don't control, such as maps. Their terms and privacy practices apply when you use them.</p>
+        <h2>Our property</h2>
+        <p>The text, design and logo on this site belong to {name} or its licensors. Please don't copy them without permission.</p>
+        <h2>Governing law</h2>
+        <p>These terms are governed by the laws of the State of Texas.</p>
+        <h2>Contact</h2>
+        <p>Questions about these terms? Email <a href={`mailto:${emailText()}`}>{emailText()}</a> or write to {name}, {value('address')}.</p>
+      </article>
+    </div>
+  </section>
+</Base>

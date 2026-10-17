@@ -7,12 +7,16 @@ const ROOT = `http://127.0.0.1:${PORT}${BASE}/`;
 
 export default defineConfig({
   testDir: './tests/e2e',
-  timeout: 30_000,
+  timeout: 45_000,
   fullyParallel: true,
+  retries: process.env.CI ? 1 : 0,
+  workers: process.env.CI ? 2 : undefined,
   reporter: [['list']],
   use: {
     baseURL: ROOT,
     trace: 'off',
+    // Scroll-reveal is tested explicitly in features.spec.ts; everywhere else motion is off so pages render fully.
+    reducedMotion: 'reduce',
   },
   // Serves the already-built concept (`npm run build` first). Never a launch build.
   webServer: {

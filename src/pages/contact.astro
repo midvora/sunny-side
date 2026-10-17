@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import HoursTable from '../components/HoursTable.astro';
+import CtaBand from '../components/CtaBand.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { directionsUrl, emailText, hours, phoneText, tel, value } from '../lib/site';
+import { hoursSummary } from '../lib/hours';
+---
+<Base title="Contact" description={`Contact Sunny Side at ${value('address')}. Call ${phoneText()}, send a message, or get directions.`}>
+  <PageHero
+    compact
+    eyebrow="Contact"
+    title="Visit, call or write"
+    lead="We're easy to reach, and we'd rather hear from you early than late."
+    image="trucks-sunset-lot"
+    crumbs={[{ name: 'Contact' }]}
+  />
+
+  <section class="section">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="info-cards">
+          <div class="info">
+            <span class="info__icon"><Icon name="phone-call" size={24} /></span>
+            <div><h2>Call</h2><p><a href={tel()}>{phoneText()}</a></p><p>{value('emergency')}</p></div>
+          </div>
+          <div class="info">
+            <span class="info__icon"><Icon name="mail" size={24} /></span>
+            <div><h2>Email</h2><p><a href={`mailto:${emailText()}`}>{emailText()}</a></p></div>
+          </div>
+          <div class="info">
+            <span class="info__icon"><Icon name="map-pin" size={24} /></span>
+            <div>
+              <h2>Visit</h2>
+              <address>{value('address')}</address>
+              <p><a href={directionsUrl()} target="_blank" rel="noopener">Get directions<span class="sr-only"> (opens Google Maps in a new tab)</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2 class="panel__title">Hours <span class="open-pill"><span class="dot" data-open-dot aria-hidden="true"></span><span data-open-status>{hoursSummary(hours)}</span></span></h2>
+          <HoursTable />
+        </div>
+      </div>
+
+      <div>
+        <MapEmbed />
+        <div class="mt-m">
+          <SectionHead eyebrow="Send a message" title="Questions, estimates, fleet accounts" />
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

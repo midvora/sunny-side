@@ -1,0 +1,160 @@
+{
+  "_readme": "Page copy that describes the business, written for the design sample. Every block is status 'sample': the owner should read each one, correct what's wrong and approve it. Text can use {{tokens}} from business.json.",
+  "home": {
+    "hero": {
+      "eyebrow": "Truck and trailer repair · Roadside assistance",
+      "title": "Truck & trailer repair that keeps you moving.",
+      "lead": "Roadside help, repairs, DOT inspections and maintenance for owner-operators and fleets, from our shop in {{city}}.",
+      "status": "sample"
+    },
+    "why": {
+      "title": "Why drivers choose Sunny Side",
+      "intro": "You don't have time to be confused by your own truck. Here's how we work.",
+      "items": [
+        { "icon": "message-square-text", "title": "Straight answers", "text": "We explain what's wrong, what it will cost and what can wait, before any work starts." },
+        { "icon": "timer", "title": "Respect for your time", "text": "Downtime costs money. We keep you posted and work to get you back on the road." },
+        { "icon": "truck", "title": "Built for heavy-duty", "text": "Tractors, straight trucks and trailers are what we work on every day." },
+        { "icon": "siren", "title": "There when it counts", "text": "Roadside help for the moments that can't wait for a shop appointment." }
+      ],
+      "status": "sample"
+    },
+    "process": {
+      "title": "How it works",
+      "intro": "From the first call to back on the road.",
+      "steps": [
+        { "title": "Call or request service", "text": "Tell us what's going on. If you're on the road, we'll ask where you are." },
+        { "title": "We diagnose and quote", "text": "You get a clear estimate and we wait for your go-ahead." },
+        { "title": "We fix it right", "text": "Skilled technicians do the work, and we test the result." },
+        { "title": "Back on the road", "text": "You get a rundown of what we did, and a record for next time." }
+      ],
+      "status": "sample"
+    },
+    "roadside": {
+      "eyebrow": "Roadside assistance",
+      "title": "Stuck on the road? We come to you.",
+      "text": "Flat tire, dead battery, air leak, lights out. Call, tell us where you are, and we'll send help.",
+      "bullets": [
+        "Tire changes and blowout help",
+        "Jump-starts and battery service",
+        "Air, hose and electrical fixes",
+        "Tow coordination when it's needed"
+      ],
+      "status": "sample"
+    },
+    "fleet": {
+      "eyebrow": "For fleets and owner-operators",
+      "title": "Running more than one truck?",
+      "text": "We keep fleets moving with preventive maintenance programs, inspection tracking and a single number to call.",
+      "bullets": [
+        "Maintenance schedules built around your trucks",
+        "Annual inspection tracking",
+        "Itemized, easy-to-audit invoices"
+      ],
+      "status": "sample"
+    }
+  },
+  "roadside": {
+    "hero": {
+      "eyebrow": "Roadside assistance",
+      "title": "Broken down? Call us.",
+      "lead": "Tell us where you are and what's happening. We'll get help rolling.",
+      "status": "sample"
+    },
+    "now": {
+      "title": "What to do right now",
+      "intro": "Stay calm and work through this list. It takes a few minutes and it keeps you safer.",
+      "steps": [
+        { "title": "Get safe", "text": "Turn on your hazard flashers right away and move as far from traffic as you safely can. If you can't get off the road, stay buckled up in the cab and call 911." },
+        { "title": "Set out warning devices", "text": "Federal rules (49 CFR 392.22) call for warning devices such as reflective triangles within 10 minutes of stopping on a road or shoulder. Only get out when it's safe." },
+        { "title": "Call us", "text": "Phone {{phone}}. Tell us where you are, what happened and whether you're loaded." },
+        { "title": "Know your location", "text": "Mile marker, exit number, direction of travel or the nearest cross street. Or use the share-location button on this page." },
+        { "title": "Describe what you see", "text": "Warning lights, noises, smells, leaks, and what the truck was doing when it happened." },
+        { "title": "Stay safe while you wait", "text": "Stay clear of traffic, wear a high-visibility vest if you have one, and wait behind a guardrail if you can do so safely." }
+      ],
+      "status": "sample"
+    },
+    "ready": {
+      "title": "Have this ready when you call",
+      "items": [
+        "Your name and a number we can reach",
+        "Your location: mile marker, exit or cross street",
+        "Truck and trailer type, and unit number",
+        "What's wrong, and anything you've noticed",
+        "Whether you're loaded, and any deadline",
+        "Company or account name, if you're with a fleet"
+      ],
+      "status": "sample"
+    },
+    "helps": {
+      "title": "What we can help with",
+      "items": [
+        { "icon": "circle-dot", "title": "Flats and blowouts", "text": "Tire changes and repairs on the spot." },
+        { "icon": "battery-charging", "title": "Dead batteries", "text": "Jump-starts, testing and battery replacement." },
+        { "icon": "fuel", "title": "Fuel delivery", "text": "If you've run dry, we'll bring fuel to you." },
+        { "icon": "gauge", "title": "Air system problems", "text": "Hose, fitting and leak repairs that get you rolling safely." },
+        { "icon": "lightbulb", "title": "Lights and electrical", "text": "Trailer plug, wiring and lighting fixes." },
+        { "icon": "route", "title": "Tow coordination", "text": "If it can't be fixed roadside, we help arrange a tow to the shop." }
+      ],
+      "status": "sample"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "A shop built around the driver.",
+      "lead": "We're a truck and trailer repair shop in {{city}}, built around one idea: drivers deserve straight answers and careful, fast work.",
+      "status": "sample"
+    },
+    "story": {
+      "title": "Here to make a difference",
+      "paragraphs": [
+        "Sunny Side exists for the moments when a truck or trailer stops earning. We pair a working shop with roadside assistance, so you can call one number whether you're sitting in our lot or stuck on the shoulder.",
+        "Our tagline says it plainly: we are here to make a difference. That means explaining the problem in plain language, giving you an honest estimate and respecting the fact that downtime costs money."
+      ],
+      "status": "sample"
+    },
+    "values": {
+      "title": "How we work",
+      "items": [
+        { "icon": "message-square-text", "title": "Explain it plainly", "text": "No jargon walls. You'll know what's wrong, why it matters and what your options are." },
+        { "icon": "receipt", "title": "Quote it clearly", "text": "A clear estimate and your approval before work begins. No surprises on the invoice." },
+        { "icon": "wrench", "title": "Fix it right", "text": "Careful work, tested before it goes back to you, because a repeat visit helps no one." },
+        { "icon": "siren", "title": "Be there when it counts", "text": "Roadside help and straight talk when you're stuck and the clock is running." }
+      ],
+      "status": "sample"
+    },
+    "equipment": {
+      "title": "What we work on",
+      "items": ["Tractors: day cabs and sleepers", "Straight trucks and box trucks", "Dry vans and flatbed trailers", "Landing gear, doors, lights and running gear"],
+      "status": "sample"
+    },
+    "serve": {
+      "title": "Who we serve",
+      "items": ["Owner-operators", "Small and mid-size fleets", "Regional and local carriers", "Contractors and delivery businesses"],
+      "status": "sample"
+    }
+  },
+  "fleet": {
+    "hero": {
+      "title": "One shop. One number. Fewer surprises.",
+      "lead": "Fleet maintenance, inspections and roadside coverage from a team that learns your equipment.",
+      "status": "sample"
+    },
+    "benefits": {
+      "title": "What fleets get",
+      "items": [
+        { "icon": "calendar-check", "title": "Preventive maintenance programs", "text": "Service schedules built around your trucks' mileage, hours and duty cycle." },
+        { "icon": "clipboard-check", "title": "Inspection tracking", "text": "We keep track of annual inspection due dates so none sneak up on you." },
+        { "icon": "timer", "title": "Priority scheduling", "text": "Approved fleet accounts get scheduling priority when time is tight." },
+        { "icon": "receipt", "title": "Itemized, transparent invoices", "text": "Clear line items and service notes that make accounting and audits easy." },
+        { "icon": "siren", "title": "Roadside coverage for your drivers", "text": "One number for every driver, whenever a truck stops." },
+        { "icon": "handshake", "title": "A single point of contact", "text": "Talk to people who know your equipment and your priorities." }
+      ],
+      "status": "sample"
+    },
+    "owners": {
+      "title": "Owner-operators are welcome",
+      "text": "You don't need a fleet to get fleet-quality service. Whether you run one truck or fifty, the same straight answers and careful work apply.",
+      "status": "sample"
+    }
+  }
+}

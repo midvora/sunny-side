@@ -1,0 +1,52 @@
+{
+  "_readme": "FAQ. status 'sample': answers that describe how the shop works are written for the design sample and need the owner's confirmation. Answers can use {{tokens}} from business.json.",
+  "groups": [
+    {
+      "id": "roadside",
+      "name": "Roadside assistance",
+      "items": [
+        { "q": "How do I get roadside help?", "a": "Call {{phone}}. Tell us where you are, what the truck is doing and whether you're loaded. You can also use the share-location button on our request page to send your exact spot.", "status": "sample" },
+        { "q": "Do you cover the whole Dallas–Fort Worth area?", "a": "We cover {{serviceArea}}. If you're outside it, call anyway and we'll tell you honestly what we can do.", "status": "sample" },
+        { "q": "What if you can't fix it at the roadside?", "a": "We'll tell you plainly and help arrange a tow to the shop, so you're never left guessing what happens next.", "status": "sample" },
+        { "q": "What should I do before help arrives?", "a": "Turn on your hazard flashers, set out warning devices as required, and stay clear of traffic. Our guide to the first ten minutes of a breakdown walks through it step by step.", "status": "sample" }
+      ]
+    },
+    {
+      "id": "repairs",
+      "name": "Repairs & estimates",
+      "items": [
+        { "q": "How do estimates work?", "a": "{{estimates}}", "status": "sample" },
+        { "q": "Do I need an appointment?", "a": "{{appointments}}", "status": "sample" },
+        { "q": "What do you work on?", "a": "Tractors, straight trucks and trailers: brakes and air systems, diesel engines and aftertreatment, electrical, suspension, tires and wheel ends, trailer bodies, inspections and routine maintenance.", "status": "sample" },
+        { "q": "How can I pay?", "a": "{{payment}}.", "status": "sample" },
+        { "q": "Is there a warranty on repairs?", "a": "{{warranty}}.", "status": "sample" }
+      ]
+    },
+    {
+      "id": "inspections",
+      "name": "Inspections",
+      "items": [
+        { "q": "How often is a DOT annual inspection required?", "a": "At least once every 12 months, under 49 CFR 396.17.", "status": "sample" },
+        { "q": "What does a DOT annual inspection cover?", "a": "At minimum, the components listed in Appendix A to 49 CFR Part 396: the brake system, coupling devices, exhaust, fuel system, lighting, safe loading, steering, suspension, frame, tires, wheels and rims, windshield glazing and wipers, and rear impact guards, among others.", "status": "sample" }
+      ]
+    },
+    {
+      "id": "fleets",
+      "name": "Fleets & owner-operators",
+      "items": [
+        { "q": "Do you work with fleets?", "a": "Yes: preventive maintenance programs, inspection tracking and one number for your drivers to call. See our fleet services page.", "status": "sample" },
+        { "q": "Do you work with owner-operators?", "a": "Absolutely. Many drivers who come to us run a single truck, and we treat every truck as if it were the only one.", "status": "sample" },
+        { "q": "Can I get an itemized invoice for my records?", "a": "Yes. You'll get a clear, itemized invoice for every job.", "status": "sample" }
+      ]
+    },
+    {
+      "id": "about",
+      "name": "About Sunny Side",
+      "items": [
+        { "q": "Where are you located?", "a": "{{address}}. You can get directions from our contact page.", "status": "sample" },
+        { "q": "What are your hours?", "a": "{{hours}}. Roadside: {{emergency}}", "status": "sample" },
+        { "q": "Are you insured?", "a": "{{insurance}}. Ask us if you need paperwork for your records.", "status": "sample" }
+      ]
+    }
+  ]
+}

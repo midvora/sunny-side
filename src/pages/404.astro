@@ -1,12 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
-import { withBase } from '../lib/site';
+import Icon from '../components/Icon.astro';
+import { phoneText, tel, withBase } from '../lib/site';
 ---
-<Base title="Page not found" description="That page does not exist." actions={false}>
+<Base title="Page not found" description="That page doesn't exist." bar={false}>
   <div class="wrap notfound">
-    <p class="kicker">Error 404</p>
-    <h1>Page not found</h1>
-    <p>The page you tried to open does not exist. Head back to the home page to call or request a repair.</p>
-    <p><a class="btn btn--primary" href={withBase()}><span class="btn__main">Back to home</span></a></p>
+    <p class="eyebrow">Error 404</p>
+    <h1>Wrong turn</h1>
+    <p class="lead">We couldn't find that page. Head back to the home page, or call us if you need a hand.</p>
+    <p class="hero__actions">
+      <a class="btn btn--primary btn--lg" href={withBase()}>Back to home</a>
+      <a class="btn btn--ghost-dark btn--lg" href={tel()}><Icon name="phone-call" size={22} /> {phoneText()}</a>
+    </p>
   </div>
 </Base>

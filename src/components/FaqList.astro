@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro';
+import type { FaqGroup } from '../lib/site';
+
+interface Props {
+  groups: FaqGroup[];
+  search?: boolean;
+  openFirst?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+const { groups, search = false, openFirst = false, headingLevel: H = 'h2' } = Astro.props;
+---
+<div class="faq" data-faq>
+  {search && (
+    <div class="faq__search">
+      <label for="faq-search" class="sr-only">Search questions</label>
+      <Icon name="search" size={20} />
+      <input id="faq-search" type="search" placeholder="Search questions, e.g. estimate, inspection, roadside" autocomplete="off" data-faq-search />
+      <p class="faq__count" role="status" aria-live="polite" data-faq-count></p>
+    </div>
+  )}
+  {groups.map((g, gi) => (
+    <section class="faq__group" data-faq-group aria-labelledby={g.name ? `faq-${g.id}` : undefined}>
+      {g.name && <H id={`faq-${g.id}`}>{g.name}</H>}
+      {g.items.map((it, i) => (
+        <details class="faq__item" data-faq-item open={openFirst && gi === 0 && i === 0}>
+          <summary>
+            <span>{it.q}</span>
+            <Icon class="faq__plus" name="chevron-down" size={22} />
+          </summary>
+          <div class="faq__a"><p>{it.a}</p></div>
+        </details>
+      ))}
+    </section>
+  ))}
+  {search && <p class="faq__empty" hidden data-faq-empty>No questions match that search. Give us a call and ask. We're happy to help.</p>}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-faq]').forEach((root) => {
+    const input = root.querySelector<HTMLInputElement>('[data-faq-search]');
+    if (!input) return;
+    const items = [...root.querySelectorAll<HTMLDetailsElement>('[data-faq-item]')];
+    const groups = [...root.querySelectorAll<HTMLElement>('[data-faq-group]')];
+    const count = root.querySelector<HTMLElement>('[data-faq-count]');
+    const empty = root.querySelector<HTMLElement>('[data-faq-empty]');
+    const apply = () => {
+      const q = input.value.trim().toLowerCase();
+      let shown = 0;
+      for (const item of items) {
+        const hit = !q || item.textContent!.toLowerCase().includes(q);
+        item.hidden = !hit;
+        if (hit) shown++;
+        if (q && hit) item.open = true;
+      }
+      for (const g of groups) g.hidden = ![...g.querySelectorAll<HTMLElement>('[data-faq-item]')].some((i) => !i.hidden);
+      if (empty) empty.hidden = shown > 0;
+      if (count) count.textContent = q ? `${shown} ${shown === 1 ? 'question matches' : 'questions match'}` : '';
+    };
+    input.addEventListener('input', apply);
+  });
+</script>

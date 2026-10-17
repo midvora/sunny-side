@@ -1,0 +1,161 @@
+{
+  "_readme": "Business facts. status: confirmed = supplied by the client (logo and address, via Samson); sample = written for the design sample and must be confirmed or replaced before launch (the launch gate blocks any 'sample' value); not-offered = the business does not do this, so hide it. Text can use {{tokens}}: {{phone}} {{email}} {{address}} {{city}} {{hours}} {{estimates}} {{payment}} {{appointments}} {{emergency}} {{serviceArea}} {{serviceModel}} {{insurance}} {{warranty}}.",
+  "facts": {
+    "businessName": {
+      "label": "Business name",
+      "value": "Sunny Side",
+      "status": "confirmed",
+      "source": "Client logo supplied by Samson on 2026-10-16.",
+      "ask": "Exact legal and trading name as it should appear in the footer and contracts."
+    },
+    "tagline": {
+      "label": "Tagline",
+      "value": "We are here to make a difference!",
+      "status": "confirmed",
+      "source": "Printed on the client logo.",
+      "ask": "Keep as the site tagline?"
+    },
+    "tradeLine": {
+      "label": "Trade",
+      "value": "Truck and trailer repair",
+      "status": "confirmed",
+      "source": "Client logo.",
+      "ask": "Keep wording, or add heavy-duty / diesel / fleet?"
+    },
+    "location": {
+      "label": "City",
+      "value": "Garland, Texas",
+      "status": "confirmed",
+      "source": "City from the address supplied by Samson on 2026-10-16.",
+      "ask": "Shop city."
+    },
+    "address": {
+      "label": "Street address",
+      "value": "2605 Oakland Ave., Garland, TX 75041",
+      "status": "confirmed",
+      "source": "Supplied by Samson on 2026-10-16. Oakland Avenue in Garland 75041 exists in OpenStreetMap; no public listing for the business was found.",
+      "ask": "Confirm it is the shop, plus truck access and parking.",
+      "parts": {
+        "street": "2605 Oakland Ave.",
+        "city": "Garland",
+        "region": "TX",
+        "postalCode": "75041",
+        "country": "US",
+        "lat": 32.87607,
+        "lon": -96.66998
+      }
+    },
+    "phone": {
+      "label": "Phone number",
+      "value": "972-555-0142",
+      "tel": "+19725550142",
+      "status": "sample",
+      "source": "Fictional number. 555-0100 to 555-0199 is reserved for samples, so no real person is called.",
+      "ask": "Main phone, whether it takes texts, and whether roadside calls use a separate line."
+    },
+    "email": {
+      "label": "Email address",
+      "value": "service@sunnysidetruckandtrailer.com",
+      "status": "sample",
+      "source": "Invented. The domain was checked and is unregistered, so no stranger receives mail sent to it.",
+      "ask": "Public contact email."
+    },
+    "emergency": {
+      "label": "Roadside availability",
+      "value": "Call any time. Roadside calls are answered day and night.",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Is roadside help available 24/7, or set hours? Is there a separate roadside number? What does it cover (tires, jump-starts, fuel, minor repairs, towing)?"
+    },
+    "serviceArea": {
+      "label": "Service area",
+      "value": "Garland and the greater Dallas–Fort Worth area",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Cities and highways covered for shop visits and for roadside calls; any distance limit."
+    },
+    "serviceModel": {
+      "label": "How service works",
+      "value": "Full-service shop in Garland, plus mobile roadside service across the area",
+      "status": "sample",
+      "source": "Invented for the sample. The logo only confirms roadside assistance.",
+      "ask": "Shop only, mobile only, or both? Is there a yard for trailers?"
+    },
+    "appointments": {
+      "label": "Appointment policy",
+      "value": "Walk-ins are welcome. Appointments are recommended for inspections and maintenance.",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Walk-ins, appointments, or both?"
+    },
+    "estimates": {
+      "label": "Estimate process",
+      "value": "You get a clear estimate and we get your approval before any work begins.",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "How estimates and approvals work; any diagnostic fee. Do not publish prices unless Teddy asks to."
+    },
+    "payment": {
+      "label": "Payment methods",
+      "value": "Major credit and debit cards, cash, and fleet cards",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Exact payment methods, which fleet or fuel cards, and whether net terms exist for approved accounts."
+    },
+    "insurance": {
+      "label": "Insurance",
+      "value": "Fully insured",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Whether to mention insurance at all, and the exact wording Teddy approves."
+    },
+    "warranty": {
+      "label": "Warranty",
+      "value": "Ask us about warranty coverage on parts and labor",
+      "status": "sample",
+      "source": "Invented for the sample.",
+      "ask": "Any written warranty on parts or labor, and its exact terms."
+    },
+    "domain": {
+      "label": "Domain and hosting",
+      "value": "sunnysidetruckandtrailer.com",
+      "status": "sample",
+      "source": "Invented (unregistered when checked).",
+      "ask": "Existing domain, who controls DNS, and who signs off on going live."
+    }
+  },
+  "hours": {
+    "label": "Business hours",
+    "status": "sample",
+    "source": "Invented for the sample.",
+    "ask": "Opening hours by day, holiday closures, and whether roadside differs from shop hours.",
+    "tz": "America/Chicago",
+    "days": {
+      "mon": [
+        "07:00",
+        "18:00"
+      ],
+      "tue": [
+        "07:00",
+        "18:00"
+      ],
+      "wed": [
+        "07:00",
+        "18:00"
+      ],
+      "thu": [
+        "07:00",
+        "18:00"
+      ],
+      "fri": [
+        "07:00",
+        "18:00"
+      ],
+      "sat": [
+        "08:00",
+        "14:00"
+      ],
+      "sun": null
+    }
+  }
+}

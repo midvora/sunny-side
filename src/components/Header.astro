@@ -1,0 +1,163 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import { primaryNav } from '../lib/nav';
+import { services, serviceCategories, serviceHref, withBase, tel, phoneText, addressText, directionsUrl, hours, value } from '../lib/site';
+import { hoursSummary } from '../lib/hours';
+
+const path = Astro.url.pathname.replace(/index\.html$/, '');
+const isHere = (href: string) => {
+  const full = withBase(href);
+  return full === withBase() ? path === full : path.startsWith(full);
+};
+const roadside = services.find((s) => s.slug === 'roadside-assistance')!;
+const addressShort = `${addressText().split(',')[0]}, ${value('location').split(',')[0]}`;
+---
+<section class="util" aria-label="Shop hours and phone">
+  <div class="wrap util__row">
+    <p class="util__status">
+      <span class="dot" data-open-dot aria-hidden="true"></span>
+      <span data-open-status>{hoursSummary(hours)}</span>
+    </p>
+    <a class="util__addr" href={directionsUrl()} target="_blank" rel="noopener">
+      <Icon name="map-pin" size={15} />
+      <span>{addressShort}</span><span class="sr-only"> (opens Google Maps in a new tab)</span>
+    </a>
+    <p class="util__right">
+      <span class="util__road">Roadside: {value('emergency').split('.')[0].toLowerCase()}</span>
+      <a class="util__phone" href={tel()}><Icon name="phone-call" size={16} /><span>{phoneText()}</span></a>
+    </p>
+  </div>
+</section>
+
+<header class="header" data-header>
+  <div class="wrap header__row">
+    <a class="brand" href={withBase()}>
+      <Logo class="brand__logo" eager />
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        {primaryNav.map((item) => {
+          const active = isHere(item.href);
+          if (item.mega) {
+            return (
+              <li class="nav__item nav__item--mega" data-nav-item>
+                <div class="nav__split">
+                  <a class="nav__link" href={withBase(item.href)} aria-current={path === withBase(item.href) ? 'page' : undefined} data-active={active || undefined}>{item.label}</a>
+                  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mega-services" aria-label="Show all services">
+                    <Icon name="chevron-down" size={18} />
+                  </button>
+                </div>
+                <div class="mega" id="mega-services" hidden>
+                  <div class="wrap mega__inner">
+                    <div class="mega__groups">
+                      {serviceCategories.map((cat) => (
+                        <div class="mega__group">
+                          <p class="mega__heading">{cat.name}</p>
+                          <ul>
+                            {services.filter((s) => s.category === cat.id).map((s) => (
+                              <li>
+                                <a href={serviceHref(s)}>
+                                  <span class="mega__icon"><Icon name={s.icon} size={20} /></span>
+                                  <span>{s.name}</span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      <a class="mega__all" href={withBase('services/')}>See all services <Icon name="arrow-right" size={18} /></a>
+                    </div>
+                    <aside class="mega__feature" aria-label="Roadside assistance">
+                      <Photo name="roadside-flatbed" decorative sizes="320px" widths={[320, 640]} />
+                      <div class="mega__feature-body">
+                        <p class="mega__heading">Broken down?</p>
+                        <p class="mega__feature-title">We come to you.</p>
+                        <a class="btn btn--primary btn--sm" href={tel()}><Icon name="phone-call" size={18} /> Call {phoneText()}</a>
+                      </div>
+                    </aside>
+                  </div>
+                </div>
+              </li>
+            );
+          }
+          if (item.children) {
+            const id = `menu-${item.label.toLowerCase()}`;
+            return (
+              <li class="nav__item" data-nav-item>
+                <div class="nav__split">
+                  <a class="nav__link" href={withBase(item.href)} aria-current={path === withBase(item.href) ? 'page' : undefined} data-active={active || undefined}>{item.label}</a>
+                  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls={id} aria-label={`Show ${item.label} submenu`}>
+                    <Icon name="chevron-down" size={18} />
+                  </button>
+                </div>
+                <ul class="dropdown" id={id} hidden>
+                  {item.children.map((c) => (
+                    <li>
+                      <a href={withBase(c.href)}>
+                        <strong>{c.label}</strong>
+                        {c.hint && <span>{c.hint}</span>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          }
+          return (
+            <li class="nav__item">
+              <a class:list={['nav__link', item.accent && 'nav__link--accent']} href={withBase(item.href)} aria-current={path === withBase(item.href) ? 'page' : undefined} data-active={active || undefined}>
+                {item.accent && <Icon name="siren" size={17} />}{item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary btn--sm header__request" href={withBase('request-service/')}>Request service</a>
+      <a class="header__call" href={tel()} aria-label={`Call ${phoneText()}`}><Icon name="phone-call" size={22} /></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-drawer-open>
+        <Icon name="menu" size={26} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog class="drawer" id="drawer" aria-label="Menu">
+  <div class="drawer__head">
+    <a class="brand" href={withBase()}><Logo class="brand__logo" width={200} eager /></a>
+    <button class="burger" type="button" aria-label="Close menu" data-drawer-close><Icon name="x" size={26} /></button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="drawer__list">
+      <li>
+        <details>
+          <summary>Services <Icon name="chevron-down" size={20} /></summary>
+          <ul>
+            {services.map((s) => (
+              <li><a href={serviceHref(s)}><Icon name={s.icon} size={18} /> {s.name}</a></li>
+            ))}
+            <li><a href={withBase('services/')}><Icon name="arrow-right" size={18} /> All services</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a class="drawer__accent" href={withBase('roadside-assistance/')}><Icon name="siren" size={20} /> Roadside Assistance</a></li>
+      <li><a href={withBase('fleet-services/')}>Fleet Services</a></li>
+      <li><a href={withBase('about/')}>About</a></li>
+      <li><a href={withBase('gallery/')}>Gallery</a></li>
+      <li><a href={withBase('resources/')}>Resources</a></li>
+      <li><a href={withBase('service-area/')}>Service area</a></li>
+      <li><a href={withBase('faq/')}>FAQ</a></li>
+      <li><a href={withBase('contact/')}>Contact</a></li>
+    </ul>
+  </nav>
+  <div class="drawer__foot">
+    <a class="btn btn--primary btn--lg btn--block" href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+    <a class="btn btn--dark btn--lg btn--block" href={withBase('request-service/')}>Request service</a>
+    <p class="drawer__addr"><Icon name="map-pin" size={16} /> {addressText()}</p>
+  </div>
+</dialog>

@@ -1,0 +1,20 @@
+---
+import { withBase } from '../lib/site';
+
+interface Props {
+  items: { name: string; href?: string }[];
+}
+const { items } = Astro.props;
+---
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href={withBase()}>Home</a></li>
+    {items.map((c, i) => (
+      <li>
+        {i < items.length - 1 && c.href
+          ? <a href={withBase(c.href)}>{c.name}</a>
+          : <span aria-current="page">{c.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

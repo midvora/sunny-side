@@ -1,0 +1,83 @@
+---
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { photo } from '../lib/images';
+
+const items = [
+  { key: 'roadside-flatbed', cat: 'roadside', caption: 'Roadside help on a service call' },
+  { key: 'engine-bay', cat: 'shop', caption: 'Engine and cooling system diagnostics' },
+  { key: 'roadside-tire-change', cat: 'roadside', caption: 'Changing a tire at the roadside' },
+  { key: 'trailer-desert', cat: 'road', caption: 'A trailer back on the highway' },
+  { key: 'brake-wheel-end', cat: 'shop', caption: 'Brake and wheel-end service' },
+  { key: 'warning-triangle', cat: 'roadside', caption: 'Warning triangles set out behind a stopped truck' },
+  { key: 'headlights-shop', cat: 'shop', caption: 'A busy day in the shop' },
+  { key: 'hero-golden-hour', cat: 'road', caption: 'Trucks rolling at golden hour' },
+  { key: 'inspection-wheel', cat: 'shop', caption: 'Inspection: a close look at the wheel end' },
+  { key: 'white-truck-motion', cat: 'road', caption: 'Out on the highway' },
+  { key: 'chassis-air-spring', cat: 'shop', caption: 'Suspension and air spring work' },
+  { key: 'fleet-lot', cat: 'road', caption: 'Fleet trucks lined up in the yard' },
+  { key: 'wheels-fuel-tank', cat: 'shop', caption: 'Wheels and tires, ready to roll' },
+  { key: 'maintenance-yellow-cab', cat: 'shop', caption: 'Routine maintenance under the hood' },
+  { key: 'red-freightliner', cat: 'road', caption: 'A tractor ready for the next load' },
+  { key: 'tires-shop', cat: 'shop', caption: 'Tire and wheel-end inspection' },
+];
+const cats = [
+  { id: 'all', name: 'All' },
+  { id: 'roadside', name: 'Roadside' },
+  { id: 'shop', name: 'In the shop' },
+  { id: 'road', name: 'On the road' },
+];
+const enriched = await Promise.all(
+  items.map(async (i) => {
+    const p = photo(i.key);
+    const full = await getImage({ src: p.meta, width: 1600, format: 'webp', quality: 80 });
+    return { ...i, alt: p.alt, full: full.src };
+  }),
+);
+---
+<Base title="Gallery" description="Photos from the shop and the road: roadside assistance, brake and engine work, trailers and trucks ready for the next load.">
+  <PageHero compact eyebrow="Gallery" title="The shop and the road" lead="Trucks, trailers and the work that keeps them moving." image="hero-golden-hour" crumbs={[{ name: 'Gallery' }]} actions={false} />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="filters" role="group" aria-label="Filter photos">
+        {cats.map((c) => <button type="button" data-filter={c.id} aria-pressed={c.id === 'all' ? 'true' : 'false'}>{c.name}</button>)}
+      </div>
+      <ul class="gallery" data-gallery>
+        {enriched.map((i) => (
+          <li data-gallery-cell>
+            <button class="gallery__btn" type="button" data-gallery-item data-full={i.full} data-alt={i.alt} data-caption={i.caption} data-cat={i.cat} aria-label={`View larger: ${i.caption}`}>
+              <Photo name={i.key} alt="" sizes="(min-width: 960px) 380px, (min-width: 640px) 46vw, 92vw" widths={[400, 640, 900]} />
+              <span class="gallery__cap">{i.caption}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <div class="lightbox__stage"><img alt="" data-lb-img /></div>
+    <div class="lightbox__bar">
+      <div>
+        <p class="lightbox__cap" data-lb-caption></p>
+        <p class="lightbox__count" data-lb-count></p>
+      </div>
+      <div class="lightbox__btns">
+        <button type="button" data-lb-prev aria-label="Previous photo"><Icon name="chevron-right" size={24} class="flip" /></button>
+        <button type="button" data-lb-next aria-label="Next photo"><Icon name="chevron-right" size={24} /></button>
+        <button type="button" data-lb-close aria-label="Close viewer"><Icon name="x" size={24} /></button>
+      </div>
+    </div>
+  </dialog>
+
+  <CtaBand />
+</Base>
+
+<script>
+  import '../scripts/gallery';
+</script>

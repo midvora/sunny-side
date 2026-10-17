@@ -1,0 +1,62 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { footerCompany, footerHelp } from '../lib/nav';
+import { services, serviceHref, withBase, tel, phoneText, emailText, addressText, directionsUrl, hours, siteName, value, LAUNCH } from '../lib/site';
+import { hoursRows } from '../lib/hours';
+
+const rows = hoursRows(hours);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="hazard" aria-hidden="true"></div>
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <a class="footer__logo" href={withBase()}><Logo class="brand__logo brand__logo--footer" width={220} /></a>
+      <p class="footer__blurb">{value('tradeLine')} and roadside assistance for owner-operators and fleets in {value('location')} and across the area.</p>
+      <p class="footer__tag">{value('tagline')}</p>
+    </div>
+
+    <div>
+      <p class="footer__heading">Services</p>
+      <ul class="footer__list">
+        {services.map((s) => <li><a href={serviceHref(s)}>{s.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer__heading">Company</p>
+      <ul class="footer__list">
+        {footerCompany.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
+      </ul>
+      <p class="footer__heading footer__heading--spaced">Help</p>
+      <ul class="footer__list">
+        {footerHelp.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer__heading">Visit or call</p>
+      <address class="footer__address">
+        <a href={directionsUrl()} target="_blank" rel="noopener"><Icon name="map-pin" size={18} /><span>{addressText()}<span class="sr-only"> (opens Google Maps in a new tab)</span></span></a>
+        <a href={tel()}><Icon name="phone-call" size={18} /><span>{phoneText()}</span></a>
+        <a href={`mailto:${emailText()}`}><Icon name="mail" size={18} /><span>{emailText()}</span></a>
+      </address>
+      <table class="footer__hours">
+        <caption class="sr-only">Opening hours</caption>
+        <tbody>
+          {rows.map((r) => (
+            <tr data-day={r.key}><th scope="row">{r.short}</th><td>{r.open ? r.text : 'Closed'}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    <div class="wrap footer__bar-row">
+      <p>© {year} {siteName()}. All rights reserved.</p>
+      <p>{LAUNCH ? 'Website by Midvora' : 'Website design preview by Midvora'}</p>
+    </div>
+  </div>
+</footer>

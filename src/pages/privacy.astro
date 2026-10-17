@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { emailText, legal, phoneText, siteName, value } from '../lib/site';
+const name = siteName();
+---
+<Base title="Privacy Policy" description={`How ${name} handles information from this website: what we collect, what we never do, and your choices.`}>
+  <PageHero compact eyebrow="Legal" title="Privacy policy" image="road-sunrays" crumbs={[{ name: 'Privacy policy' }]} actions={false} />
+  <section class="section">
+    <div class="wrap">
+      <article class="prose">
+        <p><em>Last updated {legal.privacy.lastUpdated}.</em></p>
+        <p>This policy explains what information {name} collects through this website and how we use it. We keep it short because we collect very little.</p>
+        <h2>What we collect</h2>
+        <ul>
+          <li><strong>Information you send us.</strong> When you use the request form or contact form, we receive what you type: your name, phone number, email, equipment details, location and message.</li>
+          <li><strong>Your location, only if you choose to share it.</strong> The location buttons use your device's location only when you press them. Your location stays on your device until you send a request.</li>
+        </ul>
+        <h2>What we don't do</h2>
+        <ul>
+          <li>We don't use advertising trackers or sell your information.</li>
+          <li>We don't set tracking cookies. This site doesn't use analytics scripts.</li>
+          <li>Maps are loaded from OpenStreetMap only when you press the Show map button.</li>
+        </ul>
+        <h2>How we use what you send</h2>
+        <p>We use it to respond to your request: to call or text you, to find your truck, to give you an estimate and to schedule work. We keep the records of work we perform for as long as we need them for our business and to meet legal requirements.</p>
+        <h2>Who sees it</h2>
+        <p>Our staff, and the service providers who help us run the site and handle requests (for example, our email provider). We don't share your information with anyone else except where the law requires it.</p>
+        <h2>Your choices</h2>
+        <p>You can ask us what we have about you, ask us to correct it, or ask us to delete it, by contacting us at <a href={`mailto:${emailText()}`}>{emailText()}</a> or {phoneText()}.</p>
+        <h2>Contact</h2>
+        <p>{name}, {value('address')}.</p>
+      </article>
+    </div>
+  </section>
+</Base>

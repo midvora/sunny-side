@@ -1,0 +1,444 @@
+/* ============================================================
+   Forms: request stepper, contact form, fields, choices, location tool
+   ============================================================ */
+.rform {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: clamp(22px, 4vw, 42px);
+  box-shadow: var(--shadow-1);
+}
+.rform fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.rform legend {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+  line-height: 1.04;
+  padding: 0;
+  margin-bottom: 22px;
+}
+.rform legend:focus {
+  outline: none;
+}
+.rform fieldset.field {
+  margin-bottom: 20px;
+}
+.field input,
+.field select,
+.field textarea,
+.choice input,
+.check input {
+  scroll-margin-top: 150px;
+}
+.rform:not(.is-js) .rstep {
+  margin-bottom: 38px;
+}
+.rform__progress {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  gap: 10px;
+}
+.rform.is-js .rform__progress {
+  display: flex;
+}
+.rform__progress li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 5px solid var(--line);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--slate);
+}
+.rform__progress li.is-current,
+.rform__progress li.is-done {
+  border-top-color: var(--sun);
+}
+.rform__progress li.is-current {
+  color: var(--ink);
+}
+.rform__dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--line);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.rform__progress li.is-current .rform__dot {
+  background: var(--ink);
+  color: #fff;
+}
+.rform__progress li.is-done .rform__dot {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+/* fields */
+.field {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 20px;
+  min-width: 0;
+}
+.field > label,
+.field--group > legend {
+  font-weight: 600;
+}
+.rform .field--group legend {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-size: 1.04rem;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+.field input[type='text'],
+.field input[type='tel'],
+.field input[type='email'],
+.field input[type='search'],
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid #8c8878;
+  border-radius: 12px;
+}
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+  border-color: var(--ink);
+}
+.field.has-error input,
+.field.has-error select,
+.field.has-error textarea {
+  border-color: var(--red);
+  background: #fff8f7;
+}
+.field__error {
+  margin: 0;
+  color: var(--red);
+  font-weight: 600;
+  font-size: 0.96rem;
+}
+.field__hint {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.93rem;
+}
+.req {
+  color: var(--red);
+}
+.opt {
+  color: var(--slate);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.field-grid {
+  display: grid;
+  gap: 0 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .field-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.field__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.field__row input {
+  flex: 1 1 260px;
+}
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* big choice cards */
+.choice-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr));
+}
+.choice {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.choice input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.choice__body {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  align-content: start;
+  min-height: 128px;
+  padding: 18px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.choice__body .icon {
+  color: var(--sun-ink);
+  margin-bottom: 6px;
+}
+.choice__body strong {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.choice__body small {
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+.choice:hover .choice__body {
+  border-color: var(--ink);
+}
+.choice input:checked + .choice__body {
+  border-color: var(--ink);
+  background: #fff6d0;
+  box-shadow: 0 0 0 3px var(--sun);
+}
+.choice input:focus-visible + .choice__body {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* pills */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pill {
+  position: relative;
+  display: inline-flex;
+}
+.pill input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.pill span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 2px solid #8c8878;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 600;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.pill:hover span {
+  border-color: var(--ink);
+}
+.pill input:checked + span {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.pill input:focus-visible + span {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 48px;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.check input {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+}
+.field--check {
+  margin-bottom: 8px;
+}
+
+.rstep__note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 13px 16px;
+  background: #fff3f1;
+  border: 1px solid #f0c9c4;
+  border-radius: 12px;
+  color: #5a1a15;
+}
+.rstep__note .icon {
+  color: var(--red);
+}
+.rstep__note a {
+  color: #7a1f17;
+  font-weight: 700;
+}
+
+.rform__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+.rform__nav .btn:only-of-type {
+  margin-left: auto;
+}
+.rform:not(.is-js) .rform__nav {
+  justify-content: flex-end;
+}
+.rform__error {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border: 2px solid var(--red);
+  border-radius: 12px;
+  background: #fff5f4;
+  color: #6f1710;
+  font-weight: 600;
+}
+.rform__success {
+  text-align: center;
+  padding: 22px 6px 10px;
+}
+.rform__success:focus {
+  outline: none;
+}
+.rform__check {
+  display: inline-block;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.rform__success h2 {
+  margin-bottom: 14px;
+}
+.rform__success p {
+  max-width: 34rem;
+  margin-inline: auto;
+}
+.rform__demo {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--steel);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* location tool */
+.loctool {
+  background: var(--ink-2);
+  border: 1px solid var(--line-dark);
+  color: #fff;
+  border-radius: var(--radius-l);
+  padding: clamp(22px, 4vw, 36px);
+  display: grid;
+  gap: 18px;
+  box-shadow: var(--shadow-2);
+}
+.loctool__head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.loctool__icon {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 14px;
+  background: var(--sun);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+}
+.loctool h3 {
+  color: #fff;
+  margin-bottom: 6px;
+}
+.loctool p {
+  margin: 0;
+  color: #d3cdba;
+}
+.loctool > .btn {
+  justify-self: start;
+}
+.loctool__status {
+  min-height: 1.5em;
+  color: #fff !important;
+  font-weight: 600;
+}
+.loctool__coords {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sun) !important;
+  margin-bottom: 14px !important;
+  overflow-wrap: anywhere;
+}
+.loctool__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.loctool .btn--dark {
+  background: var(--sun);
+  color: var(--ink);
+}
+.loctool .btn--ghost-dark {
+  border-color: #fff;
+  color: #fff;
+}
+.loctool .btn--ghost-dark:hover {
+  background: #fff;
+  color: var(--ink);
+}
+.loctool__privacy {
+  font-size: 0.9rem;
+  color: #aaa48f !important;
+}

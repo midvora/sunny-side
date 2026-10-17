@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { tel, phoneText, withBase } from '../lib/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  variant?: 'yellow' | 'dark';
+}
+const { title = "Truck down? Don't wait.", text = 'Call now, or send a request and we will take it from there.', variant = 'yellow' } = Astro.props;
+const rays = Array.from({ length: 18 }, (_, i) => -90 + i * (180 / 17));
+---
+<section class:list={['cta', `cta--${variant}`]}>
+  <svg class="cta__rays" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <g transform="translate(400 400)">
+      <circle r="90" />
+      {rays.map((deg) => <line x1="0" y1="-120" x2="0" y2="-380" transform={`rotate(${deg - 90})`} />)}
+    </g>
+  </svg>
+  <div class="wrap cta__inner">
+    <div class="cta__text" data-reveal>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta__actions" data-reveal>
+      <a class:list={['btn', 'btn--lg', variant === 'yellow' ? 'btn--dark' : 'btn--primary']} href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+      <a class:list={['btn', 'btn--lg', 'btn--ghost']} href={withBase('request-service/')}>Request service</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import HoursTable from '../components/HoursTable.astro';
+import { LAUNCH, faqGroups, phoneText, tel, withBase } from '../lib/site';
+import { breadcrumbs, faqPage } from '../lib/seo';
+
+const crumbs = [{ name: 'FAQ' }];
+const schema = LAUNCH ? [breadcrumbs(crumbs), faqPage()] : [];
+---
+<Base title="FAQ" description="Answers to common questions about roadside assistance, repairs and estimates, DOT inspections and fleet service at Sunny Side." schema={schema}>
+  <PageHero compact eyebrow="FAQ" title="Questions, answered" lead="Quick answers about roadside help, repairs, inspections and how we work." image="wheels-fuel-tank" crumbs={crumbs} actions={false} />
+  <section class="section">
+    <div class="wrap detail">
+      <FaqList groups={faqGroups} search openFirst />
+      <aside class="detail__aside" aria-label="Contact">
+        <div class="aside-card">
+          <h3>Still wondering?</h3>
+          <p>Call and ask. We're happy to help.</p>
+          <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> {phoneText()}</a>
+          <p class="mt-s"><a class="btn btn--ghost btn--sm" href={withBase('contact/')}>Send a message</a></p>
+        </div>
+        <div class="aside-card aside-card--light">
+          <h3>Hours</h3>
+          <div class="hours--compact"><HoursTable /></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <CtaBand title="Didn't find it?" text="Call or send a message. We're happy to answer anything." />
+</Base>

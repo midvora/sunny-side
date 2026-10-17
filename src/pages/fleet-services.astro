@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Steps from '../components/Steps.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { content, withBase } from '../lib/site';
+
+const { hero, benefits, owners } = content.fleet;
+---
+<Base title="Fleet Services" description="Fleet maintenance, DOT inspection tracking, itemized invoicing and roadside coverage for small and mid-size trucking fleets in the Dallas–Fort Worth area.">
+  <PageHero eyebrow="Fleet services" title={hero.title} lead={hero.lead} image="fleet-lot" crumbs={[{ name: 'Fleet services' }]} />
+
+  <section class="section" aria-labelledby="benefits-title">
+    <div class="wrap">
+      <SectionHead eyebrow="Built for fleets" title={benefits.title} id="benefits-title" />
+      <ul class="why">
+        {benefits.items.map((it) => (
+          <li data-reveal>
+            <span class="why__icon"><Icon name={it.icon} size={28} /></span>
+            <h3>{it.title}</h3>
+            <p>{it.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="start-title">
+    <div class="wrap split split--flip">
+      <div class="split__media" data-reveal>
+        <Photo name="red-freightliner" sizes="(min-width: 900px) 540px, 92vw" widths={[480, 800, 1100]} />
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">Getting started</p>
+        <h2 id="start-title">Set up your account in three steps</h2>
+        <Steps steps={[
+          { title: 'Tell us about your trucks', text: 'Call or send a message with your equipment and how you run.' },
+          { title: 'We build a plan', text: 'A maintenance and inspection schedule that fits your duty cycle.' },
+          { title: 'We keep you rolling', text: 'Scheduled service, priority attention and one number to call.' },
+        ]} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="owners-title">
+    <div class="wrap">
+      <div class="section-head section-head--center" data-reveal>
+        <p class="eyebrow">Just one truck?</p>
+        <h2 id="owners-title">{owners.title}</h2>
+        <p class="lead">{owners.text}</p>
+        <p class="mt-m"><a class="btn btn--primary btn--lg" href={withBase('request-service/')}>Request service</a></p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Talk about your fleet." text="Tell us what you run and what's slowing you down. We'll show you how we can help." />
+</Base>

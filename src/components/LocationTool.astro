@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { facts } from '../lib/site';
+
+const sms = facts.phone.tel ?? '';
+---
+<div class="loctool" data-location-tool data-sms={sms}>
+  <div class="loctool__head">
+    <span class="loctool__icon"><Icon name="locate-fixed" size={28} /></span>
+    <div>
+      <h3>Share your location</h3>
+      <p>Not sure where you are? Your phone does. Tap the button, then read it to us or send it by text.</p>
+    </div>
+  </div>
+  <button class="btn btn--primary btn--lg" type="button" data-locate><Icon name="navigation" size={20} /> Find my location</button>
+  <p class="loctool__status" role="status" aria-live="polite" data-locate-status></p>
+  <div class="loctool__result" data-locate-result hidden>
+    <p class="loctool__coords" data-locate-coords></p>
+    <div class="loctool__actions">
+      <a class="btn btn--dark btn--sm" data-locate-sms href="sms:"><Icon name="message-square-text" size={18} /> Text it to us</a>
+      <a class="btn btn--ghost-dark btn--sm" data-locate-open href="#" target="_blank" rel="noopener"><Icon name="map" size={18} /> Open in Maps<span class="sr-only"> (opens in a new tab)</span></a>
+      <button class="btn btn--ghost-dark btn--sm" type="button" data-locate-copy>Copy location</button>
+    </div>
+  </div>
+  <p class="loctool__privacy">Your location stays on your device until you choose to send it.</p>
+</div>
+
+<script>
+  import '../scripts/location-tool';
+</script>

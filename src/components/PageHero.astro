@@ -1,0 +1,35 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import { tel, phoneText, withBase } from '../lib/site';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  image: string;
+  crumbs?: { name: string; href?: string }[];
+  actions?: boolean;
+  compact?: boolean;
+}
+const { eyebrow, title, lead, image, crumbs, actions = true, compact = false } = Astro.props;
+---
+<section class:list={['page-hero', compact && 'page-hero--compact']}>
+  <div class="page-hero__media" aria-hidden="true">
+    <Photo name={image} decorative priority sizes="100vw" widths={[640, 1024, 1600]} />
+  </div>
+  <div class="wrap page-hero__inner">
+    {crumbs && <Breadcrumbs items={crumbs} />}
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+    {actions && (
+      <div class="page-hero__actions">
+        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+        <a class="btn btn--ghost btn--lg" href={withBase('request-service/')}>Request service</a>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,5 @@
+{
+  "_readme": "Privacy policy and terms of use are templates written for the design sample. They describe how the site behaves today (no cookies, no analytics, forms in demo mode) and must be reviewed by the owner, ideally with legal advice, before launch. status 'sample' blocks the launch build.",
+  "privacy": { "lastUpdated": "October 16, 2026", "status": "sample" },
+  "terms": { "lastUpdated": "October 16, 2026", "status": "sample" }
+}

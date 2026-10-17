@@ -1,0 +1,20 @@
+---
+interface Step { title?: string; text?: string; t?: string; d?: string }
+interface Props {
+  steps: Step[];
+  variant?: 'light' | 'dark';
+  horizontal?: boolean;
+}
+const { steps, variant = 'light', horizontal = false } = Astro.props;
+---
+<ol class:list={['steps', `steps--${variant}`, horizontal && 'steps--row']}>
+  {steps.map((s, i) => (
+    <li data-reveal>
+      <span class="steps__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <div>
+        <h3>{s.title ?? s.t}</h3>
+        <p>{s.text ?? s.d}</p>
+      </div>
+    </li>
+  ))}
+</ol>

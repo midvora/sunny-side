@@ -1,0 +1,22 @@
+---
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import { serviceHref, type Service } from '../lib/site';
+
+interface Props {
+  service: Service;
+  featured?: boolean;
+}
+const { service, featured = false } = Astro.props;
+---
+<article class:list={['scard', featured && 'scard--featured']} data-reveal>
+  <div class="scard__media">
+    <Photo name={service.image} decorative sizes={featured ? '(min-width:900px) 560px, 92vw' : '(min-width:1000px) 360px, (min-width:640px) 46vw, 92vw'} widths={[360, 560, 760]} />
+  </div>
+  <div class="scard__body">
+    <span class="scard__icon"><Icon name={service.icon} size={26} /></span>
+    <h3><a class="scard__link" href={serviceHref(service)}>{service.name}</a></h3>
+    <p>{service.short}</p>
+    <span class="scard__more" aria-hidden="true">Learn more <Icon name="arrow-right" size={18} /></span>
+  </div>
+</article>

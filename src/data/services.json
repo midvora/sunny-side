@@ -1,0 +1,576 @@
+{
+  "_readme": "Service pages. status 'sample' = copy written for the design sample; the shop must confirm it does each service and approve the wording (the launch gate blocks 'sample'). Roadside assistance is named in the client's logo; its details are still sample.",
+  "categories": [
+    {
+      "id": "roadside",
+      "name": "Roadside",
+      "blurb": "Help that comes to you."
+    },
+    {
+      "id": "truck",
+      "name": "Truck repair",
+      "blurb": "Tractors and straight trucks, from brakes to engines."
+    },
+    {
+      "id": "more",
+      "name": "Trailers, inspections & maintenance",
+      "blurb": "Keep trailers road-ready and your paperwork in order."
+    }
+  ],
+  "services": [
+    {
+      "slug": "roadside-assistance",
+      "href": "/roadside-assistance/",
+      "name": "Roadside Assistance",
+      "category": "roadside",
+      "icon": "siren",
+      "image": "roadside-flatbed",
+      "short": "When your truck or trailer stops, we come to you. Call, share your location, and we'll get a technician rolling.",
+      "title": "Roadside Assistance for Trucks & Trailers in Garland, TX",
+      "description": "Broken down? Sunny Side sends help for flat tires, dead batteries, air and electrical problems and more across the Dallas–Fort Worth area.",
+      "status": "sample"
+    },
+    {
+      "slug": "brakes-air-systems",
+      "name": "Brakes & Air Systems",
+      "category": "truck",
+      "icon": "gauge",
+      "image": "brake-wheel-end",
+      "short": "Inspection, adjustment and repair for air brakes, from slack adjusters and drums to compressors and air dryers.",
+      "title": "Truck & Trailer Brake and Air System Repair in Garland, TX",
+      "description": "Air brake inspection, adjustment and repair for tractors, straight trucks and trailers: slack adjusters, drums, chambers, compressors, air dryers and ABS faults.",
+      "lead": "Brakes are the one system you never want to guess about. We inspect, adjust and repair air brake systems on tractors, straight trucks and trailers.",
+      "intro": [
+        "Air brake systems have a lot of moving parts, and every one of them wears. We check the whole system rather than just the pads and drums, so small problems get caught before they put you out of service.",
+        "You'll get a plain-language rundown of what we found, what needs attention now, and what can wait."
+      ],
+      "included": [
+        "Brake inspection and adjustment, including slack adjusters",
+        "Brake shoes, drums, pads and rotors",
+        "Brake chambers, hoses and fittings",
+        "Air compressor and air dryer service",
+        "Air leak tracing and repair",
+        "ABS diagnosis and wheel-speed sensor replacement",
+        "Spring brake and parking brake repair",
+        "Brake-related wheel-end work such as seals and bearings"
+      ],
+      "signs": [
+        "Air hissing when the truck sits or when you apply the brakes",
+        "Slow air pressure build-up",
+        "The low-air warning light or buzzer comes on",
+        "Pulling to one side when braking",
+        "Longer stopping distance or a soft pedal feel",
+        "Grinding, squealing or a burning smell from a wheel"
+      ],
+      "steps": [
+        {
+          "t": "Inspect",
+          "d": "We check the full system, measure wear and test for air leaks."
+        },
+        {
+          "t": "Explain",
+          "d": "We walk you through what we found and give you a clear estimate."
+        },
+        {
+          "t": "Repair and test",
+          "d": "After your approval we fix it, adjust the brakes and road-test the result."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "What does the low-air warning mean?",
+          "a": "Federal rules require a warning signal when air pressure in the service reservoir drops to 55 psi or below (49 CFR 393.51). If it comes on, find a safe place to stop and call for help rather than pushing on."
+        },
+        {
+          "q": "Can you fix an air leak on the road?",
+          "a": "Often, yes. Many leaks come from hoses, fittings or chambers that can be repaired on site. See our roadside assistance page."
+        },
+        {
+          "q": "How often should brakes be inspected?",
+          "a": "Brakes are checked at every DOT annual inspection. Good practice is to look at them at every preventive maintenance visit and during your pre-trip inspection, too."
+        }
+      ],
+      "related": [
+        "dot-inspections",
+        "tires-wheels",
+        "suspension-axles"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "engine-diagnostics",
+      "name": "Engine & Aftertreatment Diagnostics",
+      "category": "truck",
+      "icon": "cog",
+      "image": "engine-bay",
+      "short": "Fault-code diagnosis and repair for diesel engines, including DPF, DEF, SCR and EGR systems.",
+      "title": "Diesel Engine Diagnostics and DPF, DEF & EGR Repair in Garland, TX",
+      "description": "Diesel engine diagnostics and repair for trucks: check-engine lights, derates, DPF, DEF, SCR, EGR, turbo and cooling problems traced to the cause.",
+      "lead": "A warning light or a derate doesn't have to mean a guessing game. We trace diesel engine and aftertreatment problems to the cause, not just the code.",
+      "intro": [
+        "Modern diesel engines are a system of sensors, software and emissions equipment. A fault code tells you where to look; it doesn't tell you what failed. We confirm the cause with testing before we recommend parts.",
+        "That means fewer return trips and fewer parts swapped on a hunch."
+      ],
+      "included": [
+        "Fault-code scanning and root-cause diagnosis",
+        "DPF service, cleaning and replacement",
+        "DEF and SCR system repair",
+        "EGR valve and cooler repair",
+        "Turbocharger and boost-leak diagnosis",
+        "Fuel system service: filters, lift pump and injectors",
+        "Cooling system repair: radiator, water pump, thermostat and hoses",
+        "Oil leaks and gasket repair"
+      ],
+      "signs": [
+        "The check-engine or stop-engine light is on",
+        "The engine goes into a derate and loses power",
+        "Frequent regeneration warnings",
+        "Hard starting or rough running",
+        "Heavy smoke, a coolant smell or oil leaks",
+        "Temperature climbing on a hill or in traffic"
+      ],
+      "steps": [
+        {
+          "t": "Connect and scan",
+          "d": "We read the codes and the live data, and ask what the truck was doing when the problem showed up."
+        },
+        {
+          "t": "Test and confirm",
+          "d": "We test the suspect parts and systems so the diagnosis is a fact, not a hunch."
+        },
+        {
+          "t": "Repair and verify",
+          "d": "We fix the cause, clear the codes and confirm the repair under load."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "What is a derate?",
+          "a": "A derate is the engine reducing power to protect itself or to limit emissions when it detects a problem, often tied to the aftertreatment system. It's a sign to get the truck checked before it gets worse."
+        },
+        {
+          "q": "Can a DPF be cleaned instead of replaced?",
+          "a": "Depending on its condition, a DPF can sometimes be cleaned rather than replaced. We'll tell you which makes sense after testing."
+        },
+        {
+          "q": "Do you work on every engine brand?",
+          "a": "Ask us about your specific engine. We'll tell you honestly if a job is better handled by a dealer."
+        }
+      ],
+      "related": [
+        "preventive-maintenance",
+        "electrical-lighting",
+        "roadside-assistance"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "electrical-lighting",
+      "name": "Electrical & Lighting",
+      "category": "truck",
+      "icon": "zap",
+      "image": "headlights-shop",
+      "short": "Wiring, batteries, alternators, starters, lights and trailer connections, traced to the cause.",
+      "title": "Truck & Trailer Electrical and Lighting Repair in Garland, TX",
+      "description": "Truck and trailer electrical repair: lights, 7-way plugs, wiring harnesses, batteries, alternators, starters and ABS sensor faults diagnosed and fixed.",
+      "lead": "Dead lights, dying batteries and gremlins in the wiring cost drivers time and tickets. We trace electrical faults to the root cause and fix them properly.",
+      "intro": [
+        "Electrical problems are rarely where they first appear. A trailer light that flickers might be a corroded plug, a bad ground or a chafed wire two feet away. We test the circuit instead of guessing.",
+        "Whether it's a single marker light or a no-start, you'll know what failed and why."
+      ],
+      "included": [
+        "Headlights, marker, clearance and brake lights",
+        "7-way trailer plug, cable and receptacle repair",
+        "Wiring harness repair and rewiring",
+        "Battery testing, charging-system checks and replacement",
+        "Alternator and starter diagnosis and replacement",
+        "ABS sensor and connector faults",
+        "Gauge, switch and dash faults",
+        "Parasitic drain and no-start diagnosis"
+      ],
+      "signs": [
+        "Lights flicker or won't come on",
+        "Trailer lights work on some trailers but not others",
+        "Slow cranking or a dead battery",
+        "Fuses keep blowing",
+        "The ABS warning light stays on",
+        "Gauges or switches act up"
+      ],
+      "steps": [
+        {
+          "t": "Test the circuit",
+          "d": "We check voltage, grounds and connections to find where the fault really is."
+        },
+        {
+          "t": "Fix the cause",
+          "d": "We repair or replace the failed part and protect the connection against the next failure."
+        },
+        {
+          "t": "Confirm",
+          "d": "We check everything works together, including the trailer connection."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Why do my trailer lights keep going out?",
+          "a": "The most common culprits are a corroded or damaged 7-way plug, a poor ground connection or a chafed wire. Testing the circuit finds which one."
+        },
+        {
+          "q": "Do broken lights matter at inspection?",
+          "a": "Yes. Lighting devices are among the items listed in Appendix A to 49 CFR Part 396 for the annual inspection, and working lights are also checked at roadside inspections."
+        },
+        {
+          "q": "Can you fix a no-start on the road?",
+          "a": "Often. Dead batteries, loose terminals and failed starters are common roadside calls. See roadside assistance."
+        }
+      ],
+      "related": [
+        "trailer-repair",
+        "roadside-assistance",
+        "dot-inspections"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "suspension-axles",
+      "name": "Suspension, Axles & Landing Gear",
+      "category": "truck",
+      "icon": "arrow-up-down",
+      "image": "chassis-air-spring",
+      "short": "Springs, air bags, shocks, bushings, axle parts and landing gear repaired and tested.",
+      "title": "Truck & Trailer Suspension, Axle and Landing Gear Repair in Garland, TX",
+      "description": "Suspension, axle and landing gear repair for tractors and trailers: air springs, leaf springs, bushings, shocks, alignment checks and fifth wheels.",
+      "lead": "Springs, air bags, bushings, axle parts and landing gear take a beating. We repair them so your truck and trailer ride, track and carry the way they should.",
+      "intro": [
+        "Suspension problems rarely announce themselves loudly. They show up as uneven tire wear, a trailer that sits low on one side or a ride that gets rougher month by month.",
+        "We inspect the whole load path, from the fifth wheel to the axle ends, and repair what's worn or damaged."
+      ],
+      "included": [
+        "Air springs (air bags), leveling valves and air lines",
+        "Leaf springs, spring hangers and bushings",
+        "Shock absorbers and torque rods",
+        "Axle alignment and tracking checks",
+        "Hub, seal and bearing service",
+        "Fifth wheel inspection, lubrication and repair",
+        "Trailer landing gear repair and replacement",
+        "Frame and crossmember checks"
+      ],
+      "signs": [
+        "Uneven or rapid tire wear",
+        "The trailer sags or sits unevenly",
+        "A rough or bouncing ride",
+        "The trailer tracks sideways behind the tractor",
+        "A leaking air bag, or an air ride that won't hold height",
+        "Landing gear that's hard to crank or won't hold"
+      ],
+      "steps": [
+        {
+          "t": "Inspect",
+          "d": "We look over springs, bags, bushings, axles, the fifth wheel and the frame."
+        },
+        {
+          "t": "Explain",
+          "d": "We show you what's worn, what's urgent and what can wait."
+        },
+        {
+          "t": "Repair and align",
+          "d": "We replace what's needed and check alignment and ride height."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How do I know if trailer axles are out of alignment?",
+          "a": "Uneven tire wear and a trailer that tracks slightly sideways behind the tractor are classic signs. An alignment check will confirm it."
+        },
+        {
+          "q": "Do you repair landing gear?",
+          "a": "Yes. Landing gear problems, from seized cranks to damaged legs, are a common trailer repair."
+        },
+        {
+          "q": "Is suspension part of the DOT inspection?",
+          "a": "Yes. Suspension and frame are both listed in Appendix A to 49 CFR Part 396."
+        }
+      ],
+      "related": [
+        "tires-wheels",
+        "trailer-repair",
+        "dot-inspections"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "tires-wheels",
+      "name": "Tires & Wheel Ends",
+      "category": "truck",
+      "icon": "circle-dot",
+      "image": "wheels-fuel-tank",
+      "short": "Tire repair and replacement, mounting, balancing, wheel seals and bearings for tractors and trailers.",
+      "title": "Truck & Trailer Tire and Wheel-End Service in Garland, TX",
+      "description": "Truck tire repair and replacement, mounting and balancing, plus wheel seals, bearings and hub service for tractors and trailers.",
+      "lead": "Tires and wheel ends decide whether you arrive on time. We repair, replace and inspect them for tractors and trailers.",
+      "intro": [
+        "A tire problem rarely stays small. Underinflation, misalignment and worn wheel-end parts all show up as heat, uneven wear and, eventually, a blowout.",
+        "We inspect the whole wheel end, not just the rubber, so the real cause gets fixed."
+      ],
+      "included": [
+        "Tire repair and replacement for steer, drive and trailer positions",
+        "Mounting and balancing",
+        "Tire and wheel inspection for wear, damage and pressure",
+        "Wheel seal and bearing service",
+        "Hub oil level checks and leak repair",
+        "Lug nut and stud checks, and wheel torque",
+        "Rim and wheel inspection for cracks and damage",
+        "Valve stems and pressure checks"
+      ],
+      "signs": [
+        "A tire is low, bulging, cut or visibly damaged",
+        "Uneven or one-sided tread wear",
+        "A vibration at highway speed",
+        "Oil leaking from a hub cap or wheel seal",
+        "A grinding or rumbling sound from a wheel end",
+        "A tire that keeps losing pressure"
+      ],
+      "steps": [
+        {
+          "t": "Inspect",
+          "d": "We check tread, sidewalls, pressure, rims and the wheel end."
+        },
+        {
+          "t": "Explain",
+          "d": "We show you the damage and recommend repair or replacement."
+        },
+        {
+          "t": "Fix and torque",
+          "d": "We repair or replace, balance, and torque the wheels to spec."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Why check tire pressure when the tires are cold?",
+          "a": "Tire pressure rises as tires heat up while you drive, so a cold reading is the dependable one. Underinflated tires run hotter and are more likely to fail."
+        },
+        {
+          "q": "Do you handle roadside tire changes?",
+          "a": "Yes. Flats and blowouts are among the most common roadside calls. See roadside assistance."
+        },
+        {
+          "q": "Can you replace tires while I wait?",
+          "a": "For many jobs, yes. Call ahead and we'll tell you what we have and how long it will take."
+        }
+      ],
+      "related": [
+        "brakes-air-systems",
+        "suspension-axles",
+        "roadside-assistance"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "trailer-repair",
+      "name": "Trailer Repair",
+      "category": "more",
+      "icon": "container",
+      "image": "trailer-desert",
+      "short": "Doors, floors, hinges, rear impact guards and landing gear, keeping dry vans and flatbeds road-ready.",
+      "title": "Semi Trailer Repair in Garland, TX: Doors, Floors, Landing Gear & More",
+      "description": "Trailer repair for dry vans and flatbeds: roll-up and swing doors, floors, panels, rear impact guards, landing gear, lights and flatbed hardware.",
+      "lead": "Doors, floors, lights, landing gear and more. We keep dry vans and flatbeds road-ready and out of the way of delays at the dock.",
+      "intro": [
+        "A trailer that won't close, seal or roll is a trailer that isn't earning. Most trailer problems are straightforward to fix once someone has a good look.",
+        "We handle the body, the running gear and the lights, so you drop one trailer and pick up one that's ready to haul."
+      ],
+      "included": [
+        "Roll-up and swing door repair: tracks, hinges and latches",
+        "Floor repair and board replacement",
+        "Sidewall, roof and panel repair",
+        "Rear impact guard (bumper) repair",
+        "Lighting and wiring",
+        "Landing gear repair and replacement",
+        "Brake and suspension service",
+        "Flatbed hardware: winches and tie-down points"
+      ],
+      "signs": [
+        "A door won't close, latch or seal",
+        "Light shows through the roof or sidewall",
+        "Soft spots or damage in the floor",
+        "A damaged or bent rear impact guard",
+        "A winch or tie-down point that's failing",
+        "A dock hit or yard accident"
+      ],
+      "steps": [
+        {
+          "t": "Look it over",
+          "d": "We inspect the damage and check the running gear while we're there."
+        },
+        {
+          "t": "Quote it",
+          "d": "You get a clear estimate with the must-fix items separated from the nice-to-have ones."
+        },
+        {
+          "t": "Repair and release",
+          "d": "We fix it, check lights and doors, and hand back a trailer that's ready to roll."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Can you repair damage from a dock hit?",
+          "a": "Yes. Door, panel, guard and frame damage from dock and yard accidents is common work."
+        },
+        {
+          "q": "Do you repair refrigerated trailers?",
+          "a": "Refrigeration units are often handled by brand-authorized specialists. Call us about your unit and we'll tell you what we can do and who to see for the rest."
+        },
+        {
+          "q": "Are trailers part of the annual inspection?",
+          "a": "Yes. Trailers are inspected under the same periodic inspection rules as tractors."
+        }
+      ],
+      "related": [
+        "electrical-lighting",
+        "suspension-axles",
+        "dot-inspections"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "dot-inspections",
+      "name": "DOT Annual Inspections",
+      "category": "more",
+      "icon": "clipboard-check",
+      "image": "inspection-wheel",
+      "short": "Periodic inspections of your tractor or trailer against federal minimum standards, with a report for your records.",
+      "title": "DOT Annual Truck & Trailer Inspections in Garland, TX",
+      "description": "DOT annual (periodic) inspections for tractors, straight trucks and trailers under 49 CFR Part 396, with repairs and a completed inspection report.",
+      "lead": "Stay compliant without the guesswork. We inspect your tractor or trailer against the federal minimum standards and fix what needs fixing.",
+      "intro": [
+        "Federal rules require every commercial motor vehicle to be inspected at least once every 12 months, and the inspection has to cover, at a minimum, the items listed in Appendix A to 49 CFR Part 396.",
+        "We go through each item, tell you what passes and what doesn't, repair what you approve, and give you a completed inspection report for your records."
+      ],
+      "included": [
+        "Brake system",
+        "Coupling devices, including fifth wheels",
+        "Exhaust system",
+        "Fuel system",
+        "Lighting devices",
+        "Steering mechanism",
+        "Suspension",
+        "Frame",
+        "Tires",
+        "Wheels and rims",
+        "Windshield glazing and wipers",
+        "Rear impact guard on trailers"
+      ],
+      "signs": [
+        "Your 12-month inspection date is coming up",
+        "You've just bought a used tractor or trailer",
+        "A roadside inspection flagged a problem",
+        "Your carrier or insurer asks for documentation",
+        "You're adding a truck to your fleet"
+      ],
+      "steps": [
+        {
+          "t": "Book",
+          "d": "Call or request service and tell us what you're bringing in. {{appointments}}"
+        },
+        {
+          "t": "Inspect",
+          "d": "We go through every required item and note what passes and what doesn't."
+        },
+        {
+          "t": "Repair and document",
+          "d": "We repair what you approve and give you the completed inspection report."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How often is a DOT annual inspection required?",
+          "a": "At least once every 12 months (49 CFR 396.17)."
+        },
+        {
+          "q": "What does the inspection cover?",
+          "a": "At minimum, the components listed in Appendix A to Part 396: the brake system, coupling devices, exhaust, fuel system, lighting, safe loading, steering, suspension, frame, tires, wheels and rims, windshield glazing and wipers, and rear impact guards, among others."
+        },
+        {
+          "q": "Is a roadside inspection the same thing?",
+          "a": "No. A roadside inspection is done by an enforcement officer at the roadside. The annual inspection is a separate, periodic inspection of the vehicle."
+        },
+        {
+          "q": "What should I bring?",
+          "a": "Bring the vehicle, any prior inspection reports and a list of problems you've noticed. If something was flagged at a roadside inspection, bring that report too."
+        }
+      ],
+      "related": [
+        "brakes-air-systems",
+        "preventive-maintenance",
+        "tires-wheels"
+      ],
+      "status": "sample"
+    },
+    {
+      "slug": "preventive-maintenance",
+      "name": "Preventive Maintenance",
+      "category": "more",
+      "icon": "calendar-check",
+      "image": "maintenance-yellow-cab",
+      "short": "Scheduled service with fluids, filters, lubrication and inspections, so small issues don't become breakdowns.",
+      "title": "Truck & Trailer Preventive Maintenance in Garland, TX",
+      "description": "Preventive maintenance for tractors, straight trucks and trailers: oil and filter service, lubrication, inspections and battery, brake and tire checks.",
+      "lead": "The cheapest repair is the one you never need. Scheduled service keeps small issues from becoming breakdowns.",
+      "intro": [
+        "Preventive maintenance is boring on purpose. Fresh fluids, clean filters, greased joints and a careful look at brakes, tires and lights are what keep a truck out of the shop and on the road.",
+        "We'll follow your manufacturer's schedule, or help you build one that fits how you actually run."
+      ],
+      "included": [
+        "Oil and filter changes",
+        "Fuel, air and cabin filters",
+        "Coolant, belt and hose checks",
+        "Chassis and fifth wheel greasing",
+        "Battery and charging-system tests",
+        "Brake, tire and wheel-end inspection",
+        "DEF and aftertreatment checks",
+        "Written service notes and reminders"
+      ],
+      "signs": [
+        "Service is due by miles, hours or time",
+        "You're heading out on a long haul",
+        "You've just taken on a used truck or trailer",
+        "The season is changing and heat or cold is coming",
+        "You'd like predictable maintenance costs"
+      ],
+      "steps": [
+        {
+          "t": "Set a schedule",
+          "d": "We match service intervals to your engine, your duty cycle and the manufacturer's recommendations."
+        },
+        {
+          "t": "Service and inspect",
+          "d": "We do the scheduled work and check the items that tend to fail next."
+        },
+        {
+          "t": "Track and remind",
+          "d": "You get notes on what we did and what's coming up, so nothing slips."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How often should I service my truck?",
+          "a": "Intervals depend on the engine, how you use the truck and the manufacturer's schedule. We follow yours and can help you set one if you don't have it."
+        },
+        {
+          "q": "Can you set up a program for my fleet?",
+          "a": "Yes. See our fleet services page, or call and tell us about your trucks."
+        },
+        {
+          "q": "Does maintenance include a safety check?",
+          "a": "Yes. Brakes, tires, lights and leaks get checked at each visit so issues are caught early."
+        }
+      ],
+      "related": [
+        "dot-inspections",
+        "engine-diagnostics",
+        "tires-wheels"
+      ],
+      "status": "sample"
+    }
+  ]
+}

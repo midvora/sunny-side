@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getService, serviceCategories, serviceHref, services, value } from '../../lib/site';
+
+const problems = [
+  { text: 'Stuck on the road right now', hint: 'Roadside assistance', slug: 'roadside-assistance' },
+  { text: 'Flat, blown or damaged tire', hint: 'Tires & wheel ends', slug: 'tires-wheels' },
+  { text: 'Air leak or low-air warning', hint: 'Brakes & air systems', slug: 'brakes-air-systems' },
+  { text: 'Check-engine light or loss of power', hint: 'Engine diagnostics', slug: 'engine-diagnostics' },
+  { text: 'Won’t start or dead battery', hint: 'Electrical & lighting', slug: 'electrical-lighting' },
+  { text: 'Trailer lights not working', hint: 'Electrical & lighting', slug: 'electrical-lighting' },
+  { text: 'Door, floor or panel damage', hint: 'Trailer repair', slug: 'trailer-repair' },
+  { text: 'Rough ride or uneven tire wear', hint: 'Suspension & axles', slug: 'suspension-axles' },
+  { text: 'Annual inspection is due', hint: 'DOT inspections', slug: 'dot-inspections' },
+  { text: 'Regular service is due', hint: 'Preventive maintenance', slug: 'preventive-maintenance' },
+];
+const city = value('location').split(',')[0];
+---
+<Base
+  title={`Truck & Trailer Services in ${city}, TX`}
+  description="Roadside assistance, brakes and air systems, diesel engine diagnostics, electrical, suspension, tires, trailer repair, DOT inspections and preventive maintenance."
+>
+  <PageHero
+    eyebrow="Our services"
+    title="Everything your truck and trailer need"
+    lead="Roadside help, repairs, inspections and maintenance for tractors, straight trucks and trailers."
+    image="headlights-shop"
+    crumbs={[{ name: 'Services' }]}
+  />
+
+  <section class="section section--tight" aria-labelledby="finder-title">
+    <div class="wrap">
+      <SectionHead eyebrow="Not sure where to start?" title="What&rsquo;s going on with your truck?" lead="Pick the problem that sounds closest and we&rsquo;ll point you to the right service." id="finder-title" />
+      <div class="problem-search">
+        <Icon name="search" size={20} />
+        <label for="problem-q" class="sr-only">Search problems</label>
+        <input id="problem-q" type="search" placeholder="Search, e.g. air leak, tire, lights" autocomplete="off" data-problem-search />
+      </div>
+      <ul class="problems" data-problems>
+        {problems.map((p) => {
+          const s = getService(p.slug);
+          return (
+            <li data-problem>
+              <a href={serviceHref(s)}>
+                <span class="mega__icon"><Icon name={s.icon} size={22} /></span>
+                <span>{p.text}<small>{p.hint}</small></span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <p class="problems-empty" hidden data-problems-empty>Nothing matches that. Call us and describe it, and we&rsquo;ll figure it out together.</p>
+    </div>
+  </section>
+
+  {serviceCategories.map((cat, i) => (
+    <section class:list={['section', i % 2 === 0 ? 'section--alt' : '']} aria-labelledby={`cat-${cat.id}`}>
+      <div class="wrap">
+        <SectionHead title={cat.name} lead={cat.blurb} id={`cat-${cat.id}`} />
+        <div class="grid-cards">
+          {services.filter((s) => s.category === cat.id).map((s) => <ServiceCard service={s} featured={s.category === 'roadside'} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand title="Not sure what you need?" text="Call us and describe what's happening. We'll tell you straight what it is and what to do next." />
+</Base>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-problem-search]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-problem]')];
+  const empty = document.querySelector<HTMLElement>('[data-problems-empty]');
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const li of items) {
+      const hit = !q || li.textContent!.toLowerCase().includes(q);
+      li.hidden = !hit;
+      if (hit) shown++;
+    }
+    if (empty) empty.hidden = shown > 0;
+  });
+</script>

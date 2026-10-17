@@ -1,234 +1,169 @@
 ---
 import Base from '../layouts/Base.astro';
-import Fact from '../components/Fact.astro';
-import CallButton from '../components/CallButton.astro';
-import RequestForm from '../components/RequestForm.astro';
-import HeroArt from '../components/HeroArt.astro';
-import { services, faq, facts, LAUNCH } from '../lib/site';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Steps from '../components/Steps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { areas, content, faqGroups, hours, phoneText, services, tel, testimonials, value, withBase } from '../lib/site';
+import { hoursSummary } from '../lib/hours';
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const gallerySlots = [
-  'Shop bay or yard',
-  'Brake and air work',
-  'Trailer door repair',
-  'Diagnostics in progress',
-  'Mobile service truck',
-  'The team',
-];
-const addr = facts.address;
-const directions =
-  addr.status === 'confirmed' && addr.value
-    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr.value)}`
-    : null;
-const trust = [
-  { title: 'Licenses & certifications', fact: 'licensing' },
-  { title: 'Insurance', fact: 'insurance' },
-  { title: 'Warranty', fact: 'warranty' },
-  { title: 'Customer reviews', fact: 'reviews' },
-];
+const { hero, why, process, roadside, fleet } = content.home;
+const emphasis = 'keeps you moving.';
+const [titleLead] = hero.title.split(emphasis);
+const topFaq = [{ id: 'top', name: '', items: faqGroups.flatMap((g) => g.items).slice(0, 5) }];
+const city = value('location').split(',')[0];
+const [roadsideCard, ...otherServices] = [services.find((s) => s.slug === 'roadside-assistance')!, ...services.filter((s) => s.slug !== 'roadside-assistance')];
 ---
-<Base>
+<Base title={`Truck & Trailer Repair and Roadside Assistance in ${city}, TX`}>
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero__grid">
-      <div>
-        <p class="eyebrow"><Fact id="location" /></p>
-        <h1 id="hero-title"><Fact id="tradeLine" /></h1>
-        <p class="lede"><Fact id="serviceScope" /></p>
-        <div class="hero__cta">
-          <CallButton />
-          <a class="btn btn--secondary" href="#request">
-            <span class="btn__main">Request a repair</span>
-            <span class="btn__sub">or ask for an estimate</span>
-          </a>
-        </div>
-        <p class="hero__note">
-          Unit down? Have the unit number, where it is, and what it is doing ready. <a href="#faq">What to have ready</a>
-        </p>
-      </div>
-      <HeroArt />
+    <div class="hero__media">
+      <Photo name="hero-golden-hour" decorative priority sizes="(min-width: 960px) 58vw, 100vw" widths={[640, 960, 1280, 1600]} />
     </div>
+    <div class="hero__copy">
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1 id="hero-title">{titleLead}<em>{emphasis}</em></h1>
+      <p class="lead">{hero.lead}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+        <a class="btn btn--ghost btn--lg" href={withBase('request-service/')}>Request service</a>
+      </div>
+      <ul class="hero__checks">
+        <li><Icon name="circle-check" size={20} /> Roadside assistance</li>
+        <li><Icon name="circle-check" size={20} /> DOT inspections</li>
+        <li><Icon name="circle-check" size={20} /> Honest estimates</li>
+      </ul>
+    </div>
+    <a class="hero__card" href={withBase('roadside-assistance/')}>
+      <span class="pulse"><Icon name="siren" size={24} /></span>
+      <span><strong>Broken down right now?</strong><span>Get roadside help</span></span>
+    </a>
   </section>
 
-  <section class="glance" aria-label="At a glance">
+  <section class="facts" aria-label="At a glance">
     <div class="wrap">
-      <dl class="glance__list">
-        <div><dt>Address</dt><dd><Fact id="address" /></dd></div>
-        <div><dt>Service area</dt><dd><Fact id="serviceArea" /></dd></div>
-        <div><dt>Hours</dt><dd><Fact id="hours" /></dd></div>
-        <div><dt>Emergency calls</dt><dd><Fact id="emergency" /></dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section id="services" class="section" aria-labelledby="services-title">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">Services</p>
-        <h2 id="services-title">What a truck &amp; trailer shop covers</h2>
-        <p>
-          Plain-language descriptions of common heavy-duty work, so a driver or dispatcher can tell at a glance whether this is the right shop.
-        </p>
-        {!LAUNCH && (
-          <p class="note">
-            <strong>Mostly placeholders.</strong> Roadside assistance comes from the business's logo. The other cards are typical services for the trade, not a statement of what this shop does. The real list replaces them once confirmed.
-          </p>
-        )}
-      </div>
-      <ul class="cards">
-        {services.map((s) => (
-          <li class="card">
-            <h3>{s.name}</h3>
-            <p>{s.summary}</p>
-            {s.status === 'unconfirmed' && <span class="card__tag">Unconfirmed</span>}
-          </li>
-        ))}
+      <ul class="facts__list">
+        <li><Icon name="map-pin" size={26} /><span>{value('address')}</span></li>
+        <li><Icon name="clock" size={26} /><span><span data-open-status>{hoursSummary(hours)}</span><small>{hoursSummary(hours)}</small></span></li>
+        <li><Icon name="siren" size={26} /><span>Roadside: {value('emergency').split('.')[0].toLowerCase()}</span></li>
+        <li><Icon name="shield-check" size={26} /><span>{value('insurance')}</span></li>
       </ul>
     </div>
   </section>
 
-  <section id="request" class="section section--dark" aria-labelledby="request-title">
-    <div class="wrap request">
-      <div class="section__head section__head--flush">
-        <p class="kicker">Request a repair</p>
-        <h2 id="request-title">Tell us what is wrong</h2>
-        <p>The more detail up front, the less back-and-forth on the phone. For a unit that is down on the road, calling is faster.</p>
-        <ul class="checklist">
-          <li>Unit type and number</li>
-          <li>Where it is right now</li>
-          <li>What it is doing: lights, noises, leaks, no start</li>
-          <li>Any deadline, such as an inspection due date</li>
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <SectionHead eyebrow="What we do" title="Everything your truck and trailer need" lead="From a flat on the shoulder to a full DOT inspection, one shop handles it." id="services-title" />
+      <div class="grid-cards">
+        <ServiceCard service={roadsideCard} featured />
+        {otherServices.map((s) => <ServiceCard service={s} />)}
+        <div class="scard scard--cta" data-reveal>
+          <h3>Not sure what you need?</h3>
+          <p>Describe what&rsquo;s going on and we&rsquo;ll tell you straight.</p>
+          <a class="btn btn--dark" href={tel()}><Icon name="phone-call" size={20} /> Call {phoneText()}</a>
+          <a class="btn btn--ghost-dark" href={withBase('request-service/')}>Request service</a>
+        </div>
+      </div>
+      <p class="section__more" data-reveal><a class="btn btn--dark" href={withBase('services/')}>See all services <Icon name="arrow-right" size={20} /></a></p>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="roadside-title">
+    <div class="wrap split">
+      <div class="split__media" data-reveal>
+        <Photo name="roadside-tire-change" sizes="(min-width: 900px) 540px, 92vw" widths={[480, 800, 1100]} />
+        <div class="split__badge"><Icon name="siren" size={26} /><span>Call any time<br /><strong>{phoneText()}</strong></span></div>
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">{roadside.eyebrow}</p>
+        <h2 id="roadside-title">{roadside.title}</h2>
+        <p class="lead">{roadside.text}</p>
+        <ul class="ticks">
+          {roadside.bullets.map((b) => <li><Icon name="circle-check" size={22} /> {b}</li>)}
         </ul>
-        <div class="hero__cta hero__cta--solo"><CallButton /></div>
-      </div>
-      <RequestForm />
-    </div>
-  </section>
-
-  <section id="area" class="section" aria-labelledby="area-title">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">Find us</p>
-        <h2 id="area-title">Service area &amp; hours</h2>
-      </div>
-      <div class="two">
-        <div class="panel">
-          <h3>Hours</h3>
-          <table class="hours">
-            <caption class="sr-only">Opening hours by day (not yet confirmed)</caption>
-            <tbody>
-              {days.map((d) => <tr><th scope="row">{d}</th><td aria-label="hours not confirmed">&mdash;</td></tr>)}
-            </tbody>
-          </table>
-          <p><Fact id="hours" /></p>
-        </div>
-        <div class="panel">
-          <h3>Where we work</h3>
-          <p><Fact id="serviceArea" /></p>
-          <p><Fact id="serviceModel" /></p>
-          <div class="mapslot" role="img" aria-label="Service area map placeholder">
-            <p>Service area map goes here once the area is confirmed.<br />Self-hosted, no tracking.</p>
-          </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call now</a>
+          <a class="btn btn--ghost btn--lg" href={withBase('roadside-assistance/')}>How roadside works</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="work" class="section section--alt" aria-labelledby="work-title">
+  <section class="section section--alt" aria-labelledby="why-title">
     <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">Our work</p>
-        <h2 id="work-title">Photos from the shop</h2>
-        <p>Real photos of real jobs go here. Stock images of other shops are never used, and before-and-after shots only appear with permission.</p>
-      </div>
-      <ul class="gallery">
-        {gallerySlots.map((label) => (
-          <li class="slot">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-              <circle cx="12" cy="13" r="3.4" />
-            </svg>
-            <strong>{label}</strong>
-            <span>Photo slot</span>
+      <SectionHead eyebrow="Why Sunny Side" title={why.title} lead={why.intro} id="why-title" />
+      <ul class="why">
+        {why.items.map((it) => (
+          <li data-reveal>
+            <span class="why__icon"><Icon name={it.icon} size={28} /></span>
+            <h3>{it.title}</h3>
+            <p>{it.text}</p>
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="section section--dark" aria-labelledby="trust-title">
+  <section class="section section--white" aria-labelledby="process-title">
     <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">Trust</p>
-        <h2 id="trust-title">What we can show you</h2>
-        <p>These appear only once the business supplies documents or approved wording.</p>
-      </div>
-      <ul class="trust">
-        {trust.map((t) => (
-          <li>
-            <h3>{t.title}</h3>
-            <p><Fact id={t.fact} /></p>
-          </li>
-        ))}
-      </ul>
+      <SectionHead eyebrow="Simple process" title={process.title} lead={process.intro} id="process-title" />
+      <Steps steps={process.steps} horizontal />
     </div>
   </section>
 
-  <section id="faq" class="section" aria-labelledby="faq-title">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">FAQ</p>
-        <h2 id="faq-title">Questions drivers ask</h2>
+  <section class="section section--alt" aria-labelledby="fleet-title">
+    <div class="wrap split split--flip">
+      <div class="split__media" data-reveal>
+        <Photo name="fleet-lot" sizes="(min-width: 900px) 540px, 92vw" widths={[480, 800, 1100]} />
       </div>
-      <div class="faq">
-        {faq.map((item, i) => (
-          <details open={i === 0}>
-            <summary>{item.q}</summary>
-            <div class="faq__a">
-              {item.kind === 'guidance'
-                ? (
-                  <Fragment>
-                    <p>{item.a}</p>
-                    {item.source?.startsWith('eCFR') && (
-                      <p class="faq__src">
-                        Source: <a href="https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-396/subpart-B/section-396.17" rel="noopener">49 CFR 396.17 on eCFR</a>
-                      </p>
-                    )}
-                  </Fragment>
-                )
-                : <p><Fact id={item.fact!} /></p>}
-            </div>
-          </details>
-        ))}
+      <div data-reveal>
+        <p class="eyebrow">{fleet.eyebrow}</p>
+        <h2 id="fleet-title">{fleet.title}</h2>
+        <p class="lead">{fleet.text}</p>
+        <ul class="ticks">
+          {fleet.bullets.map((b) => <li><Icon name="circle-check" size={22} /> {b}</li>)}
+        </ul>
+        <a class="btn btn--dark btn--lg" href={withBase('fleet-services/')}>Fleet services <Icon name="arrow-right" size={20} /></a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section section--alt" aria-labelledby="contact-title">
+  <section class="section" aria-labelledby="quotes-title">
     <div class="wrap">
-      <div class="section__head">
-        <p class="kicker">Contact</p>
-        <h2 id="contact-title">Get in touch</h2>
+      <SectionHead eyebrow="Drivers say" title="Straight talk from the road" id="quotes-title" />
+      <Testimonials items={testimonials} limit={3} />
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="area-title">
+    <div class="wrap split">
+      <div data-reveal>
+        <p class="eyebrow">Where we work</p>
+        <h2 id="area-title">Based in {city}. Serving the whole metroplex.</h2>
+        <p class="lead">{value('serviceModel')}.</p>
+        <ul class="chips" aria-label="Cities we serve">
+          {areas.cities.map((c) => (
+            <li class:list={{ 'is-home': c === areas.home }}>{c === areas.home && <Icon name="map-pin" size={16} />}{c}</li>
+          ))}
+        </ul>
+        <p class="hero__actions mt-m"><a class="btn btn--primary" href={withBase('service-area/')}>View service area</a></p>
       </div>
-      <div class="contact">
-        <div class="contact__item"><h3>Phone</h3><p><Fact id="phone" /></p></div>
-        <div class="contact__item"><h3>Email</h3><p><Fact id="email" /></p></div>
-        <div class="contact__item">
-          <h3>Address</h3>
-          <address><Fact id="address" /></address>
-          {directions && (
-            <p class="contact__link">
-              <a href={directions} target="_blank" rel="noopener">Get directions<span class="sr-only"> (opens Google Maps in a new tab)</span></a>
-            </p>
-          )}
-        </div>
-      </div>
-      <div class="contact__cta">
-        <CallButton />
-        <a class="btn btn--secondary" href="#request">
-          <span class="btn__main">Request a repair</span>
-          <span class="btn__sub">or ask for an estimate</span>
-        </a>
+      <div class="split__media" data-reveal>
+        <Photo name="road-sunrays" sizes="(min-width: 900px) 540px, 92vw" widths={[480, 800, 1100]} />
       </div>
     </div>
   </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="wrap">
+      <SectionHead eyebrow="FAQ" title="Questions drivers ask" id="faq-title" />
+      <FaqList groups={topFaq} openFirst />
+      <p class="section__more" data-reveal><a class="btn btn--ghost-dark" href={withBase('faq/')}>All questions</a></p>
+    </div>
+  </section>
+
+  <CtaBand />
 </Base>

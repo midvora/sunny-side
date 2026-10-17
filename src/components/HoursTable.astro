@@ -1,0 +1,17 @@
+---
+import { hours } from '../lib/site';
+import { hoursRows } from '../lib/hours';
+
+const rows = hoursRows(hours);
+---
+<table class="hours" data-hours-table>
+  <caption class="sr-only">Opening hours</caption>
+  <tbody>
+    {rows.map((r) => (
+      <tr data-day={r.key}>
+        <th scope="row">{r.name}</th>
+        <td>{r.text}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

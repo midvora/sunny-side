@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+import { tel, phoneText } from '../lib/site';
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const topics = ['General question', 'Estimate for a repair', 'Fleet account', 'Inspection or maintenance', 'Feedback'];
+---
+<form
+  class="rform rform--contact"
+  id="contact-form"
+  data-endpoint={endpoint}
+  action={endpoint || undefined}
+  method={endpoint ? 'post' : undefined}
+  novalidate
+  autocomplete="on"
+>
+  <div data-fields>
+    <div class="field-grid">
+      <div class="field" data-field>
+        <label for="cf-name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-err" />
+        <p class="field__error" id="cf-name-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-err" />
+        <p class="field__error" id="cf-email-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="cf-phone">Phone <span class="opt">(optional)</span></label>
+        <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="cf-phone-err" />
+        <p class="field__error" id="cf-phone-err" hidden></p>
+      </div>
+      <div class="field" data-field>
+        <label for="cf-topic">What&rsquo;s it about?</label>
+        <select id="cf-topic" name="topic">
+          {topics.map((t) => <option value={t}>{t}</option>)}
+        </select>
+      </div>
+    </div>
+    <div class="field" data-field>
+      <label for="cf-message">Message <span class="req" aria-hidden="true">*</span></label>
+      <textarea id="cf-message" name="message" rows="5" required aria-describedby="cf-message-err"></textarea>
+      <p class="field__error" id="cf-message-err" hidden></p>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+    <button class="btn btn--primary btn--lg" type="submit" data-submit>Send message</button>
+  </div>
+
+  <p class="rform__error" data-form-error role="alert" tabindex="-1" hidden>
+    Something went wrong and your message didn&rsquo;t go through. Please call us at <a href={tel()}>{phoneText()}</a>.
+  </p>
+  <div class="rform__success" data-success tabindex="-1" role="status" hidden>
+    <span class="rform__check"><Icon name="circle-check" size={44} /></span>
+    <h2>Message received</h2>
+    <p>Thanks for getting in touch. We&rsquo;ll reply as soon as we can. If it&rsquo;s urgent, call <a href={tel()}>{phoneText()}</a>.</p>
+    <p class="rform__demo" data-demo-note hidden>Design preview: no message was actually sent.</p>
+  </div>
+</form>
+
+<script>
+  import '../scripts/contact-form';
+</script>

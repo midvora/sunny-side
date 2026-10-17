@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { articles } from '../../lib/articles';
+import { withBase } from '../../lib/site';
+---
+<Base title="Driver Resources" description="Practical guides for truck drivers and fleets: what to do when you break down, DOT inspection prep, air brake warning signs and Texas heat tips.">
+  <PageHero compact eyebrow="Resources" title="Guides for drivers" lead="Plain-language help for the road: breakdowns, inspections, brakes and seasonal care." image="red-freightliner" crumbs={[{ name: 'Resources' }]} actions={false} />
+  <section class="section">
+    <div class="wrap">
+      <div class="grid-cards">
+        {articles.map((a) => (
+          <article class="rcard" data-reveal>
+            <div class="rcard__media"><Photo name={a.image} decorative sizes="(min-width:1000px) 360px, (min-width:640px) 46vw, 92vw" widths={[360, 560, 760]} /></div>
+            <div class="rcard__body">
+              <p><span class="tag">{a.category}</span></p>
+              <h2><a class="rcard__link" href={withBase(`resources/${a.slug}/`)}>{a.title}</a></h2>
+              <p>{a.description}</p>
+              <p class="rcard__meta">{a.readTime}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
