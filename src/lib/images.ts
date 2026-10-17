@@ -29,3 +29,9 @@ export function photo(key: string): PhotoRecord & { meta: ImageMetadata; key: st
 
 export const allPhotoKeys = (): string[] => Object.keys(records);
 export const pexelsUrl = (id: number): string => `https://www.pexels.com/photo/${id}/`;
+
+// object-position per focal point, emitted once as a <style> block so images need no inline style attribute.
+export const focalCss = (): string =>
+  [...new Set(Object.values(records).map((r) => r.focal))]
+    .map((f) => `img[data-focal="${f}"]{object-position:${f}}`)
+    .join('');

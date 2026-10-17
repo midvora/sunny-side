@@ -23,7 +23,7 @@ const rays = Array.from({ length: 18 }, (_, i) => -90 + i * (180 / 17));
       <p>{text}</p>
     </div>
     <div class="cta__actions" data-reveal>
-      <a class:list={['btn', 'btn--lg', variant === 'yellow' ? 'btn--dark' : 'btn--primary']} href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+      <a class:list={['btn', 'btn--lg', variant === 'yellow' ? 'btn--dark' : 'btn--primary']} href={tel()}><Icon name="phone-call" size={22} />Call&nbsp;{phoneText()}</a>
       <a class:list={['btn', 'btn--lg', 'btn--ghost']} href={withBase('request-service/')}>Request service</a>
     </div>
   </div>

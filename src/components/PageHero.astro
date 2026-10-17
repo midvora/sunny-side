@@ -27,7 +27,7 @@ const { eyebrow, title, lead, image, crumbs, actions = true, compact = false } =
     <slot />
     {actions && (
       <div class="page-hero__actions">
-        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} />Call&nbsp;{phoneText()}</a>
         <a class="btn btn--ghost btn--lg" href={withBase('request-service/')}>Request service</a>
       </div>
     )}

@@ -11,7 +11,8 @@ import condensed700 from '@fontsource/barlow-condensed/files/barlow-condensed-la
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
-import { LAUNCH, absoluteUrl, hours, phoneText, siteName, value, withBase } from '../lib/site';
+import { LAUNCH, absoluteUrl, hours, siteName, value, withBase } from '../lib/site';
+import { focalCss } from '../lib/images';
 import { localBusiness } from '../lib/seo';
 
 interface Props {
@@ -25,10 +26,14 @@ interface Props {
 const { title, description, bar = true, schema = [], ogType = 'website' } = Astro.props;
 const name = siteName();
 const city = value('location').split(',')[0];
-const fullTitle = title ? `${title} | ${name}` : `${name} | ${value('tradeLine')} and Roadside Assistance in ${city}, TX`;
+// Keep <title> within 70 characters: drop the site-name suffix when it would push a page title over.
+const suffixed = title ? `${title} | ${name}` : `${name} | ${value('tradeLine')} in ${city}, TX`;
+// Length is measured as serialized HTML, where & and ' become entities.
+const htmlLen = (t: string) => t.replace(/&/g, '&amp;').replace(/'/g, '&#39;').length;
+const fullTitle = htmlLen(suffixed) > 70 && title && htmlLen(title) <= 70 ? title : suffixed;
 const desc =
   description ??
-  `${value('tradeLine')} and roadside assistance in ${value('location')}. DOT inspections, brakes, engine, electrical, tires and trailers. Call ${phoneText()} or request service online.`;
+  `${value('tradeLine')} and roadside assistance in ${value('location')}. DOT inspections, brakes, engine, electrical, tires and trailers. Call ${value('phone')} or request service online.`;
 const ogImage = absoluteUrl('og.jpg');
 const canonical = LAUNCH ? absoluteUrl(Astro.url.pathname.slice(withBase().length)) : undefined;
 const jsonLd = LAUNCH ? [localBusiness(), ...schema] : [];
@@ -56,6 +61,7 @@ const jsonLd = LAUNCH ? [localBusiness(), ...schema] : [];
     {ogImage && <meta property="og:image:height" content="630" />}
     {ogImage && <meta property="og:image:alt" content={`${name}: ${value('tradeLine')} and roadside assistance in ${city}, Texas`} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <style set:html={focalCss()} />
     {jsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>
   <body class:list={{ 'has-bar': bar }}>

@@ -24,6 +24,9 @@ function setOpen(item: HTMLElement, open: boolean): void {
 const closeAll = (except?: HTMLElement) => navItems.forEach((i) => i !== except && setOpen(i, false));
 
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+// Escape dismisses a menu even while the pointer rests on it: cancel any pending hover-open and ignore hover until the pointer leaves.
+const hoverTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
+const dismissed = new Set<HTMLElement>();
 for (const item of navItems) {
   toggleOf(item).addEventListener('click', () => {
     const open = toggleOf(item).getAttribute('aria-expanded') === 'true';
@@ -34,17 +37,18 @@ for (const item of navItems) {
     if (!item.contains((e as FocusEvent).relatedTarget as Node | null)) setOpen(item, false);
   });
   if (finePointer) {
-    let timer: ReturnType<typeof setTimeout>;
     item.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
+      clearTimeout(hoverTimers.get(item));
+      if (dismissed.has(item)) return;
+      hoverTimers.set(item, setTimeout(() => {
         closeAll(item);
         setOpen(item, true);
-      }, 90);
+      }, 90));
     });
     item.addEventListener('mouseleave', () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => setOpen(item, false), 180);
+      dismissed.delete(item);
+      clearTimeout(hoverTimers.get(item));
+      hoverTimers.set(item, setTimeout(() => setOpen(item, false), 180));
     });
   }
 }
@@ -52,6 +56,8 @@ doc.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
   const open = navItems.find((i) => i.classList.contains('is-open'));
   if (open) {
+    clearTimeout(hoverTimers.get(open));
+    dismissed.add(open);
     setOpen(open, false);
     toggleOf(open).focus();
   }

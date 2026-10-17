@@ -4,6 +4,7 @@
     "no-trailing-whitespace": "off",
     "void-style": "off",
     "attribute-boolean-style": "off",
-    "attribute-empty-style": "off"
+    "attribute-empty-style": "off",
+    "form-dup-name": ["error", { "shared": ["radio", "checkbox", "button", "reset", "submit"] }]
   }
 }

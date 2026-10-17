@@ -1,5 +1,5 @@
 // Structured data (JSON-LD). Only emitted in a launch build, where every value is confirmed.
-import { absoluteUrl, addressParts, areas, emailText, faqGroups, hours, phoneText, services, siteName, value, type Service } from './site';
+import { absoluteUrl, addressParts, areas, emailText, faqGroups, hours, services, siteName, value, type Service } from './site';
 import { DAY_ORDER } from './hours';
 
 const DAY_SCHEMA: Record<string, string> = {
@@ -16,7 +16,7 @@ export function localBusiness() {
     description: `${value('tradeLine')} and roadside assistance in ${value('location')}.`,
     url: absoluteUrl(),
     image: absoluteUrl('og.jpg'),
-    telephone: phoneText(),
+    telephone: value('phone'),
     email: emailText(),
     slogan: value('tagline'),
     address: {

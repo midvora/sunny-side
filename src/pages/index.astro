@@ -28,7 +28,7 @@ const [roadsideCard, ...otherServices] = [services.find((s) => s.slug === 'roads
       <h1 id="hero-title">{titleLead}<em>{emphasis}</em></h1>
       <p class="lead">{hero.lead}</p>
       <div class="hero__actions">
-        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call {phoneText()}</a>
+        <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} />Call&nbsp;{phoneText()}</a>
         <a class="btn btn--ghost btn--lg" href={withBase('request-service/')}>Request service</a>
       </div>
       <ul class="hero__checks">
@@ -63,7 +63,7 @@ const [roadsideCard, ...otherServices] = [services.find((s) => s.slug === 'roads
         <div class="scard scard--cta" data-reveal>
           <h3>Not sure what you need?</h3>
           <p>Describe what&rsquo;s going on and we&rsquo;ll tell you straight.</p>
-          <a class="btn btn--dark" href={tel()}><Icon name="phone-call" size={20} /> Call {phoneText()}</a>
+          <a class="btn btn--dark" href={tel()}><Icon name="phone-call" size={20} />Call&nbsp;{phoneText()}</a>
           <a class="btn btn--ghost-dark" href={withBase('request-service/')}>Request service</a>
         </div>
       </div>
@@ -85,7 +85,7 @@ const [roadsideCard, ...otherServices] = [services.find((s) => s.slug === 'roads
           {roadside.bullets.map((b) => <li><Icon name="circle-check" size={22} /> {b}</li>)}
         </ul>
         <div class="hero__actions">
-          <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} /> Call now</a>
+          <a class="btn btn--primary btn--lg" href={tel()}><Icon name="phone-call" size={22} />Call&nbsp;now</a>
           <a class="btn btn--ghost btn--lg" href={withBase('roadside-assistance/')}>How roadside works</a>
         </div>
       </div>

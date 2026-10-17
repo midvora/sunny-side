@@ -51,7 +51,7 @@ const enriched = await Promise.all(
         {enriched.map((i) => (
           <li data-gallery-cell>
             <button class="gallery__btn" type="button" data-gallery-item data-full={i.full} data-alt={i.alt} data-caption={i.caption} data-cat={i.cat} aria-label={`View larger: ${i.caption}`}>
-              <Photo name={i.key} alt="" sizes="(min-width: 960px) 380px, (min-width: 640px) 46vw, 92vw" widths={[400, 640, 900]} />
+              <Photo name={i.key} alt="" lowPriority sizes="(min-width: 960px) 380px, (min-width: 640px) 46vw, 92vw" widths={[400, 640, 900]} />
               <span class="gallery__cap">{i.caption}</span>
             </button>
           </li>
@@ -61,7 +61,7 @@ const enriched = await Promise.all(
   </section>
 
   <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
-    <div class="lightbox__stage"><img alt="" data-lb-img /></div>
+    <div class="lightbox__stage"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lb-img /></div>
     <div class="lightbox__bar">
       <div>
         <p class="lightbox__cap" data-lb-caption></p>

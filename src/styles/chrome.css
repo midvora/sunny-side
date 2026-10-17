@@ -627,7 +627,7 @@
   inset: auto 0 0 0;
   z-index: 70;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px));
   background: rgba(15, 19, 24, 0.96);
@@ -638,6 +638,8 @@
   min-height: 54px;
   padding: 0 10px;
   font-size: 1.12rem;
+  line-height: 1.1;
+  text-align: center;
 }
 .bar .btn--ghost {
   color: #fff;

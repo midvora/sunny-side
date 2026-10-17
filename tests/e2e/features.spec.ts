@@ -235,7 +235,7 @@ test.describe('roadside page', () => {
 
   test('shows the roadside number and a tappable call button', async ({ page }) => {
     await page.goto('./roadside-assistance/');
-    await expect(page.locator('.callcard__number')).toHaveText('972-555-0142');
+    await expect(page.locator('.callcard__number')).toHaveText('972\u2011555\u20110142');
     await expect(page.locator('.callcard__number')).toHaveAttribute('href', PHONE_TEL);
     await expect(page.locator('#breakdown-checklist li')).toHaveCount(6);
   });

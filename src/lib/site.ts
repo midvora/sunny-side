@@ -113,7 +113,8 @@ export function fillDeep<T>(x: T): T {
 
 // ---- derived contact data ----
 export const tel = (): string => `tel:${facts.phone.tel}`;
-export const phoneText = (): string => value('phone');
+// Display form keeps the number on one line: non-breaking hyphens (U+2011) and spaces (U+00A0).
+export const phoneText = (): string => value('phone').replaceAll('-', '\u2011').replaceAll(' ', '\u00a0');
 export const emailText = (): string => value('email');
 export const addressText = (): string => value('address');
 export const addressParts = () => facts.address.parts!;

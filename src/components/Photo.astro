@@ -9,6 +9,7 @@ interface Props {
   widths?: number[];
   class?: string;
   priority?: boolean;
+  lowPriority?: boolean;
   decorative?: boolean;
 }
 
@@ -19,6 +20,7 @@ const {
   widths = [480, 800, 1200, 1600],
   class: cls,
   priority = false,
+  lowPriority = false,
   decorative = false,
 } = Astro.props;
 const p = photo(name);
@@ -31,8 +33,8 @@ const p = photo(name);
   format="webp"
   quality={72}
   class={cls}
-  style={`object-position:${p.focal}`}
+  data-focal={p.focal}
   loading={priority ? 'eager' : 'lazy'}
-  fetchpriority={priority ? 'high' : 'auto'}
+  fetchpriority={priority ? 'high' : lowPriority ? 'low' : 'auto'}
   decoding={priority ? 'sync' : 'async'}
 />
