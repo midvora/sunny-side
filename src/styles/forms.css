@@ -36,7 +36,7 @@
 .check input {
   scroll-margin-top: 150px;
 }
-.rform:not(.is-js) .rstep {
+html:not(.js) .rstep {
   margin-bottom: 38px;
 }
 .rform__progress {
@@ -46,7 +46,7 @@
   margin: 0 0 30px;
   gap: 10px;
 }
-.rform.is-js .rform__progress {
+.js .rform__progress {
   display: flex;
 }
 .rform__progress li {
@@ -330,7 +330,7 @@
 .rform__nav .btn:only-of-type {
   margin-left: auto;
 }
-.rform:not(.is-js) .rform__nav {
+html:not(.js) .rform__nav {
   justify-content: flex-end;
 }
 .rform__error {

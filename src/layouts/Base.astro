@@ -42,6 +42,8 @@ const jsonLd = LAUNCH ? [localBusiness(), ...schema] : [];
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <noscript><style>.rstep[hidden]{display:block!important}.rform [data-next]{display:none!important}.rform [data-submit][hidden]{display:inline-flex!important}</style></noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
